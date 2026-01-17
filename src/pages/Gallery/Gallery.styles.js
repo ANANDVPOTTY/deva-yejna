@@ -20,4 +20,6 @@ export const GalleryDescription = styled(Typography)(() => ({
   fontFamily: "var(--font-primary)",
   color: "var(--color-charcoal)",
   lineHeight: 1.6,
+  marginBottom: "32px",
+  maxWidth: "700px",
 }));

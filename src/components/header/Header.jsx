@@ -36,7 +36,12 @@ const Header = () => {
 
         <NavContainer component="nav">
           {NAV_ITEMS.map((item) => (
-            <NavItem key={item.label} href={item.href} disableRipple>
+            <NavItem
+              key={item.label}
+              component={Link}
+              to={item.href}
+              disableRipple
+            >
               {item.label}
             </NavItem>
           ))}

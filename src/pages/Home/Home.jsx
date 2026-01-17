@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import {
+  HomeWrapper,
   HomeContainer,
   ImageSection,
   CarouselImage,
@@ -7,6 +8,7 @@ import {
   MainText,
   SubText,
 } from "./Home.styles";
+import Footer from "../../components/footer/Footer";
 import ganapatiImg from "../../assets/images/ganpati.jpg";
 import shivlingImg from "../../assets/images/shivling.jpg";
 import mahavishnuImg from "../../assets/images/mahavishnu.jpg";
@@ -35,28 +37,32 @@ const Home = () => {
   }, []);
 
   return (
-    <HomeContainer>
-      <ImageSection>
-        {DEITY_IMAGES.map((image, index) => (
-          <CarouselImage
-            key={image.alt}
-            src={image.src}
-            alt={image.alt}
-            isActive={index === activeIndex}
-          />
-        ))}
-      </ImageSection>
+    <HomeWrapper>
+      <HomeContainer>
+        <ImageSection>
+          {DEITY_IMAGES.map((image, index) => (
+            <CarouselImage
+              key={image.alt}
+              src={image.src}
+              alt={image.alt}
+              isActive={index === activeIndex}
+            />
+          ))}
+        </ImageSection>
 
-      <TextSection>
-        <MainText>Welcome to a Sacred Path of Devotion</MainText>
+        <TextSection>
+          <MainText>Welcome to a Sacred Path of Devotion</MainText>
 
-        <SubText>
-          Experience time-honored kerala tantrik pooja rituals performed with
-          purity, faith, and tradition. May peace, prosperity, and divine grace
-          be with you always.
-        </SubText>
-      </TextSection>
-    </HomeContainer>
+          <SubText>
+            Experience time-honored kerala tantrik pooja rituals performed with
+            purity, faith, and tradition. May peace, prosperity, and divine grace
+            be with you always.
+          </SubText>
+        </TextSection>
+      </HomeContainer>
+
+      <Footer />
+    </HomeWrapper>
   );
 };
 

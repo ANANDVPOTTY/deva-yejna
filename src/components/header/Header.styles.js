@@ -7,6 +7,7 @@ export const StyledAppBar = styled(Box)(() => ({
   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
   position: "sticky",
   top: 0,
+  zIndex: 1000,
 }));
 
 export const StyledToolbar = styled(Box)(() => ({

@@ -3,9 +3,15 @@ import { Box, Typography } from "@mui/material";
 import { responsiveFont } from "../../components/font/ResponsiveFonts.styles";
 import { fadeIn } from "../../styles/animations";
 
+export const HomeWrapper = styled(Box)(() => ({
+  display: "flex",
+  flexDirection: "column",
+  minHeight: "calc(100vh - 80px)",
+}));
+
 export const HomeContainer = styled(Box)(({ theme }) => ({
   maxWidth: "1400px",
-  minHeight: "calc(100vh - 120px)",
+  flex: 1,
   display: "flex",
   alignItems: "center",
   gap: "80px",
