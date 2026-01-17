@@ -4,8 +4,8 @@ import {
   ContactDescription,
   ContactContent,
 } from "./Contact.styles";
-import LeftSection from "./LeftSection/LeftSection";
-import RightSection from "./RightSection/RightSection";
+import LeftSection from "./left-section/LeftSection";
+import RightSection from "./right-section/RightSection";
 
 const Contact = () => {
   return (

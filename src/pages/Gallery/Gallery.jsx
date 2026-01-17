@@ -1,8 +1,8 @@
 import { useState, useMemo } from "react";
 import { GalleryContainer, GalleryTitle, GalleryDescription } from "./Gallery.styles";
-import GalleryFilters from "./GalleryFilters/GalleryFilters";
-import GalleryGrid from "./GalleryGrid/GalleryGrid";
-import GalleryModal from "./GalleryModal/GalleryModal";
+import GalleryFilters from "./gallery-filters/GalleryFilters";
+import GalleryGrid from "./gallery-grid/GalleryGrid";
+import GalleryModal from "./gallery-modal/GalleryModal";
 import { galleryData } from "./galleryData";
 
 const Gallery = () => {

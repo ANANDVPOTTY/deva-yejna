@@ -1,5 +1,5 @@
 import SearchOffIcon from "@mui/icons-material/SearchOff";
-import GalleryCard from "../GalleryCard/GalleryCard";
+import GalleryCard from "../gallery-card/GalleryCard";
 import {
   GridContainer,
   NoResultsContainer,
