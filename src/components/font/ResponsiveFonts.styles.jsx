@@ -1,6 +1,7 @@
 /*-------| Responsive Font Size Tokens |-------*/
 export const FONT_SIZES = {
   "60px": { xs: "32px", sm: "40px", md: "48px", lg: "54px", xl: "60px" },
+  "52px": { xs: "28px", sm: "34px", md: "40px", lg: "46px", xl: "52px" },
   "48px": { xs: "26px", sm: "32px", md: "38px", lg: "44px", xl: "48px" },
   "36px": { xs: "22px", sm: "26px", md: "30px", lg: "34px", xl: "36px" },
   "32px": { xs: "20px", sm: "24px", md: "28px", lg: "30px", xl: "32px" },
