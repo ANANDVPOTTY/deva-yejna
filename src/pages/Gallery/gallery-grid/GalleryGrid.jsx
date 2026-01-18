@@ -1,7 +1,9 @@
+import PropTypes from "prop-types";
 import SearchOffIcon from "@mui/icons-material/SearchOff";
 import GalleryCard from "../gallery-card/GalleryCard";
 import {
   GridContainer,
+  GridItem,
   NoResultsContainer,
   NoResultsText,
 } from "./GalleryGrid.styles";
@@ -22,11 +24,26 @@ const GalleryGrid = ({ items, onItemClick }) => {
 
   return (
     <GridContainer>
-      {items.map((item) => (
-        <GalleryCard key={item.id} item={item} onClick={onItemClick} />
+      {items.map((item, index) => (
+        <GridItem key={item.id} index={index}>
+          <GalleryCard item={item} onClick={onItemClick} />
+        </GridItem>
       ))}
     </GridContainer>
   );
+};
+
+GalleryGrid.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      thumbnail: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      category: PropTypes.string,
+      type: PropTypes.string,
+    })
+  ).isRequired,
+  onItemClick: PropTypes.func.isRequired,
 };
 
 export default GalleryGrid;

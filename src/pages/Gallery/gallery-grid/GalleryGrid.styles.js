@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import { responsiveFont } from "../../../components/font/ResponsiveFonts.styles";
+import { gridItemFadeIn } from "../../../styles/animations";
 
 export const GridContainer = styled(Box)(({ theme }) => ({
   display: "grid",
@@ -42,4 +43,10 @@ export const NoResultsText = styled(Typography)(({ theme }) => ({
   color: "var(--color-charcoal)",
   opacity: 0.7,
   marginTop: "16px",
+}));
+
+export const GridItem = styled(Box)(({ index }) => ({
+  animation: `${gridItemFadeIn} 0.4s ease-out forwards`,
+  animationDelay: `${Math.min(index * 0.05, 0.5)}s`,
+  opacity: 0,
 }));

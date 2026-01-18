@@ -67,10 +67,17 @@ export const CardOverlay = styled(Box)(() => ({
   bottom: 0,
   left: 0,
   right: 0,
-  padding: "20px",
-  background: "linear-gradient(transparent, rgba(0, 0, 0, 0.8))",
+  padding: "16px",
+  background: "linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 60%, transparent 100%)",
   opacity: 0,
   transition: "opacity 0.3s ease",
+}));
+
+export const CardTextWrapper = styled(Box)(() => ({
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  backdropFilter: "blur(4px)",
+  borderRadius: "8px",
+  padding: "10px 12px",
 }));
 
 export const CardDescription = styled(Typography)(({ theme }) => ({
