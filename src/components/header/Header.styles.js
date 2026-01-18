@@ -59,15 +59,16 @@ export const HamburgerButton = styled(IconButton)(({ theme }) => ({
   },
 }));
 
-export const NavItem = styled(Button)(({ theme }) => ({
+export const NavItem = styled(Button)(({ theme, active }) => ({
   ...responsiveFont(theme, "18px"),
   fontFamily: "var(--font-primary)",
   fontWeight: 500,
-  color: "var(--color-charcoal)",
+  color: active ? "var(--color-black)" : "var(--color-charcoal)",
   textTransform: "none",
   padding: "0.4rem 1.5rem",
   borderRadius: "8px",
   transition: "all 0.3s ease",
+  backgroundColor: active ? "var(--color-silver)" : "transparent",
 
   "&:hover": {
     backgroundColor: "var(--color-silver)",
@@ -112,12 +113,13 @@ export const DrawerLogoText = styled(Typography)(() => ({
   color: "var(--color-charcoal)",
 }));
 
-export const DrawerNavItem = styled(ListItemButton)(() => ({
+export const DrawerNavItem = styled(ListItemButton)(({ active }) => ({
   padding: "16px 24px",
   fontFamily: "var(--font-primary)",
   fontSize: "18px",
   fontWeight: 500,
-  color: "var(--color-charcoal)",
+  color: active ? "var(--color-black)" : "var(--color-charcoal)",
+  backgroundColor: active ? "var(--color-silver)" : "transparent",
   transition: "all 0.3s ease",
 
   "&:hover": {

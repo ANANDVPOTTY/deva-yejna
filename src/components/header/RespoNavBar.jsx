@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Drawer, List, ListItem, ListItemText, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import {
@@ -19,6 +19,8 @@ const NAV_ITEMS = [
 ];
 
 const RespoNavBar = ({ open, onClose }) => {
+  const location = useLocation();
+
   return (
     <Drawer anchor="right" open={open} onClose={onClose}>
       <DrawerContent>
@@ -35,7 +37,12 @@ const RespoNavBar = ({ open, onClose }) => {
         <List>
           {NAV_ITEMS.map((item) => (
             <ListItem key={item.label} disablePadding>
-              <DrawerNavItem component={Link} to={item.href} onClick={onClose}>
+              <DrawerNavItem
+                component={Link}
+                to={item.href}
+                onClick={onClose}
+                active={location.pathname === item.href ? 1 : 0}
+              >
                 <ListItemText
                   primary={item.label}
                   primaryTypographyProps={{

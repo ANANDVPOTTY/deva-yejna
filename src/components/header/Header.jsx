@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   StyledAppBar,
@@ -22,6 +22,7 @@ const NAV_ITEMS = [
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const location = useLocation();
 
   const handleDrawerOpen = () => setDrawerOpen(true);
   const handleDrawerClose = () => setDrawerOpen(false);
@@ -41,6 +42,7 @@ const Header = () => {
               component={Link}
               to={item.href}
               disableRipple
+              active={location.pathname === item.href ? 1 : 0}
             >
               {item.label}
             </NavItem>

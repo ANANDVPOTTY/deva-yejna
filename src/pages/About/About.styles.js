@@ -1,32 +1,109 @@
 import { styled } from "@mui/material/styles";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { responsiveFont } from "../../components/font/ResponsiveFonts.styles.jsx";
 import { fadeInUp } from "../../styles/animations";
 
 export const AboutContainer = styled(Box)(() => ({
-  maxWidth: "1400px",
   margin: "0 auto",
-  padding: "60px 24px 80px",
 }));
 
-export const HeroSection = styled(Box)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  gap: "60px",
-  marginBottom: "80px",
+/*-------| Hero Section - Dark Banner |-------*/
+export const HeroBanner = styled(Box)(({ theme }) => ({
+  background:
+    "linear-gradient(135deg, var(--color-charcoal) 0%, var(--color-slate) 30%, var(--color-onyx) 65%, var(--color-ink) 100%)",
+
+  padding: "80px 24px",
+  position: "relative",
+  overflow: "hidden",
   animation: `${fadeInUp} 0.8s ease-out`,
 
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: "-50%",
+    right: "-10%",
+    width: "500px",
+    height: "500px",
+    borderRadius: "50%",
+    background: "rgba(139, 69, 19, 0.08)",
+    pointerEvents: "none",
+  },
+
+  "&::after": {
+    content: '""',
+    position: "absolute",
+    bottom: "-30%",
+    left: "-5%",
+    width: "300px",
+    height: "300px",
+    borderRadius: "50%",
+    background: "rgba(139, 69, 19, 0.05)",
+    pointerEvents: "none",
+  },
+
   [theme.breakpoints.down("md")]: {
-    flexDirection: "column",
-    gap: "40px",
-    marginBottom: "60px",
+    padding: "60px 24px",
   },
 }));
 
-export const PhotosContainer = styled(Box)(({ theme }) => ({
+export const HeroContent = styled(Box)(({ theme }) => ({
+  maxWidth: "1400px",
+  margin: "0 auto",
   display: "flex",
-  gap: "20px",
-  flexShrink: 0,
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: "60px",
+  position: "relative",
+  zIndex: 1,
+
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column-reverse",
+    textAlign: "center",
+    gap: "40px",
+  },
+}));
+
+export const HeroTextContent = styled(Box)(({ theme }) => ({
+  flex: 1,
+  maxWidth: "600px",
+
+  [theme.breakpoints.down("md")]: {
+    maxWidth: "100%",
+  },
+}));
+
+export const Greeting = styled(Typography)(() => ({
+  fontFamily: "var(--font-primary)",
+  fontSize: "16px",
+  fontWeight: 500,
+  color: "var(--color-peach)",
+  marginBottom: "12px",
+  letterSpacing: "2px",
+}));
+
+export const HeroName = styled(Typography)(({ theme }) => ({
+  ...responsiveFont(theme, "52px"),
+  fontFamily: "var(--font-special)",
+  fontWeight: 700,
+  color: "var(--color-cream)",
+  lineHeight: 1.1,
+  marginBottom: "16px",
+  textTransform: "uppercase",
+  letterSpacing: "2px",
+}));
+
+export const HeroRole = styled(Typography)(({ theme }) => ({
+  ...responsiveFont(theme, "18px"),
+  fontFamily: "var(--font-primary)",
+  fontWeight: 400,
+  color: "var(--color-silver)",
+  marginBottom: "32px",
+  lineHeight: 1.6,
+}));
+
+export const HeroButtons = styled(Box)(({ theme }) => ({
+  display: "flex",
+  gap: "16px",
 
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
@@ -34,77 +111,136 @@ export const PhotosContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const PhotoWrapper = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "variant",
-})(({ theme, variant }) => ({
-  position: "relative",
-  width: variant === "primary" ? "220px" : "180px",
-  height: variant === "primary" ? "300px" : "260px",
-  marginTop: variant === "secondary" ? "40px" : "0",
-  borderRadius: "140px",
-  overflow: "hidden",
-  boxShadow: "0 20px 50px rgba(61, 58, 54, 0.15)",
-  border: "4px solid var(--color-cream)",
+export const PrimaryButton = styled(Button)(() => ({
+  fontFamily: "var(--font-primary)",
+  padding: "14px 32px",
+  borderRadius: "8px",
+  fontWeight: 600,
+  fontSize: "14px",
+  textTransform: "none",
+  backgroundColor: "var(--color-charcoal)",
+  color: "var(--color-cream)",
+  border: "2px solid var(--color-stone)",
+  transition: "all 0.3s ease",
 
-  "&::before": {
-    content: '""',
-    position: "absolute",
-    inset: 0,
-    background:
-      "linear-gradient(180deg, transparent 60%, rgba(61, 58, 54, 0.1) 100%)",
-    zIndex: 1,
-  },
-
-  [theme.breakpoints.down("lg")]: {
-    width: variant === "primary" ? "180px" : "150px",
-    height: variant === "primary" ? "250px" : "220px",
-  },
-
-  [theme.breakpoints.down("sm")]: {
-    width: "200px",
-    height: "270px",
-    marginTop: 0,
+  "&:hover": {
+    backgroundColor: "var(--color-onyx)",
+    borderColor: "var(--color-peach)",
+    transform: "translateY(-2px)",
+    boxShadow: "0 8px 25px rgba(61, 58, 54, 0.3)",
   },
 }));
 
-export const Photo = styled("img")(() => ({
+export const SecondaryButton = styled(Button)(() => ({
+  fontFamily: "var(--font-primary)",
+  padding: "14px 32px",
+  borderRadius: "8px",
+  fontWeight: 600,
+  fontSize: "14px",
+  textTransform: "none",
+  backgroundColor: "transparent",
+  color: "var(--color-cream)",
+  border: "2px solid var(--color-stone)",
+  transition: "all 0.3s ease",
+
+  "&:hover": {
+    borderColor: "var(--color-peach)",
+    color: "var(--color-peach)",
+    backgroundColor: "rgba(255, 229, 180, 0.05)",
+  },
+}));
+
+export const HeroImageContainer = styled(Box)(({ theme }) => ({
+  position: "relative",
+  flexShrink: 0,
+
+  [theme.breakpoints.down("md")]: {
+    marginBottom: "20px",
+  },
+}));
+
+export const HeroImageWrapper = styled(Box)(() => ({
+  position: "relative",
+  width: "300px",
+  height: "360px",
+  zIndex: 2,
+}));
+
+export const HeroImage = styled("img")(() => ({
   width: "100%",
   height: "100%",
   objectFit: "cover",
-  transition: "transform 0.5s ease",
+  borderRadius: "20px",
+  boxShadow: "0 25px 60px rgba(0, 0, 0, 0.3)",
+  border: "4px solid var(--color-stone)",
+}));
 
-  "&:hover": {
-    transform: "scale(1.05)",
+export const DecorativeCircle = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "variant",
+})(({ variant }) => ({
+  position: "absolute",
+  borderRadius: "50%",
+  border: "3px solid",
+  borderColor:
+    variant === "primary" ? "var(--color-peach)" : "var(--color-stone)",
+  width: variant === "primary" ? "80px" : "120px",
+  height: variant === "primary" ? "80px" : "120px",
+  top: variant === "primary" ? "-15px" : "auto",
+  right: variant === "primary" ? "-20px" : "auto",
+  bottom: variant === "primary" ? "auto" : "-25px",
+  left: variant === "primary" ? "auto" : "-30px",
+  zIndex: variant === "primary" ? 3 : 1,
+}));
+
+export const DecorativeDots = styled(Box)(() => ({
+  position: "absolute",
+  bottom: "50px",
+  right: "-50px",
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 8px)",
+  gap: "8px",
+  zIndex: 1,
+
+  "& span": {
+    width: "8px",
+    height: "8px",
+    borderRadius: "50%",
+    backgroundColor: "var(--color-stone)",
   },
 }));
 
-export const IntroContent = styled(Box)(({ theme }) => ({
-  flex: 1,
+/*-------| About Me Section |-------*/
+export const AboutSection = styled(Box)(({ theme }) => ({
+  maxWidth: "1400px",
+  margin: "0 auto",
+  padding: "80px 24px",
+  animation: `${fadeInUp} 0.8s ease-out 0.2s both`,
 
   [theme.breakpoints.down("md")]: {
-    textAlign: "center",
+    padding: "60px 24px",
   },
 }));
 
 export const AboutTitle = styled(Typography)(({ theme }) => ({
-  ...responsiveFont(theme, "48px"),
+  ...responsiveFont(theme, "42px"),
   fontFamily: "var(--font-special)",
   fontWeight: 700,
   color: "var(--color-charcoal)",
-  marginBottom: "16px",
-  background: "linear-gradient(135deg, var(--color-charcoal) 0%, #8B4513 100%)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-}));
+  marginBottom: "32px",
+  textAlign: "center",
+  position: "relative",
 
-export const Tagline = styled(Typography)(({ theme }) => ({
-  ...responsiveFont(theme, "20px"),
-  fontFamily: "var(--font-primary)",
-  fontWeight: 500,
-  color: "var(--color-slate)",
-  marginBottom: "24px",
-  fontStyle: "italic",
+  "&::after": {
+    content: '""',
+    position: "absolute",
+    bottom: "-12px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: "60px",
+    height: "3px",
+    backgroundColor: "var(--color-stone)",
+    borderRadius: "2px",
+  },
 }));
 
 export const AboutDescription = styled(Typography)(({ theme }) => ({
@@ -113,9 +249,23 @@ export const AboutDescription = styled(Typography)(({ theme }) => ({
   color: "var(--color-charcoal)",
   lineHeight: 1.8,
   opacity: 0.9,
+  maxWidth: "900px",
+  margin: "0 auto",
+  textAlign: "center",
 
   "& + &": {
-    marginTop: "16px",
+    marginTop: "20px",
+  },
+}));
+
+/*-------| Content Wrapper for sections below hero |-------*/
+export const ContentWrapper = styled(Box)(({ theme }) => ({
+  maxWidth: "1400px",
+  margin: "0 auto",
+  padding: "0 24px 80px",
+
+  [theme.breakpoints.down("md")]: {
+    padding: "0 24px 60px",
   },
 }));
 
@@ -144,7 +294,7 @@ export const QuoteSection = styled(Box)(({ theme }) => ({
   textAlign: "center",
   padding: "50px 40px",
   background:
-    "linear-gradient(135deg, var(--color-cream) 0%, var(--color-parchment) 100%)",
+    "linear-gradient(135deg, var(--color-pearl) 0%, var(--color-alabaster) 100%)",
   borderRadius: "20px",
   marginBottom: "60px",
   position: "relative",
@@ -155,9 +305,9 @@ export const QuoteSection = styled(Box)(({ theme }) => ({
     position: "absolute",
     top: "20px",
     left: "30px",
-    fontSize: "80px",
+    ...responsiveFont(theme, "80px"),
     fontFamily: "var(--font-special)",
-    color: "var(--color-silver)",
+    color: "var(--color-slate)",
     opacity: 0.5,
     lineHeight: 1,
   },

@@ -1,18 +1,30 @@
+//-------| React Router |-------//
+import { useNavigate } from "react-router-dom";
+
 //-------| Images & Icons |-------//
 import photo1 from "../../assets/images/ganpati.jpg";
-import photo2 from "../../assets/images/shivling.jpg";
 
 //-------| Styled Components |-------//
 import {
   AboutContainer,
-  HeroSection,
-  PhotosContainer,
-  PhotoWrapper,
-  Photo,
-  IntroContent,
+  HeroBanner,
+  HeroContent,
+  HeroTextContent,
+  Greeting,
+  HeroName,
+  HeroRole,
+  HeroButtons,
+  PrimaryButton,
+  SecondaryButton,
+  HeroImageContainer,
+  HeroImageWrapper,
+  HeroImage,
+  DecorativeCircle,
+  DecorativeDots,
+  AboutSection,
   AboutTitle,
-  Tagline,
   AboutDescription,
+  ContentWrapper,
   Divider,
   DividerSymbol,
   QuoteSection,
@@ -66,68 +78,110 @@ const EXPERTISE_AREAS = [
 ];
 
 const About = () => {
+  const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    navigate("/contact");
+  };
+
+  const handleServicesClick = () => {
+    const expertiseSection = document.getElementById("expertise-section");
+    if (expertiseSection) {
+      expertiseSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <AboutContainer>
-      <HeroSection>
-        <PhotosContainer>
-          <PhotoWrapper variant="primary">
-            <Photo src={photo1} alt="Portrait 1" />
-          </PhotoWrapper>
-          <PhotoWrapper variant="secondary">
-            <Photo src={photo2} alt="Portrait 2" />
-          </PhotoWrapper>
-        </PhotosContainer>
+      {/* Hero Banner Section */}
+      <HeroBanner>
+        <HeroContent>
+          <HeroTextContent>
+            <Greeting>Namaste, I am</Greeting>
+            <HeroName>Kishore Raghava Sarma</HeroName>
 
-        <IntroContent>
-          <AboutTitle>About Me</AboutTitle>
+            <HeroRole>
+              Preserving Sacred Traditions, Serving Divine Purpose. With deep
+              roots in the ancient Kerala tantrik traditions, dedicated to
+              performing authentic rituals with purity and devotion.
+            </HeroRole>
 
-          <Tagline>
-            Preserving Sacred Traditions, Serving Divine Purpose
-          </Tagline>
+            <HeroButtons>
+              <PrimaryButton onClick={handleContactClick}>
+                Contact Me
+              </PrimaryButton>
+              <SecondaryButton onClick={handleServicesClick}>
+                View Services
+              </SecondaryButton>
+            </HeroButtons>
+          </HeroTextContent>
 
-          <AboutDescription>
-            With deep roots in the ancient Kerala tantrik traditions, I have
-            dedicated my life to preserving and practicing the sacred rituals
-            passed down through generations. My journey began under the guidance
-            of revered gurus who instilled in me not just the knowledge of
-            mantras and rituals, but the profound understanding of their
-            spiritual significance.
-          </AboutDescription>
+          <HeroImageContainer>
+            <DecorativeCircle variant="primary" />
+            <DecorativeCircle variant="secondary" />
 
-          <AboutDescription>
-            Every pooja I perform is approached with utmost devotion, purity,
-            and adherence to traditional methods. I believe that these ancient
-            practices hold the power to bring peace, prosperity, and divine
-            grace into people&apos;s lives when performed with sincere faith and
-            proper procedure.
-          </AboutDescription>
-        </IntroContent>
-      </HeroSection>
+            <HeroImageWrapper>
+              <HeroImage src={photo1} alt="Kishore Raghava Sarma" />
+            </HeroImageWrapper>
 
-      <QuoteSection>
-        <QuoteText>
-          True devotion is not merely in the rituals we perform, but in the
-          purity of heart with which we approach the divine. When faith meets
-          tradition, miracles unfold.
-        </QuoteText>
-      </QuoteSection>
+            <DecorativeDots>
+              {[...Array(9)].map((_, i) => (
+                <span key={i} />
+              ))}
+            </DecorativeDots>
+          </HeroImageContainer>
+        </HeroContent>
+      </HeroBanner>
 
-      <Divider>
-        <DividerSymbol>॥</DividerSymbol>
-      </Divider>
+      {/* About Me Section */}
+      <AboutSection>
+        <AboutTitle>About Me</AboutTitle>
 
-      <ExpertiseSection>
-        <SectionTitle>Areas of Expertise</SectionTitle>
-        <ExpertiseGrid>
-          {EXPERTISE_AREAS.map((area) => (
-            <ExpertiseCard key={area.title}>
-              <ExpertiseIcon>{area.icon}</ExpertiseIcon>
-              <ExpertiseTitle>{area.title}</ExpertiseTitle>
-              <ExpertiseDescription>{area.description}</ExpertiseDescription>
-            </ExpertiseCard>
-          ))}
-        </ExpertiseGrid>
-      </ExpertiseSection>
+        <AboutDescription>
+          With deep roots in the ancient Kerala tantrik traditions, I have
+          dedicated my life to preserving and practicing the sacred rituals
+          passed down through generations. My journey began under the guidance
+          of revered gurus who instilled in me not just the knowledge of mantras
+          and rituals, but the profound understanding of their spiritual
+          significance.
+        </AboutDescription>
+
+        <AboutDescription>
+          Every pooja I perform is approached with utmost devotion, purity, and
+          adherence to traditional methods. I believe that these ancient
+          practices hold the power to bring peace, prosperity, and divine grace
+          into people&apos;s lives when performed with sincere faith and proper
+          procedure.
+        </AboutDescription>
+      </AboutSection>
+
+      <ContentWrapper>
+        <QuoteSection>
+          <QuoteText>
+            True devotion is not merely in the rituals we perform, but in the
+            purity of heart with which we approach the divine. When faith meets
+            tradition, miracles unfold.
+          </QuoteText>
+        </QuoteSection>
+
+        <Divider>
+          <DividerSymbol>॥</DividerSymbol>
+        </Divider>
+
+        <ExpertiseSection id="expertise-section">
+          <SectionTitle>Areas of Expertise</SectionTitle>
+
+          <ExpertiseGrid>
+            {EXPERTISE_AREAS.map((area) => (
+              <ExpertiseCard key={area.title}>
+                <ExpertiseIcon>{area.icon}</ExpertiseIcon>
+                <ExpertiseTitle>{area.title}</ExpertiseTitle>
+                <ExpertiseDescription>{area.description}</ExpertiseDescription>
+              </ExpertiseCard>
+            ))}
+          </ExpertiseGrid>
+        </ExpertiseSection>
+      </ContentWrapper>
     </AboutContainer>
   );
 };
