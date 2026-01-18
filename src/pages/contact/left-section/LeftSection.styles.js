@@ -7,7 +7,7 @@ export const LeftSectionContainer = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   gap: "24px",
   width: "100%",
-  maxWidth: "400px",
+  maxWidth: "600px",
 
   [theme.breakpoints.down("md")]: {
     maxWidth: "100%",
@@ -110,7 +110,7 @@ export const SocialIconButton = styled(Box)(() => ({
 
 export const MapContainer = styled(Box)(({ theme }) => ({
   width: "100%",
-  height: "200px",
+  height: "300px",
   borderRadius: "16px",
   overflow: "hidden",
   boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",

@@ -17,13 +17,13 @@ import {
   SocialIconButton,
   MapContainer,
 } from "./LeftSection.styles";
+import { WhatsApp } from "@mui/icons-material";
 
 const LeftSection = () => {
   const socialLinks = [
     { icon: <FacebookIcon />, url: "#", label: "Facebook" },
-    { icon: <LinkedInIcon />, url: "#", label: "LinkedIn" },
     { icon: <InstagramIcon />, url: "#", label: "Instagram" },
-    { icon: <XIcon />, url: "#", label: "X" },
+    { icon: <WhatsApp />, url: "#", label: "WhatsApp" },
   ];
 
   return (
@@ -33,8 +33,11 @@ const LeftSection = () => {
 
         <InfoSection>
           <InfoTitle>Visit us</InfoTitle>
-          <InfoText>Come say hello at our office HQ.</InfoText>
-          <InfoText>67 Wisteria Way Croydon South VIC 3136 AU</InfoText>
+
+          <InfoText>
+            TC 43/972/1, VYASA 222, Govindapuram vadakke madom, STREET,
+            Valiyasalai, Thiruvananthapuram, Kerala 695036
+          </InfoText>
         </InfoSection>
 
         <InfoSection>
@@ -70,10 +73,10 @@ const LeftSection = () => {
 
       <MapContainer>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d145.0785!3d-37.8136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ4JzQ5LjAiUyAxNDXCsDA0JzQyLjYiRQ!5e0!3m2!1sen!2sau!4v1234567890"
-          allowFullScreen=""
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4855.6070807287!2d76.9539509758243!3d8.485360097260163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bbf23a321025%3A0xcd886821ceac4a86!2sDeva%20Yajna!5e1!3m2!1sen!2sin!4v1768748663921!5m2!1sen!2sin"
+          allowfullscreen=""
           loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
+          referrerpolicy="no-referrer-when-downgrade"
           title="Office Location"
         />
       </MapContainer>

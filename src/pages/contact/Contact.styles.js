@@ -31,7 +31,7 @@ export const ContactDescription = styled(Typography)(({ theme }) => ({
 
 export const ContactContent = styled(Box)(({ theme }) => ({
   display: "flex",
-  gap: "60px",
+  gap: "30px",
   alignItems: "flex-start",
   justifyContent: "center",
 
