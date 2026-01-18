@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography, IconButton } from "@mui/material";
 import { modalFadeIn, modalScaleIn } from "../../../styles/animations";
+import { responsiveFont } from "../../../components/font/ResponsiveFonts.styles";
 
 export const ModalOverlay = styled(Box)(() => ({
   position: "fixed",
@@ -76,9 +77,9 @@ export const ModalInfo = styled(Box)(() => ({
   maxWidth: "600px",
 }));
 
-export const ModalCategory = styled(Typography)(() => ({
+export const ModalCategory = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
-  fontSize: "14px",
+  ...responsiveFont(theme, "14px"),
   fontWeight: 600,
   color: "#D2691E",
   textTransform: "uppercase",
@@ -86,9 +87,9 @@ export const ModalCategory = styled(Typography)(() => ({
   marginBottom: "8px",
 }));
 
-export const ModalDescription = styled(Typography)(() => ({
+export const ModalDescription = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
-  fontSize: "18px",
+  ...responsiveFont(theme, "18px"),
   fontWeight: 400,
   color: "#fff",
   lineHeight: 1.6,

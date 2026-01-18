@@ -1,5 +1,9 @@
 import { useState, useMemo } from "react";
-import { GalleryContainer, GalleryTitle, GalleryDescription } from "./Gallery.styles";
+import {
+  GalleryContainer,
+  GalleryTitle,
+  GalleryDescription,
+} from "./Gallery.styles";
 import GalleryFilters from "./gallery-filters/GalleryFilters";
 import GalleryGrid from "./gallery-grid/GalleryGrid";
 import GalleryModal from "./gallery-modal/GalleryModal";
@@ -19,12 +23,15 @@ const Gallery = () => {
       if (item.type === "video" && !showVideos) return false;
 
       // Filter by category
-      if (selectedFilter !== "all" && item.category !== selectedFilter) return false;
+      if (selectedFilter !== "all" && item.category !== selectedFilter)
+        return false;
 
       // Filter by search query
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
-        const matchesDescription = item.description.toLowerCase().includes(query);
+        const matchesDescription = item.description
+          .toLowerCase()
+          .includes(query);
         const matchesCategory = item.category.toLowerCase().includes(query);
         if (!matchesDescription && !matchesCategory) return false;
       }
@@ -44,8 +51,10 @@ const Gallery = () => {
   return (
     <GalleryContainer>
       <GalleryTitle>Gallery</GalleryTitle>
+
       <GalleryDescription>
-        Explore our collection of sacred moments, ancient temples, and spiritual ceremonies.
+        Explore our collection of sacred moments, ancient temples, and spiritual
+        ceremonies.
       </GalleryDescription>
 
       <GalleryFilters

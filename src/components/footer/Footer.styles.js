@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
+import { responsiveFont } from "../font/ResponsiveFonts.styles";
 
 export const FooterContainer = styled(Box)(() => ({
   display: "flex",
@@ -23,15 +24,15 @@ export const FooterLogo = styled("img")(() => ({
   objectFit: "contain",
 }));
 
-export const FooterName = styled(Typography)(() => ({
+export const FooterName = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-special)",
-  fontSize: "20px",
+  ...responsiveFont(theme, "20px"),
   fontWeight: 600,
   color: "var(--color-charcoal)",
 }));
 
-export const CopyrightText = styled(Typography)(() => ({
+export const CopyrightText = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
-  fontSize: "14px",
+  ...responsiveFont(theme, "14px"),
   color: "rgba(0, 0, 0, 0.5)",
 }));

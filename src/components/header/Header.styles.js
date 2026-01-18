@@ -106,17 +106,17 @@ export const DrawerLogoImage = styled("img")(() => ({
   marginRight: "10px",
 }));
 
-export const DrawerLogoText = styled(Typography)(() => ({
-  fontSize: "22px",
+export const DrawerLogoText = styled(Typography)(({ theme }) => ({
+  ...responsiveFont(theme, "22px"),
   fontFamily: "var(--font-special)",
   fontWeight: 600,
   color: "var(--color-charcoal)",
 }));
 
-export const DrawerNavItem = styled(ListItemButton)(({ active }) => ({
+export const DrawerNavItem = styled(ListItemButton)(({ theme, active }) => ({
   padding: "16px 24px",
   fontFamily: "var(--font-primary)",
-  fontSize: "18px",
+  ...responsiveFont(theme, "18px"),
   fontWeight: 500,
   color: active ? "var(--color-black)" : "var(--color-charcoal)",
   backgroundColor: active ? "var(--color-silver)" : "transparent",

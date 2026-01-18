@@ -133,12 +133,12 @@ export const HeroButtons = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const PrimaryButton = styled(Button)(() => ({
+export const PrimaryButton = styled(Button)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
   padding: "14px 32px",
   borderRadius: "8px",
   fontWeight: 600,
-  fontSize: "14px",
+  ...responsiveFont(theme, "14px"),
   textTransform: "none",
   backgroundColor: "var(--color-charcoal)",
   color: "var(--color-cream)",
@@ -153,12 +153,12 @@ export const PrimaryButton = styled(Button)(() => ({
   },
 }));
 
-export const SecondaryButton = styled(Button)(() => ({
+export const SecondaryButton = styled(Button)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
   padding: "14px 32px",
   borderRadius: "8px",
   fontWeight: 600,
-  fontSize: "14px",
+  ...responsiveFont(theme, "14px"),
   textTransform: "none",
   backgroundColor: "transparent",
   color: "var(--color-cream)",
@@ -338,8 +338,8 @@ export const Divider = styled(Box)(() => ({
   },
 }));
 
-export const DividerSymbol = styled(Typography)(() => ({
-  fontSize: "24px",
+export const DividerSymbol = styled(Typography)(({ theme }) => ({
+  ...responsiveFont(theme, "24px"),
   color: "var(--color-stone)",
 }));
 
@@ -426,8 +426,8 @@ export const ExpertiseCard = styled(Box)(() => ({
   },
 }));
 
-export const ExpertiseIcon = styled(Typography)(() => ({
-  fontSize: "40px",
+export const ExpertiseIcon = styled(Typography)(({ theme }) => ({
+  ...responsiveFont(theme, "40px"),
   marginBottom: "16px",
 }));
 

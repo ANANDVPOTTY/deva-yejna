@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
+import { responsiveFont } from "../../../components/font/ResponsiveFonts.styles";
 
 export const GridContainer = styled(Box)(({ theme }) => ({
   display: "grid",
@@ -35,9 +36,9 @@ export const NoResultsContainer = styled(Box)(() => ({
   textAlign: "center",
 }));
 
-export const NoResultsText = styled(Typography)(() => ({
+export const NoResultsText = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
-  fontSize: "18px",
+  ...responsiveFont(theme, "18px"),
   color: "var(--color-charcoal)",
   opacity: 0.7,
   marginTop: "16px",

@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
-import { Box, TextField, Select, Switch } from "@mui/material";
+import { Box, TextField, Select, Switch, Typography } from "@mui/material";
+import { responsiveFont } from "../../../components/font/ResponsiveFonts.styles";
 
 export const FiltersContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -72,9 +73,9 @@ export const SwitchWrapper = styled(Box)(() => ({
   gap: "8px",
 }));
 
-export const SwitchLabel = styled("span")(() => ({
+export const SwitchLabel = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
-  fontSize: "14px",
+  ...responsiveFont(theme, "14px"),
   fontWeight: 500,
   color: "var(--color-charcoal)",
 }));
