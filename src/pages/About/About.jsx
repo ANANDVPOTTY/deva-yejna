@@ -1,3 +1,8 @@
+//-------| Images & Icons |-------//
+import photo1 from "../../assets/images/ganpati.jpg";
+import photo2 from "../../assets/images/shivling.jpg";
+
+//-------| Styled Components |-------//
 import {
   AboutContainer,
   HeroSection,
@@ -20,10 +25,6 @@ import {
   ExpertiseTitle,
   ExpertiseDescription,
 } from "./About.styles";
-
-// TODO: Replace with your actual photos
-import photo1 from "../../assets/images/ganpati.jpg";
-import photo2 from "../../assets/images/shivling.jpg";
 
 const EXPERTISE_AREAS = [
   {
@@ -79,9 +80,11 @@ const About = () => {
 
         <IntroContent>
           <AboutTitle>About Me</AboutTitle>
+
           <Tagline>
             Preserving Sacred Traditions, Serving Divine Purpose
           </Tagline>
+
           <AboutDescription>
             With deep roots in the ancient Kerala tantrik traditions, I have
             dedicated my life to preserving and practicing the sacred rituals
@@ -90,6 +93,7 @@ const About = () => {
             mantras and rituals, but the profound understanding of their
             spiritual significance.
           </AboutDescription>
+
           <AboutDescription>
             Every pooja I perform is approached with utmost devotion, purity,
             and adherence to traditional methods. I believe that these ancient

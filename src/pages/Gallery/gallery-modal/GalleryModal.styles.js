@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography, IconButton } from "@mui/material";
+import { modalFadeIn, modalScaleIn } from "../../../styles/animations";
 
 export const ModalOverlay = styled(Box)(() => ({
   position: "fixed",
@@ -13,11 +14,7 @@ export const ModalOverlay = styled(Box)(() => ({
   justifyContent: "center",
   zIndex: 1300,
   padding: "40px",
-  animation: "fadeIn 0.3s ease",
-  "@keyframes fadeIn": {
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-  },
+  animation: `${modalFadeIn} 0.3s ease`,
 }));
 
 export const ModalContent = styled(Box)(({ theme }) => ({
@@ -27,11 +24,7 @@ export const ModalContent = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  animation: "scaleIn 0.3s ease",
-  "@keyframes scaleIn": {
-    from: { transform: "scale(0.9)", opacity: 0 },
-    to: { transform: "scale(1)", opacity: 1 },
-  },
+  animation: `${modalScaleIn} 0.3s ease`,
 
   [theme.breakpoints.down("md")]: {
     maxWidth: "95vw",

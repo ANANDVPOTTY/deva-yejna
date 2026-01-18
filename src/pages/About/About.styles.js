@@ -1,18 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import { responsiveFont } from "../../components/font/ResponsiveFonts.styles.jsx";
-import { keyframes } from "@mui/material/styles";
-
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+import { fadeInUp } from "../../styles/animations";
 
 export const AboutContainer = styled(Box)(() => ({
   maxWidth: "1400px",
