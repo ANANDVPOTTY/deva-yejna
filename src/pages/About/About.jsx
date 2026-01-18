@@ -110,6 +110,7 @@ const About = () => {
               <PrimaryButton onClick={handleContactClick}>
                 Contact Me
               </PrimaryButton>
+
               <SecondaryButton onClick={handleServicesClick}>
                 View Services
               </SecondaryButton>

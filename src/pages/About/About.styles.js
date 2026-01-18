@@ -12,10 +12,11 @@ export const HeroBanner = styled(Box)(({ theme }) => ({
   background:
     "linear-gradient(135deg, var(--color-charcoal) 0%, var(--color-slate) 30%, var(--color-onyx) 65%, var(--color-ink) 100%)",
 
-  padding: "80px 24px",
+  padding: "100px 24px",
   position: "relative",
   overflow: "hidden",
   animation: `${fadeInUp} 0.8s ease-out`,
+  borderRadius: "14px 14px 0 0",
 
   "&::before": {
     content: '""',
@@ -25,7 +26,7 @@ export const HeroBanner = styled(Box)(({ theme }) => ({
     width: "500px",
     height: "500px",
     borderRadius: "50%",
-    background: "rgba(139, 69, 19, 0.08)",
+    background: "rgba(113, 86, 67, 0.11)",
     pointerEvents: "none",
   },
 
@@ -37,12 +38,16 @@ export const HeroBanner = styled(Box)(({ theme }) => ({
     width: "300px",
     height: "300px",
     borderRadius: "50%",
-    background: "rgba(139, 69, 19, 0.05)",
+    background: "rgba(60, 38, 22, 0.11)",
     pointerEvents: "none",
   },
 
   [theme.breakpoints.down("md")]: {
     padding: "60px 24px",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    padding: "50px 16px",
   },
 }));
 
@@ -61,6 +66,10 @@ export const HeroContent = styled(Box)(({ theme }) => ({
     textAlign: "center",
     gap: "40px",
   },
+
+  [theme.breakpoints.down("sm")]: {
+    gap: "30px",
+  },
 }));
 
 export const HeroTextContent = styled(Box)(({ theme }) => ({
@@ -72,11 +81,11 @@ export const HeroTextContent = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const Greeting = styled(Typography)(() => ({
+export const Greeting = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
-  fontSize: "16px",
+  ...responsiveFont(theme, "18px"),
   fontWeight: 500,
-  color: "var(--color-peach)",
+  color: "var(--color-eggshell)",
   marginBottom: "12px",
   letterSpacing: "2px",
 }));
@@ -85,11 +94,16 @@ export const HeroName = styled(Typography)(({ theme }) => ({
   ...responsiveFont(theme, "52px"),
   fontFamily: "var(--font-special)",
   fontWeight: 700,
-  color: "var(--color-cream)",
-  lineHeight: 1.1,
+  color: "var(--color-peach)",
+  lineHeight: 1.5,
   marginBottom: "16px",
   textTransform: "uppercase",
   letterSpacing: "2px",
+
+  [theme.breakpoints.down("sm")]: {
+    lineHeight: 1.3,
+    letterSpacing: "1px",
+  },
 }));
 
 export const HeroRole = styled(Typography)(({ theme }) => ({
@@ -104,10 +118,18 @@ export const HeroRole = styled(Typography)(({ theme }) => ({
 export const HeroButtons = styled(Box)(({ theme }) => ({
   display: "flex",
   gap: "16px",
+  marginTop: "4rem",
+
+  [theme.breakpoints.down("md")]: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "6rem",
+  },
 
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
     alignItems: "center",
+    marginTop: "4rem",
   },
 }));
 
@@ -125,7 +147,7 @@ export const PrimaryButton = styled(Button)(() => ({
 
   "&:hover": {
     backgroundColor: "var(--color-onyx)",
-    borderColor: "var(--color-peach)",
+    borderColor: "var(--color-ash)",
     transform: "translateY(-2px)",
     boxShadow: "0 8px 25px rgba(61, 58, 54, 0.3)",
   },
@@ -144,8 +166,9 @@ export const SecondaryButton = styled(Button)(() => ({
   transition: "all 0.3s ease",
 
   "&:hover": {
-    borderColor: "var(--color-peach)",
-    color: "var(--color-peach)",
+    borderColor: "var(--color-ash)",
+    color: "var(--color-ivory)",
+    transform: "translateY(-2px)",
     backgroundColor: "rgba(255, 229, 180, 0.05)",
   },
 }));
@@ -155,15 +178,24 @@ export const HeroImageContainer = styled(Box)(({ theme }) => ({
   flexShrink: 0,
 
   [theme.breakpoints.down("md")]: {
-    marginBottom: "20px",
+    marginBottom: "2.5rem",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    marginBottom: "1.5rem",
   },
 }));
 
-export const HeroImageWrapper = styled(Box)(() => ({
+export const HeroImageWrapper = styled(Box)(({ theme }) => ({
   position: "relative",
   width: "300px",
   height: "360px",
   zIndex: 2,
+
+  [theme.breakpoints.down("sm")]: {
+    width: "240px",
+    height: "290px",
+  },
 }));
 
 export const HeroImage = styled("img")(() => ({
@@ -177,7 +209,7 @@ export const HeroImage = styled("img")(() => ({
 
 export const DecorativeCircle = styled(Box, {
   shouldForwardProp: (prop) => prop !== "variant",
-})(({ variant }) => ({
+})(({ theme, variant }) => ({
   position: "absolute",
   borderRadius: "50%",
   border: "3px solid",
@@ -190,9 +222,18 @@ export const DecorativeCircle = styled(Box, {
   bottom: variant === "primary" ? "auto" : "-25px",
   left: variant === "primary" ? "auto" : "-30px",
   zIndex: variant === "primary" ? 3 : 1,
+
+  [theme.breakpoints.down("sm")]: {
+    width: variant === "primary" ? "60px" : "90px",
+    height: variant === "primary" ? "60px" : "90px",
+    top: variant === "primary" ? "-20px" : "auto",
+    right: variant === "primary" ? "-18px" : "auto",
+    bottom: variant === "primary" ? "auto" : "-15px",
+    left: variant === "primary" ? "auto" : "-12px",
+  },
 }));
 
-export const DecorativeDots = styled(Box)(() => ({
+export const DecorativeDots = styled(Box)(({ theme }) => ({
   position: "absolute",
   bottom: "50px",
   right: "-50px",
@@ -206,6 +247,18 @@ export const DecorativeDots = styled(Box)(() => ({
     height: "8px",
     borderRadius: "50%",
     backgroundColor: "var(--color-stone)",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    right: "-40px",
+    bottom: "40px",
+    gridTemplateColumns: "repeat(3, 6px)",
+    gap: "6px",
+
+    "& span": {
+      width: "6px",
+      height: "6px",
+    },
   },
 }));
 
