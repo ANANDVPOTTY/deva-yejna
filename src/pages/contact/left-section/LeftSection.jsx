@@ -1,7 +1,6 @@
 import FacebookIcon from "@mui/icons-material/Facebook";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import XIcon from "@mui/icons-material/X";
+import { WhatsApp } from "@mui/icons-material";
 
 import {
   LeftSectionContainer,
@@ -17,7 +16,6 @@ import {
   SocialIconButton,
   MapContainer,
 } from "./LeftSection.styles";
-import { WhatsApp } from "@mui/icons-material";
 
 const LeftSection = () => {
   const socialLinks = [
@@ -26,36 +24,41 @@ const LeftSection = () => {
     { icon: <WhatsApp />, url: "#", label: "WhatsApp" },
   ];
 
+  const address = `TC 43/972/1, VYASA 222, Govindapuram vadakke madom, STREET,
+Valiyasalai, Thiruvananthapuram, Kerala 695036`;
+
   return (
     <LeftSectionContainer>
       <ContactInfoCard>
         <CardTitle>Get in touch</CardTitle>
 
-        <InfoSection>
+        <InfoSection delay={0}>
           <InfoTitle>Visit us</InfoTitle>
 
-          <InfoText>
-            TC 43/972/1, VYASA 222, Govindapuram vadakke madom, STREET,
-            Valiyasalai, Thiruvananthapuram, Kerala 695036
-          </InfoText>
+          <InfoText>{address}</InfoText>
         </InfoSection>
 
-        <InfoSection>
+        <InfoSection delay={100}>
           <InfoTitle>Chat to us</InfoTitle>
+
           <InfoText>Our friendly team is here to help.</InfoText>
+
           <InfoLink href="mailto:hello@paysphere.com">
             hello@paysphere.com
           </InfoLink>
         </InfoSection>
 
-        <InfoSection>
+        <InfoSection delay={200}>
           <InfoTitle>Call us</InfoTitle>
-          <InfoText>Mon-Fri from 8am to 5pm</InfoText>
+
+          <InfoText>All Day from 8am to 9pm</InfoText>
+
           <InfoLink href="tel:+995555555555">(+995) 555-55-55-55</InfoLink>
         </InfoSection>
 
         <SocialSection>
           <SocialTitle>Social media</SocialTitle>
+
           <SocialIconsWrapper>
             {socialLinks.map((social) => (
               <SocialIconButton
@@ -74,9 +77,9 @@ const LeftSection = () => {
       <MapContainer>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4855.6070807287!2d76.9539509758243!3d8.485360097260163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bbf23a321025%3A0xcd886821ceac4a86!2sDeva%20Yajna!5e1!3m2!1sen!2sin!4v1768748663921!5m2!1sen!2sin"
-          allowfullscreen=""
+          allowFullScreen=""
           loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
+          referrerPolicy="no-referrer-when-downgrade"
           title="Office Location"
         />
       </MapContainer>

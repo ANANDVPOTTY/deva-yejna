@@ -9,15 +9,31 @@ import {
   Select,
 } from "@mui/material";
 import { responsiveFont } from "../../../components/font/ResponsiveFonts.styles";
+import { scaleIn } from "../../../styles/animations";
 
 export const RightSectionContainer = styled(Box)(({ theme }) => ({
   flex: 1,
   width: "100%",
-  maxWidth: "600px",
+  backgroundColor: "var(--color-white)",
+  borderRadius: "20px",
+  padding: "36px 32px",
+  border: "1px solid var(--color-ui-border)",
+  boxShadow: "0 4px 24px rgba(58, 47, 35, 0.06)",
 
-  [theme.breakpoints.down("md")]: {
-    maxWidth: "100%",
+  [theme.breakpoints.down("sm")]: {
+    padding: "28px 20px",
+    borderRadius: "16px",
   },
+}));
+
+export const FormTitle = styled(Typography)(({ theme }) => ({
+  ...responsiveFont(theme, "22px"),
+  fontFamily: "var(--font-special)",
+  fontWeight: 600,
+  color: "var(--color-charcoal)",
+  marginBottom: "24px",
+  paddingBottom: "16px",
+  borderBottom: "1px solid rgba(58, 47, 35, 0.08)",
 }));
 
 export const FormContainer = styled(Box)(() => ({
@@ -28,7 +44,7 @@ export const FormContainer = styled(Box)(() => ({
 
 export const FormRow = styled(Box)(({ theme }) => ({
   display: "flex",
-  gap: "20px",
+  gap: "16px",
 
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
@@ -38,65 +54,75 @@ export const FormRow = styled(Box)(({ theme }) => ({
 export const FormField = styled(Box, {
   shouldForwardProp: (prop) => prop !== "fullWidth",
 })(({ fullWidth }) => ({
-  flex: fullWidth ? "1 1 100%" : "1 1 calc(50% - 10px)",
+  flex: fullWidth ? "1 1 100%" : "1 1 calc(50% - 8px)",
   display: "flex",
   flexDirection: "column",
-  gap: "8px",
+  gap: "6px",
 }));
 
 export const FieldLabel = styled(Typography)(({ theme }) => ({
-  ...responsiveFont(theme, "14px"),
+  ...responsiveFont(theme, "12px"),
   fontFamily: "var(--font-primary)",
   fontWeight: 500,
-  color: "var(--color-charcoal)",
+  color: "var(--color-slate)",
   display: "flex",
   alignItems: "center",
   gap: "4px",
 }));
 
 export const RequiredIndicator = styled("span")(() => ({
-  color: "#dc3545",
+  color: "#c53030",
   fontWeight: 600,
 }));
 
 export const StyledTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-root": {
-    backgroundColor: "var(--color-white)",
-    borderRadius: "8px",
+    backgroundColor: "var(--color-off-white)",
+    borderRadius: "10px",
     fontFamily: "var(--font-primary)",
     fontSize: "14px",
+    transition: "all 0.25s ease",
 
     "& fieldset": {
-      borderColor: "var(--color-silver)",
-      transition: "border-color 0.3s ease",
+      borderColor: "rgba(58, 47, 35, 0.12)",
+      transition: "all 0.25s ease",
     },
 
     "&:hover fieldset": {
-      borderColor: "var(--color-ash)",
+      borderColor: "rgba(58, 47, 35, 0.25)",
     },
 
-    "&.Mui-focused fieldset": {
-      borderColor: "var(--color-charcoal)",
-      borderWidth: "2px",
+    "&.Mui-focused": {
+      backgroundColor: "var(--color-white)",
+      boxShadow: "0 0 0 3px rgba(58, 47, 35, 0.06)",
+
+      "& fieldset": {
+        borderColor: "var(--color-charcoal)",
+        borderWidth: "1.5px",
+      },
     },
 
     "&.Mui-error fieldset": {
-      borderColor: "#dc3545",
+      borderColor: "#c53030",
     },
 
-    "&.Mui-error.Mui-focused fieldset": {
-      borderColor: "#dc3545",
-      borderWidth: "2px",
+    "&.Mui-error.Mui-focused": {
+      boxShadow: "0 0 0 3px rgba(197, 48, 48, 0.08)",
+
+      "& fieldset": {
+        borderColor: "#c53030",
+        borderWidth: "1.5px",
+      },
     },
   },
 
   "& .MuiOutlinedInput-input": {
-    padding: "14px 16px",
+    padding: "12px 14px",
     color: "var(--color-charcoal)",
 
     "&::placeholder": {
       color: "var(--color-ash)",
-      opacity: 1,
+      opacity: 0.8,
     },
   },
 }));
@@ -104,8 +130,9 @@ export const StyledTextField = styled(TextField)(() => ({
 export const ErrorText = styled(Typography)(() => ({
   fontFamily: "var(--font-primary)",
   fontSize: "12px",
-  color: "#dc3545",
-  marginTop: "4px",
+  color: "#c53030",
+  marginTop: "2px",
+  animation: `${scaleIn} 0.2s ease-out`,
 }));
 
 export const PhoneInputWrapper = styled(Box)(() => ({
@@ -115,25 +142,25 @@ export const PhoneInputWrapper = styled(Box)(() => ({
 
 export const CountrySelect = styled(Select)(() => ({
   minWidth: "80px",
-  backgroundColor: "var(--color-white)",
-  borderRadius: "8px",
+  backgroundColor: "var(--color-off-white)",
+  borderRadius: "10px",
 
   "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: "var(--color-silver)",
-    transition: "border-color 0.3s ease",
+    borderColor: "rgba(58, 47, 35, 0.12)",
+    transition: "all 0.25s ease",
   },
 
   "&:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: "var(--color-ash)",
+    borderColor: "rgba(58, 47, 35, 0.25)",
   },
 
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
     borderColor: "var(--color-charcoal)",
-    borderWidth: "2px",
+    borderWidth: "1.5px",
   },
 
   "& .MuiSelect-select": {
-    padding: "14px 12px",
+    padding: "12px 12px",
     display: "flex",
     alignItems: "center",
     gap: "4px",
@@ -142,32 +169,42 @@ export const CountrySelect = styled(Select)(() => ({
 
 export const StyledTextArea = styled(TextField)(() => ({
   "& .MuiOutlinedInput-root": {
-    backgroundColor: "var(--color-white)",
-    borderRadius: "8px",
+    backgroundColor: "var(--color-off-white)",
+    borderRadius: "10px",
     fontFamily: "var(--font-primary)",
     fontSize: "14px",
+    transition: "all 0.25s ease",
 
     "& fieldset": {
-      borderColor: "var(--color-silver)",
-      transition: "border-color 0.3s ease",
+      borderColor: "rgba(58, 47, 35, 0.12)",
+      transition: "all 0.25s ease",
     },
 
     "&:hover fieldset": {
-      borderColor: "var(--color-ash)",
+      borderColor: "rgba(58, 47, 35, 0.25)",
     },
 
-    "&.Mui-focused fieldset": {
-      borderColor: "var(--color-charcoal)",
-      borderWidth: "2px",
+    "&.Mui-focused": {
+      backgroundColor: "var(--color-white)",
+      boxShadow: "0 0 0 3px rgba(58, 47, 35, 0.06)",
+
+      "& fieldset": {
+        borderColor: "var(--color-charcoal)",
+        borderWidth: "1.5px",
+      },
     },
 
     "&.Mui-error fieldset": {
-      borderColor: "#dc3545",
+      borderColor: "#c53030",
     },
 
-    "&.Mui-error.Mui-focused fieldset": {
-      borderColor: "#dc3545",
-      borderWidth: "2px",
+    "&.Mui-error.Mui-focused": {
+      boxShadow: "0 0 0 3px rgba(197, 48, 48, 0.08)",
+
+      "& fieldset": {
+        borderColor: "#c53030",
+        borderWidth: "1.5px",
+      },
     },
   },
 
@@ -177,7 +214,7 @@ export const StyledTextArea = styled(TextField)(() => ({
 
     "&::placeholder": {
       color: "var(--color-ash)",
-      opacity: 1,
+      opacity: 0.8,
     },
   },
 }));
@@ -210,7 +247,7 @@ export const PrivacyLink = styled("a")(() => ({
   fontWeight: 600,
   textDecoration: "underline",
   cursor: "pointer",
-  transition: "color 0.3s ease",
+  transition: "color 0.25s ease",
 
   "&:hover": {
     color: "var(--color-slate)",
@@ -218,21 +255,22 @@ export const PrivacyLink = styled("a")(() => ({
 }));
 
 export const SubmitButton = styled(Button)(({ theme }) => ({
-  ...responsiveFont(theme, "16px"),
+  ...responsiveFont(theme, "14px"),
   fontFamily: "var(--font-primary)",
   fontWeight: 600,
   backgroundColor: "var(--color-charcoal)",
   color: "var(--color-off-white)",
-  padding: "14px 32px",
-  borderRadius: "8px",
+  padding: "14px 28px",
+  borderRadius: "10px",
   textTransform: "none",
   marginTop: "8px",
-  transition: "all 0.3s ease",
+  transition: "all 0.25s ease",
+  boxShadow: "0 2px 8px rgba(58, 47, 35, 0.15)",
 
   "&:hover": {
     backgroundColor: "var(--color-onyx)",
-    transform: "translateY(-2px)",
-    boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)",
+    transform: "translateY(-1px)",
+    boxShadow: "0 4px 16px rgba(58, 47, 35, 0.2)",
   },
 
   "&:active": {
@@ -240,13 +278,14 @@ export const SubmitButton = styled(Button)(({ theme }) => ({
   },
 
   "&.Mui-disabled": {
-    backgroundColor: "var(--color-silver)",
+    backgroundColor: "rgba(58, 47, 35, 0.12)",
     color: "var(--color-ash)",
+    boxShadow: "none",
     cursor: "not-allowed",
     pointerEvents: "auto",
 
     "&:hover": {
-      backgroundColor: "var(--color-silver)",
+      backgroundColor: "rgba(58, 47, 35, 0.12)",
       transform: "none",
       boxShadow: "none",
     },
