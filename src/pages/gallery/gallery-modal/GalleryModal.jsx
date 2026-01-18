@@ -1,9 +1,12 @@
 import { useEffect, useCallback } from "react";
+import PropTypes from "prop-types";
 import CloseIcon from "@mui/icons-material/Close";
 import {
   ModalOverlay,
   ModalContent,
+  ModalHeader,
   CloseButton,
+  MediaWrapper,
   ModalImage,
   ModalVideo,
   ModalInfo,
@@ -44,18 +47,22 @@ const GalleryModal = ({ item, onClose }) => {
   return (
     <ModalOverlay onClick={handleOverlayClick}>
       <ModalContent>
-        <CloseButton onClick={onClose} aria-label="Close modal">
-          <CloseIcon />
-        </CloseButton>
+        <ModalHeader>
+          <CloseButton onClick={onClose} aria-label="Close modal">
+            <CloseIcon />
+          </CloseButton>
+        </ModalHeader>
 
-        {isVideo ? (
-          <ModalVideo controls autoPlay>
-            <source src={item.src} type="video/mp4" />
-            Your browser does not support the video tag.
-          </ModalVideo>
-        ) : (
-          <ModalImage src={item.src} alt={item.description} />
-        )}
+        <MediaWrapper>
+          {isVideo ? (
+            <ModalVideo controls autoPlay controlsList="nodownload">
+              <source src={item.src} type="video/mp4" />
+              Your browser does not support the video tag.
+            </ModalVideo>
+          ) : (
+            <ModalImage src={item.src} alt={item.description} />
+          )}
+        </MediaWrapper>
 
         <ModalInfo>
           <ModalCategory>{item.category}</ModalCategory>
@@ -64,6 +71,16 @@ const GalleryModal = ({ item, onClose }) => {
       </ModalContent>
     </ModalOverlay>
   );
+};
+
+GalleryModal.propTypes = {
+  item: PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }),
+  onClose: PropTypes.func.isRequired,
 };
 
 export default GalleryModal;
