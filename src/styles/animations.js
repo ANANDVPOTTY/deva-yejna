@@ -123,3 +123,37 @@ export const scaleIn = keyframes`
     transform: scale(1);
   }
 `;
+
+/*-------| Quote Section Animations |-------*/
+export const quoteFadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+export const quoteFadeOut = keyframes`
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+`;
+
+export const quoteIconPulse = keyframes`
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+`;

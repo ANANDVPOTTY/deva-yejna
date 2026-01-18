@@ -9,6 +9,7 @@ import {
   SubText,
 } from "./Home.styles";
 import Footer from "../../components/footer/Footer";
+import QuoteSection from "../../components/quote-section/QuoteSection";
 import ganapatiImg from "../../assets/images/ganpati.jpg";
 import shivlingImg from "../../assets/images/shivling.jpg";
 import mahavishnuImg from "../../assets/images/mahavishnu.jpg";
@@ -60,6 +61,8 @@ const Home = () => {
           </SubText>
         </TextSection>
       </HomeContainer>
+
+      <QuoteSection />
 
       <Footer />
     </HomeWrapper>
