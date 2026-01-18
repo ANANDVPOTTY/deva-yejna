@@ -1,13 +1,18 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import { responsiveFont } from "../font/ResponsiveFonts.styles";
-import { quoteFadeIn, quoteFadeOut, quoteIconPulse } from "../../styles/animations";
+import {
+  quoteFadeIn,
+  quoteFadeOut,
+  quoteIconPulse,
+} from "../../styles/animations";
 
 export const QuoteSectionWrapper = styled(Box)(() => ({
   width: "100%",
   backgroundColor: "var(--color-pink-light)",
   position: "relative",
   overflow: "hidden",
+  borderRadius: "16px",
 }));
 
 export const BlobTopRight = styled(Box)(({ theme }) => ({
@@ -203,9 +208,9 @@ export const QuoteSource = styled(Box)(({ theme }) => ({
 }));
 
 export const SourceImageWrapper = styled(Box)(({ theme }) => ({
-  width: "56px",
-  height: "56px",
-  borderRadius: "50%",
+  width: "76px",
+  height: "76px",
+  borderRadius: "18px",
   overflow: "hidden",
   border: "3px solid var(--color-coral)",
   flexShrink: 0,

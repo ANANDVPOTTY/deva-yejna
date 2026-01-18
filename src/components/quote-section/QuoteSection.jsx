@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import {
   QuoteSectionWrapper,
   BlobTopRight,
@@ -15,9 +15,8 @@ import {
   SourceText,
 } from "./QuoteSection.styles";
 
-import mahavishnuImg from "../../assets/images/mahavishnu.jpg";
-import ganapatiImg from "../../assets/images/ganpati.jpg";
-import shivlingImg from "../../assets/images/shivling.jpg";
+import bhagavatgitaImg from "../../assets/images/bhagavatgita.jpg";
+import ramayanaImg from "../../assets/images/ramayana.jpg";
 
 const QUOTE_INTERVAL = 8000;
 
@@ -26,30 +25,35 @@ const inspirationalQuotes = [
   {
     id: 1,
     source: "Bhagavad Gita",
+    image: bhagavatgitaImg,
     quote: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।",
     meaning: "Focus on your actions, not on the results.",
   },
   {
     id: 2,
     source: "Bhagavad Gita",
+    image: bhagavatgitaImg,
     quote: "योगः कर्मसु कौशलम्।",
     meaning: "Excellence in action is true yoga.",
   },
   {
     id: 3,
     source: "Bhagavad Gita",
+    image: bhagavatgitaImg,
     quote: "उद्धरेदात्मनाऽत्मानं नात्मानमवसादयेत्।",
     meaning: "Elevate yourself through your own efforts.",
   },
   {
     id: 4,
     source: "Bhagavad Gita",
+    image: bhagavatgitaImg,
     quote: "मन एव मनुष्याणां कारणं बन्धमोक्षयोः।",
     meaning: "The mind is the cause of both bondage and liberation.",
   },
   {
     id: 5,
     source: "Bhagavad Gita",
+    image: bhagavatgitaImg,
     quote: "न हि कल्याणकृत्कश्चिद् दुर्गतिं तात गच्छति।",
     meaning: "One who does good never meets a bad fate.",
   },
@@ -58,91 +62,69 @@ const inspirationalQuotes = [
   {
     id: 6,
     source: "Ramayana",
+    image: ramayanaImg,
     quote: "धैर्यं सर्वत्र साधनम्।",
     meaning: "Patience is the key to success everywhere.",
   },
   {
     id: 7,
     source: "Ramayana",
+    image: ramayanaImg,
     quote: "परहित सरिस धरम नहीं भाई।",
     meaning: "There is no greater duty than serving others.",
   },
   {
     id: 8,
     source: "Ramayana",
+    image: ramayanaImg,
     quote: "न भयम् न लज्जा न संशयः।",
     meaning: "Overcome fear, shame, and doubt.",
   },
   {
     id: 9,
     source: "Ramayana",
+    image: ramayanaImg,
     quote: "सत्यं एव जयते।",
     meaning: "Truth alone triumphs.",
   },
   {
     id: 10,
     source: "Ramayana",
+    image: ramayanaImg,
     quote: "कर्म प्रधान विश्व रचि राखा।",
     meaning: "The world is governed by actions.",
   },
-
-  /* ================= Mahabharata ================= */
-  {
-    id: 11,
-    source: "Mahabharata",
-    quote: "अहिंसा परमो धर्मः।",
-    meaning: "Non-violence is the highest duty.",
-  },
-  {
-    id: 12,
-    source: "Mahabharata",
-    quote: "जो हुआ, अच्छे के लिए हुआ।",
-    meaning: "Whatever happens, happens for good.",
-  },
-  {
-    id: 13,
-    source: "Mahabharata",
-    quote: "क्रोध से विनाश होता है।",
-    meaning: "Anger leads to destruction.",
-  },
-  {
-    id: 14,
-    source: "Mahabharata",
-    quote: "धर्मो रक्षति रक्षितः।",
-    meaning: "Dharma protects those who protect it.",
-  },
-  {
-    id: 15,
-    source: "Mahabharata",
-    quote: "बलवान् भव।",
-    meaning: "Be strong.",
-  },
 ];
 
-const SOURCE_IMAGES = {
-  "Bhagavad Gita": mahavishnuImg,
-  Ramayana: ganapatiImg,
-  Mahabharata: shivlingImg,
+const shuffleArray = (array) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
 };
 
 const QuoteSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  const shuffledQuotes = useMemo(() => shuffleArray(inspirationalQuotes), []);
+
   const handleQuoteChange = useCallback(() => {
     setIsAnimating(true);
     setTimeout(() => {
-      setActiveIndex((prev) => (prev + 1) % inspirationalQuotes.length);
+      setActiveIndex((prev) => (prev + 1) % shuffledQuotes.length);
       setIsAnimating(false);
     }, 400);
-  }, []);
+  }, [shuffledQuotes.length]);
 
   useEffect(() => {
     const interval = setInterval(handleQuoteChange, QUOTE_INTERVAL);
     return () => clearInterval(interval);
   }, [handleQuoteChange]);
 
-  const currentQuote = inspirationalQuotes[activeIndex];
+  const currentQuote = shuffledQuotes[activeIndex];
 
   return (
     <QuoteSectionWrapper>
@@ -201,14 +183,14 @@ const QuoteSection = () => {
 
         <QuoteContent isAnimating={isAnimating}>
           <QuoteText>{currentQuote.quote}</QuoteText>
+
           <QuoteMeaning>{currentQuote.meaning}</QuoteMeaning>
+
           <QuoteSource>
             <SourceImageWrapper>
-              <img
-                src={SOURCE_IMAGES[currentQuote.source]}
-                alt={currentQuote.source}
-              />
+              <img src={currentQuote.image} alt={currentQuote.source} />
             </SourceImageWrapper>
+
             <SourceInfo>
               <SourceLabel>From</SourceLabel>
               <SourceText>{currentQuote.source}</SourceText>
