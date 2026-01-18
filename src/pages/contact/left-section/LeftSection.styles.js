@@ -15,7 +15,8 @@ export const LeftSectionContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const ContactInfoCard = styled(Box)(({ theme }) => ({
-  background: "linear-gradient(135deg, var(--color-charcoal) 0%, #5a4a3a 50%, var(--color-slate) 100%)",
+  background:
+    "linear-gradient(135deg, var(--color-charcoal) 0%, #5a4a3a 50%, var(--color-slate) 100%)",
   borderRadius: "24px",
   padding: "40px 32px",
   color: "var(--color-off-white)",

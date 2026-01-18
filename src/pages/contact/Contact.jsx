@@ -11,11 +11,13 @@ const Contact = () => {
   return (
     <ContactContainer>
       <ContactTitle>Contact Us</ContactTitle>
+
       <ContactDescription>
         Have questions or want to get in touch? We&apos;d love to hear from you.
         Fill out the form below and we&apos;ll get back to you as soon as
         possible.
       </ContactDescription>
+
       <ContactContent>
         <LeftSection />
         <RightSection />

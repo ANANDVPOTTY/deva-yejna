@@ -35,7 +35,9 @@ export const FormRow = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const FormField = styled(Box)(({ fullWidth }) => ({
+export const FormField = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "fullWidth",
+})(({ fullWidth }) => ({
   flex: fullWidth ? "1 1 100%" : "1 1 calc(50% - 10px)",
   display: "flex",
   flexDirection: "column",
@@ -47,6 +49,14 @@ export const FieldLabel = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
   fontWeight: 500,
   color: "var(--color-charcoal)",
+  display: "flex",
+  alignItems: "center",
+  gap: "4px",
+}));
+
+export const RequiredIndicator = styled("span")(() => ({
+  color: "#dc3545",
+  fontWeight: 600,
 }));
 
 export const StyledTextField = styled(TextField)(() => ({
@@ -69,6 +79,15 @@ export const StyledTextField = styled(TextField)(() => ({
       borderColor: "var(--color-charcoal)",
       borderWidth: "2px",
     },
+
+    "&.Mui-error fieldset": {
+      borderColor: "#dc3545",
+    },
+
+    "&.Mui-error.Mui-focused fieldset": {
+      borderColor: "#dc3545",
+      borderWidth: "2px",
+    },
   },
 
   "& .MuiOutlinedInput-input": {
@@ -80,6 +99,13 @@ export const StyledTextField = styled(TextField)(() => ({
       opacity: 1,
     },
   },
+}));
+
+export const ErrorText = styled(Typography)(() => ({
+  fontFamily: "var(--font-primary)",
+  fontSize: "12px",
+  color: "#dc3545",
+  marginTop: "4px",
 }));
 
 export const PhoneInputWrapper = styled(Box)(() => ({
@@ -132,6 +158,15 @@ export const StyledTextArea = styled(TextField)(() => ({
 
     "&.Mui-focused fieldset": {
       borderColor: "var(--color-charcoal)",
+      borderWidth: "2px",
+    },
+
+    "&.Mui-error fieldset": {
+      borderColor: "#dc3545",
+    },
+
+    "&.Mui-error.Mui-focused fieldset": {
+      borderColor: "#dc3545",
       borderWidth: "2px",
     },
   },
@@ -202,5 +237,18 @@ export const SubmitButton = styled(Button)(({ theme }) => ({
 
   "&:active": {
     transform: "translateY(0)",
+  },
+
+  "&.Mui-disabled": {
+    backgroundColor: "var(--color-silver)",
+    color: "var(--color-ash)",
+    cursor: "not-allowed",
+    pointerEvents: "auto",
+
+    "&:hover": {
+      backgroundColor: "var(--color-silver)",
+      transform: "none",
+      boxShadow: "none",
+    },
   },
 }));
