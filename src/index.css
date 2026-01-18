@@ -57,4 +57,9 @@ body {
   --color-onyx: #2a2825;
   --color-ink: #1a1916;
   --color-black: #000000;
+
+  /*-------| Neutral UI Greys  |-------*/
+  --color-ui-border: #dadada;
+  --color-ui-hover: #f4f4f4;
+  --color-ui-active: #f1efe9;
 }

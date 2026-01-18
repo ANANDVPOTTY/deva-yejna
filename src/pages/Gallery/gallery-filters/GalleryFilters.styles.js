@@ -1,93 +1,136 @@
 import { styled } from "@mui/material/styles";
-import { Box, TextField, Select, Switch, Typography } from "@mui/material";
-import { responsiveFont } from "../../../components/font/ResponsiveFonts.styles";
+import { Box, TextField, Select, Button } from "@mui/material";
+
+/* ================= Container ================= */
 
 export const FiltersContainer = styled(Box)(({ theme }) => ({
   display: "flex",
-  flexWrap: "wrap",
   alignItems: "center",
-  gap: "20px",
-  marginBottom: "40px",
-  padding: "24px",
-  backgroundColor: "rgba(139, 69, 19, 0.05)",
-  borderRadius: "16px",
-  border: "1px solid rgba(139, 69, 19, 0.1)",
+  gap: "16px",
+  padding: "22px 26px",
+  marginBottom: "32px",
+
+  backgroundColor: "var(--color-off-white)",
+  borderRadius: "14px",
+  border: "1px solid var(--color-ui-border)",
 
   [theme.breakpoints.down("md")]: {
-    flexDirection: "column",
-    alignItems: "stretch",
+    flexWrap: "wrap",
   },
 }));
+
+/* ================= Search ================= */
 
 export const SearchField = styled(TextField)(() => ({
-  flex: "1 1 300px",
-  maxWidth: "400px",
+  flex: "1 1 280px",
+
   "& .MuiOutlinedInput-root": {
+    height: "42px",
+    borderRadius: "10px",
+    backgroundColor: "var(--color-white)",
     fontFamily: "var(--font-primary)",
-    backgroundColor: "#fff",
-    borderRadius: "12px",
+
     "& fieldset": {
-      borderColor: "rgba(139, 69, 19, 0.2)",
+      borderColor: "var(--color-ui-border)",
     },
+
     "&:hover fieldset": {
-      borderColor: "rgba(139, 69, 19, 0.4)",
+      borderColor: "var(--color-stone)",
     },
+
     "&.Mui-focused fieldset": {
-      borderColor: "#8B4513",
+      borderColor: "var(--color-slate)",
     },
-  },
-  "& .MuiInputLabel-root": {
-    fontFamily: "var(--font-primary)",
-    color: "var(--color-charcoal)",
-    "&.Mui-focused": {
-      color: "#8B4513",
+
+    "& svg": {
+      color: "var(--color-slate)",
+      fontSize: "20px",
     },
   },
 }));
+
+/* ================= Select ================= */
 
 export const FilterSelect = styled(Select)(() => ({
+  height: "42px",
   minWidth: "180px",
+  borderRadius: "10px",
+  backgroundColor: "var(--color-white)",
   fontFamily: "var(--font-primary)",
-  backgroundColor: "#fff",
-  borderRadius: "12px",
+
   "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: "rgba(139, 69, 19, 0.2)",
+    borderColor: "var(--color-ui-border)",
   },
+
   "&:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: "rgba(139, 69, 19, 0.4)",
+    borderColor: "var(--color-stone)",
   },
+
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    borderColor: "#8B4513",
+    borderColor: "var(--color-slate)",
+  },
+
+  "& .MuiSelect-icon": {
+    color: "var(--color-slate)",
   },
 }));
 
-export const SwitchContainer = styled(Box)(() => ({
+/* ================= Media Segmented Control ================= */
+
+export const MediaButtonsContainer = styled(Box)(() => ({
   display: "flex",
-  alignItems: "center",
-  gap: "24px",
+  backgroundColor: "var(--color-white)",
+  border: "1px solid var(--color-ui-border)",
+  borderRadius: "10px",
+  overflow: "hidden",
 }));
 
-export const SwitchWrapper = styled(Box)(() => ({
-  display: "flex",
-  alignItems: "center",
-  gap: "8px",
-}));
-
-export const SwitchLabel = styled(Typography)(({ theme }) => ({
+export const MediaButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(({ active }) => ({
   fontFamily: "var(--font-primary)",
-  ...responsiveFont(theme, "14px"),
-  fontWeight: 500,
-  color: "var(--color-charcoal)",
+  textTransform: "none",
+  fontSize: "14px",
+  padding: "8px 14px",
+  minWidth: "100px",
+  borderRadius: "0",
+
+  display: "flex",
+  alignItems: "center",
+  gap: "6px",
+
+  color: active ? "var(--color-ink)" : "var(--color-slate)",
+  backgroundColor: active ? "var(--color-ui-active)" : "transparent",
+
+  "& svg": {
+    fontSize: "18px",
+  },
+
+  "&:hover": {
+    backgroundColor: "var(--color-ui-hover)",
+  },
+
+  "&:not(:last-child)": {
+    borderRight: "1px solid var(--color-ui-border)",
+  },
 }));
 
-export const StyledSwitch = styled(Switch)(() => ({
-  "& .MuiSwitch-switchBase.Mui-checked": {
-    color: "#8B4513",
-    "&:hover": {
-      backgroundColor: "rgba(139, 69, 19, 0.08)",
-    },
+/* ================= Clear Button ================= */
+
+export const ClearFilterButton = styled(Button)(() => ({
+  minWidth: "40px",
+  height: "40px",
+  borderRadius: "10px",
+  padding: 0,
+  border: "1px solid var(--color-ui-border)",
+  color: "var(--color-slate)",
+
+  "& svg": {
+    fontSize: "22px",
   },
-  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-    backgroundColor: "#8B4513",
+
+  "&:hover": {
+    backgroundColor: "var(--color-ui-hover)",
+    color: "var(--color-ink)",
   },
 }));
