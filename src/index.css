@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-primary);
+  color: var(--color-charcoal);
+  background-color: var(--color-off-white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:root {
+  /*-------| Font Variables |-------*/
+  --font-primary: "Open Sans", sans-serif;
+  --font-special: "Cinzel Decorative", serif;
+
+  /*-------| Color Variables - Warm Whites |-------*/
+  --color-alabaster: #edeade;
+  --color-beige: #f5f5dc;
+  --color-bone-white: #f9f6ee;
+  --color-cornsilk: #fff8dc;
+  --color-cream: #fffdd0;
+  --color-eggshell: #f0ead6;
+  --color-ivory: #fffff0;
+  --color-linen: #e9dcc9;
+  --color-navajo-white: #ffdead;
+  --color-off-white: #faf9f6;
+  --color-parchment: #fcf5e5;
+  --color-peach: #ffe5b4;
+  --color-pearl: #e2dfd2;
+  --color-seashell: #fff5ee;
+  --color-vanilla: #f3e5ab;
+  --color-white: #ffffff;
+
+  /*-------| Color Variables - Warm Grays |-------*/
+  --color-silver: #c4c0b6;
+  --color-ash: #a8a49a;
+  --color-stone: #8a8680;
+  --color-slate: #6b6862;
+
+  /*-------| Color Variables - Warm Blacks |-------*/
+  --color-charcoal: #3d3a36;
+  --color-onyx: #2a2825;
+  --color-ink: #1a1916;
+  --color-black: #000000;
+
+  /*-------| Neutral UI Greys  |-------*/
+  --color-ui-border: #dadada;
+  --color-ui-hover: #f4f4f4;
+  --color-ui-active: #f1efe9;
+}
