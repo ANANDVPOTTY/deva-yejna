@@ -5,32 +5,76 @@ import { quoteFadeIn, quoteFadeOut, quoteIconPulse } from "../../styles/animatio
 
 export const QuoteSectionWrapper = styled(Box)(() => ({
   width: "100%",
-  background: "linear-gradient(135deg, var(--color-parchment) 0%, var(--color-cornsilk) 50%, var(--color-peach) 100%)",
+  backgroundColor: "var(--color-pink-light)",
   position: "relative",
   overflow: "hidden",
+}));
 
-  "&::before": {
-    content: '""',
-    position: "absolute",
-    top: "-50%",
-    left: "-10%",
-    width: "300px",
-    height: "300px",
-    background: "radial-gradient(circle, var(--color-saffron-light) 0%, transparent 70%)",
-    opacity: 0.3,
-    borderRadius: "50%",
+export const BlobTopRight = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: "-20px",
+  right: "-40px",
+  width: "220px",
+  height: "280px",
+  pointerEvents: "none",
+
+  "& svg": {
+    width: "100%",
+    height: "100%",
   },
 
-  "&::after": {
-    content: '""',
-    position: "absolute",
-    bottom: "-40%",
-    right: "-5%",
-    width: "250px",
+  [theme.breakpoints.down("lg")]: {
+    width: "180px",
+    height: "230px",
+    right: "-30px",
+  },
+
+  [theme.breakpoints.down("md")]: {
+    width: "140px",
+    height: "180px",
+    right: "-20px",
+    top: "-10px",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    width: "100px",
+    height: "130px",
+    right: "-15px",
+    top: "-5px",
+  },
+}));
+
+export const BlobBottomLeft = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  bottom: "-30px",
+  left: "-50px",
+  width: "250px",
+  height: "300px",
+  pointerEvents: "none",
+
+  "& svg": {
+    width: "100%",
+    height: "100%",
+  },
+
+  [theme.breakpoints.down("lg")]: {
+    width: "200px",
     height: "250px",
-    background: "radial-gradient(circle, var(--color-turmeric) 0%, transparent 70%)",
-    opacity: 0.25,
-    borderRadius: "50%",
+    left: "-40px",
+  },
+
+  [theme.breakpoints.down("md")]: {
+    width: "160px",
+    height: "200px",
+    left: "-30px",
+    bottom: "-20px",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    width: "120px",
+    height: "150px",
+    left: "-25px",
+    bottom: "-15px",
   },
 }));
 
@@ -144,23 +188,60 @@ export const QuoteMeaning = styled(Typography)(({ theme }) => ({
 export const QuoteSource = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  gap: "8px",
+  gap: "12px",
   marginTop: "24px",
 
   [theme.breakpoints.down("md")]: {
     marginTop: "20px",
+    gap: "10px",
   },
 
   [theme.breakpoints.down("sm")]: {
     marginTop: "16px",
+    gap: "8px",
   },
 }));
 
-export const SourceIcon = styled(Box)(({ theme }) => ({
-  ...responsiveFont(theme, "24px"),
-  fontFamily: "var(--font-special)",
-  color: "var(--color-saffron-dark)",
-  fontWeight: 700,
+export const SourceImageWrapper = styled(Box)(({ theme }) => ({
+  width: "56px",
+  height: "56px",
+  borderRadius: "50%",
+  overflow: "hidden",
+  border: "3px solid var(--color-coral)",
+  flexShrink: 0,
+
+  "& img": {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  },
+
+  [theme.breakpoints.down("md")]: {
+    width: "48px",
+    height: "48px",
+    border: "2px solid var(--color-coral)",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    width: "40px",
+    height: "40px",
+  },
+}));
+
+export const SourceInfo = styled(Box)(() => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  gap: "2px",
+}));
+
+export const SourceLabel = styled(Typography)(({ theme }) => ({
+  ...responsiveFont(theme, "12px"),
+  fontFamily: "var(--font-primary)",
+  color: "var(--color-charcoal)",
+  opacity: 0.7,
+  textTransform: "uppercase",
+  letterSpacing: "1px",
 }));
 
 export const SourceText = styled(Typography)(({ theme }) => ({
