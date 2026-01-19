@@ -21,7 +21,7 @@ const LeftSection = () => {
   const socialLinks = [
     { icon: <FacebookIcon />, url: "#", label: "Facebook" },
     { icon: <InstagramIcon />, url: "#", label: "Instagram" },
-    { icon: <WhatsApp />, url: "#", label: "WhatsApp" },
+    { icon: <WhatsApp />, url: "https://wa.me/7736558150", label: "WhatsApp" },
   ];
 
   const address = `TC 43/972/1, VYASA 222, Govindapuram vadakke madom, STREET,
@@ -44,7 +44,7 @@ Valiyasalai, Thiruvananthapuram, Kerala 695036`;
           <InfoText>Our friendly team is here to help.</InfoText>
 
           <InfoLink href="mailto:hello@paysphere.com">
-            hello@paysphere.com
+            devayajna@gmail.com
           </InfoLink>
         </InfoSection>
 
@@ -53,7 +53,7 @@ Valiyasalai, Thiruvananthapuram, Kerala 695036`;
 
           <InfoText>All Day from 8am to 9pm</InfoText>
 
-          <InfoLink href="tel:+995555555555">(+995) 555-55-55-55</InfoLink>
+          <InfoLink href="tel:7736558150">7736558150</InfoLink>
         </InfoSection>
 
         <SocialSection>
@@ -65,6 +65,8 @@ Valiyasalai, Thiruvananthapuram, Kerala 695036`;
                 key={social.label}
                 component="a"
                 href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={social.label}
               >
                 {social.icon}

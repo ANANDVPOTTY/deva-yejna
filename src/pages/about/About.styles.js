@@ -274,25 +274,103 @@ export const AboutSection = styled(Box)(({ theme }) => ({
   },
 }));
 
+export const AboutContent = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: "60px",
+
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column",
+    gap: "40px",
+  },
+}));
+
+export const AboutImageContainer = styled(Box)(({ theme }) => ({
+  flexShrink: 0,
+  position: "relative",
+
+  [theme.breakpoints.down("md")]: {
+    order: -1,
+  },
+}));
+
+export const AboutImageWrapper = styled(Box)(({ theme }) => ({
+  position: "relative",
+  width: "320px",
+  height: "400px",
+
+  [theme.breakpoints.down("lg")]: {
+    width: "280px",
+    height: "350px",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    width: "250px",
+    height: "310px",
+  },
+}));
+
+export const AboutImage = styled("img")(() => ({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  borderRadius: "20px",
+  boxShadow: "0 20px 50px rgba(61, 58, 54, 0.15)",
+  border: "4px solid var(--color-white)",
+}));
+
+export const AboutImageDecoration = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: "-15px",
+  left: "-15px",
+  width: "100%",
+  height: "100%",
+  border: "3px solid var(--color-stone)",
+  borderRadius: "20px",
+  zIndex: -1,
+
+  [theme.breakpoints.down("sm")]: {
+    top: "-10px",
+    left: "-10px",
+  },
+}));
+
+export const AboutTextContent = styled(Box)(({ theme }) => ({
+  flex: 1,
+
+  [theme.breakpoints.down("md")]: {
+    textAlign: "center",
+  },
+}));
+
 export const AboutTitle = styled(Typography)(({ theme }) => ({
   ...responsiveFont(theme, "42px"),
   fontFamily: "var(--font-special)",
   fontWeight: 700,
   color: "var(--color-charcoal)",
   marginBottom: "32px",
-  textAlign: "center",
   position: "relative",
+  display: "inline-block",
 
   "&::after": {
     content: '""',
     position: "absolute",
     bottom: "-12px",
-    left: "50%",
-    transform: "translateX(-50%)",
+    left: "0",
     width: "60px",
     height: "3px",
     backgroundColor: "var(--color-stone)",
     borderRadius: "2px",
+  },
+
+  [theme.breakpoints.down("md")]: {
+    display: "block",
+    textAlign: "center",
+
+    "&::after": {
+      left: "50%",
+      transform: "translateX(-50%)",
+    },
   },
 }));
 
@@ -302,12 +380,13 @@ export const AboutDescription = styled(Typography)(({ theme }) => ({
   color: "var(--color-charcoal)",
   lineHeight: 1.8,
   opacity: 0.9,
-  maxWidth: "900px",
-  margin: "0 auto",
-  textAlign: "center",
 
   "& + &": {
     marginTop: "20px",
+  },
+
+  [theme.breakpoints.down("md")]: {
+    textAlign: "center",
   },
 }));
 
