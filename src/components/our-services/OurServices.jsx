@@ -25,7 +25,7 @@ const SERVICES_DATA = [
       "Traditional vedic rituals performed with devotion to invoke divine blessings for prosperity and peace.",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2L13.09 8.26L19 7L14.74 11.74L21 14L14.74 13.91L13.09 20L12 14.74L6.26 20L10.26 13.91L3 14L9.26 11.74L5 7L10.91 8.26L12 2Z" />
+        <path d="M12 1L15.09 7.26L22 8.27L17 13.14L18.18 20.02L12 16.77L5.82 20.02L7 13.14L2 8.27L8.91 7.26L12 1Z" />
       </svg>
     ),
     color: "var(--color-service-yellow)",
@@ -51,7 +51,7 @@ const SERVICES_DATA = [
       "Ground-breaking ceremony to seek blessings before construction for protection and prosperity.",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M19 12L12 2L5 12H7V20H11V14H13V20H17V12H19Z" />
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
       </svg>
     ),
     color: "var(--color-service-pink)",
@@ -111,7 +111,9 @@ const OurServices = () => {
     <ServicesSectionWrapper>
       <SectionHeader>
         <SectionTitle>Our Services</SectionTitle>
+
         <TitleUnderline />
+
         <SectionSubtitle>
           Experience authentic Kerala tantrik pooja rituals performed with
           purity, devotion, and time-honored traditions for divine blessings.

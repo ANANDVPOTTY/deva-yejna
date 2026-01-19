@@ -22,15 +22,19 @@ export const ServicesSectionWrapper = styled(Box)(({ theme }) => ({
 
 export const SectionHeader = styled(Box)(({ theme }) => ({
   textAlign: "center",
-  marginBottom: "60px",
+  marginBottom: "80px",
   animation: `${fadeInUp} 0.6s ease-out`,
 
+  [theme.breakpoints.down("lg")]: {
+    marginBottom: "60px",
+  },
+
   [theme.breakpoints.down("md")]: {
-    marginBottom: "50px",
+    marginBottom: "48px",
   },
 
   [theme.breakpoints.down("sm")]: {
-    marginBottom: "40px",
+    marginBottom: "36px",
   },
 }));
 
@@ -64,69 +68,71 @@ export const ServicesContent = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  gap: "60px",
-  maxWidth: "1200px",
+  gap: "4rem",
+  maxWidth: "1400px",
   margin: "0 auto",
 
   [theme.breakpoints.down("lg")]: {
-    gap: "40px",
+    gap: "2.5rem",
   },
 
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
-    gap: "50px",
+    gap: "3rem",
   },
 
   [theme.breakpoints.down("sm")]: {
-    gap: "40px",
+    gap: "2.5rem",
   },
 }));
 
 export const LeftServices = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  gap: "48px",
+  gap: "40px",
   flex: 1,
-  maxWidth: "300px",
+  maxWidth: "320px",
 
   [theme.breakpoints.down("lg")]: {
-    maxWidth: "260px",
-    gap: "40px",
+    maxWidth: "280px",
+    gap: "36px",
   },
 
   [theme.breakpoints.down("md")]: {
-    maxWidth: "500px",
+    maxWidth: "100%",
+    width: "100%",
     order: 1,
-    gap: "32px",
+    gap: "28px",
+    alignItems: "center",
   },
 
   [theme.breakpoints.down("sm")]: {
-    maxWidth: "100%",
-    gap: "28px",
+    gap: "24px",
   },
 }));
 
 export const RightServices = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  gap: "48px",
+  gap: "40px",
   flex: 1,
-  maxWidth: "300px",
+  maxWidth: "320px",
 
   [theme.breakpoints.down("lg")]: {
-    maxWidth: "260px",
-    gap: "40px",
+    maxWidth: "280px",
+    gap: "36px",
   },
 
   [theme.breakpoints.down("md")]: {
-    maxWidth: "500px",
+    maxWidth: "100%",
+    width: "100%",
     order: 3,
-    gap: "32px",
+    gap: "28px",
+    alignItems: "center",
   },
 
   [theme.breakpoints.down("sm")]: {
-    maxWidth: "100%",
-    gap: "28px",
+    gap: "24px",
   },
 }));
 
@@ -141,9 +147,16 @@ export const ServiceItem = styled(Box, {
   animation: `${fadeInUp} 0.5s ease-out`,
   animationDelay: `${index * 0.1}s`,
   animationFillMode: "both",
+  maxWidth: "100%",
 
   [theme.breakpoints.down("md")]: {
     textAlign: "center",
+    maxWidth: "450px",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    maxWidth: "100%",
+    padding: "0 8px",
   },
 }));
 
@@ -155,8 +168,18 @@ export const ServiceTitle = styled(Typography, {
   fontWeight: 700,
   color: isActive ? "var(--color-service-yellow)" : "var(--color-charcoal)",
   marginBottom: "10px",
-  transition: "color 0.3s ease",
+  transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
   letterSpacing: "0.5px",
+  cursor: "pointer",
+  display: "inline-block",
+  transform: isActive ? "scale(1.05)" : "scale(1)",
+  textShadow: isActive ? "0 2px 8px rgba(255, 193, 7, 0.3)" : "none",
+
+  "&:hover": {
+    color: "var(--color-service-yellow)",
+    transform: "scale(1.05)",
+    textShadow: "0 2px 8px rgba(255, 193, 7, 0.3)",
+  },
 }));
 
 export const ServiceDescription = styled(Typography)(({ theme }) => ({
@@ -168,32 +191,32 @@ export const ServiceDescription = styled(Typography)(({ theme }) => ({
 
 export const IconsContainer = styled(Box)(({ theme }) => ({
   position: "relative",
-  width: "380px",
-  height: "380px",
+  width: "480px",
+  height: "480px",
   flexShrink: 0,
   animation: `${scaleIn} 0.6s ease-out`,
   animationDelay: "0.2s",
   animationFillMode: "both",
 
   [theme.breakpoints.down("lg")]: {
-    width: "340px",
-    height: "340px",
+    width: "400px",
+    height: "400px",
   },
 
   [theme.breakpoints.down("md")]: {
-    width: "340px",
-    height: "340px",
+    width: "380px",
+    height: "380px",
     order: 2,
   },
 
   [theme.breakpoints.down("sm")]: {
-    width: "300px",
-    height: "300px",
+    width: "320px",
+    height: "320px",
   },
 
   [theme.breakpoints.down(400)]: {
-    width: "260px",
-    height: "260px",
+    width: "280px",
+    height: "280px",
   },
 }));
 
@@ -202,38 +225,36 @@ export const ShriChakraImage = styled("img")(({ theme }) => ({
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "200px",
-  height: "200px",
+  width: "220px",
+  height: "220px",
   borderRadius: "50%",
   objectFit: "cover",
-  // border: "4px solid var(--color-service-border)",
   zIndex: 2,
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.15)",
 
   [theme.breakpoints.down("lg")]: {
-    width: "140px",
-    height: "140px",
+    width: "180px",
+    height: "180px",
   },
 
   [theme.breakpoints.down("md")]: {
+    width: "160px",
+    height: "160px",
+  },
+
+  [theme.breakpoints.down("sm")]: {
     width: "140px",
     height: "140px",
   },
 
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down(400)]: {
     width: "120px",
     height: "120px",
-    border: "3px solid var(--color-service-border)",
-  },
-
-  [theme.breakpoints.down(400)]: {
-    width: "100px",
-    height: "100px",
   },
 }));
 
 const getIconPosition = (index, containerSize, iconSize) => {
-  const radius = containerSize * 0.4;
+  const radius = containerSize * 0.42;
   const centerOffset = containerSize / 2;
   const halfIcon = iconSize / 2;
 
@@ -259,17 +280,25 @@ export const IconWrapper = styled(Box, {
   shouldForwardProp: (prop) =>
     prop !== "index" && prop !== "color" && prop !== "isActive",
 })(({ theme, index, color, isActive }) => {
-  const xlSize = 68;
-  const lgSize = 62;
-  const mdSize = 62;
-  const smSize = 56;
-  const xsSize = 48;
+  const xlSize = 80;
+  const lgSize = 72;
+  const mdSize = 72;
+  const smSize = 64;
+  const xsSize = 56;
 
-  const xlPos = getIconPosition(index, 380, xlSize);
-  const lgPos = getIconPosition(index, 340, lgSize);
-  const mdPos = getIconPosition(index, 340, mdSize);
-  const smPos = getIconPosition(index, 300, smSize);
-  const xsPos = getIconPosition(index, 260, xsSize);
+  const xlPos = getIconPosition(index, 480, xlSize);
+  const lgPos = getIconPosition(index, 400, lgSize);
+  const mdPos = getIconPosition(index, 380, mdSize);
+  const smPos = getIconPosition(index, 320, smSize);
+  const xsPos = getIconPosition(index, 280, xsSize);
+
+  const getGlowColor = (baseColor) => {
+    if (baseColor.includes("yellow")) return "rgba(255, 193, 7, 0.6)";
+    if (baseColor.includes("pink")) return "rgba(233, 30, 99, 0.6)";
+    if (baseColor.includes("green")) return "rgba(76, 175, 80, 0.6)";
+    if (baseColor.includes("blue")) return "rgba(33, 150, 243, 0.6)";
+    return "rgba(255, 193, 7, 0.6)";
+  };
 
   return {
     position: "absolute",
@@ -277,32 +306,40 @@ export const IconWrapper = styled(Box, {
     height: `${xlSize}px`,
     borderRadius: "50%",
     backgroundColor: color,
-    border: "4px solid var(--color-white)",
+    border: isActive
+      ? "4px solid var(--color-charcoal)"
+      : "4px solid rgba(255, 255, 255, 0.9)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     cursor: "pointer",
-    transition: "all 0.3s ease",
+    transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
     zIndex: 3,
     boxShadow: isActive
-      ? "0 10px 30px rgba(0, 0, 0, 0.3)"
+      ? `0 12px 35px rgba(0, 0, 0, 0.35), 0 0 20px ${getGlowColor(color)}`
       : "0 6px 20px rgba(0, 0, 0, 0.15)",
-    transform: isActive ? "scale(1.15)" : "scale(1)",
+    transform: isActive ? "scale(1.2)" : "scale(1)",
     animation: `${scaleIn} 0.4s ease-out`,
     animationDelay: `${0.3 + index * 0.08}s`,
     animationFillMode: "both",
     ...xlPos,
 
     "& svg": {
-      width: "32px",
-      height: "32px",
+      width: "40px",
+      height: "40px",
       color: "var(--color-white)",
       flexShrink: 0,
+      transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
     },
 
     "&:hover": {
-      transform: "scale(1.15)",
-      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
+      transform: "scale(1.2)",
+      border: "4px solid var(--color-charcoal)",
+      boxShadow: `0 12px 35px rgba(0, 0, 0, 0.35), 0 0 20px ${getGlowColor(color)}`,
+
+      "& svg": {
+        transform: "scale(1.1)",
+      },
     },
 
     [theme.breakpoints.down("lg")]: {
@@ -311,8 +348,8 @@ export const IconWrapper = styled(Box, {
       ...lgPos,
 
       "& svg": {
-        width: "28px",
-        height: "28px",
+        width: "36px",
+        height: "36px",
       },
     },
 
@@ -322,20 +359,26 @@ export const IconWrapper = styled(Box, {
       ...mdPos,
 
       "& svg": {
-        width: "28px",
-        height: "28px",
+        width: "36px",
+        height: "36px",
       },
     },
 
     [theme.breakpoints.down("sm")]: {
       width: `${smSize}px`,
       height: `${smSize}px`,
-      border: "3px solid var(--color-white)",
+      border: isActive
+        ? "3px solid var(--color-charcoal)"
+        : "3px solid rgba(255, 255, 255, 0.9)",
       ...smPos,
 
       "& svg": {
-        width: "26px",
-        height: "26px",
+        width: "32px",
+        height: "32px",
+      },
+
+      "&:hover": {
+        border: "3px solid var(--color-charcoal)",
       },
     },
 
@@ -345,8 +388,8 @@ export const IconWrapper = styled(Box, {
       ...xsPos,
 
       "& svg": {
-        width: "22px",
-        height: "22px",
+        width: "28px",
+        height: "28px",
       },
     },
   };
