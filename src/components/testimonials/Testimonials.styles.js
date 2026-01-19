@@ -1,10 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import { responsiveFont } from "../font/ResponsiveFonts.styles";
-import {
-  scrollTopToBottom,
-  scrollBottomToTop,
-} from "../../styles/animations";
+import { scrollTopToBottom, scrollBottomToTop } from "../../styles/animations";
 
 /*-------| Section Wrapper |-------*/
 export const TestimonialSectionWrapper = styled(Box)(() => ({
@@ -39,7 +36,8 @@ export const MainTitle = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-special)",
   fontWeight: 700,
   marginBottom: "16px",
-  background: "linear-gradient(to right, var(--color-service-blue), var(--color-maroon-light))",
+  background:
+    "linear-gradient(to right, var(--color-service-blue), var(--color-maroon-light))",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",

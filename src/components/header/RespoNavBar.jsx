@@ -1,6 +1,12 @@
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
-import { Drawer, List, ListItem, ListItemText, IconButton } from "@mui/material";
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import {
   DrawerContent,
@@ -26,8 +32,8 @@ const RespoNavBar = ({ open, onClose }) => {
       <DrawerContent>
         <DrawerHeader>
           <DrawerLogoContainer>
-            <DrawerLogoImage src={logo} alt="Deva Yejna Logo" />
-            <DrawerLogoText>Deva Yejna</DrawerLogoText>
+            <DrawerLogoImage src={logo} alt="Deva Yajña Logo" />
+            <DrawerLogoText>Deva Yajña</DrawerLogoText>
           </DrawerLogoContainer>
           <IconButton onClick={onClose} sx={{ color: "var(--color-charcoal)" }}>
             <CloseIcon />

@@ -31,8 +31,8 @@ const Header = () => {
     <StyledAppBar>
       <StyledToolbar>
         <LogoContainer component={Link} to="/">
-          <LogoImage src={logo} alt="Deva Yejna Logo" />
-          <LogoText>Deva Yejna</LogoText>
+          <LogoImage src={logo} alt="Deva Yajña Logo" />
+          <LogoText>Deva Yajña</LogoText>
         </LogoContainer>
 
         <NavContainer component="nav">

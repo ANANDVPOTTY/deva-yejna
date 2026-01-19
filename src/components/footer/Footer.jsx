@@ -13,12 +13,12 @@ const Footer = () => {
   return (
     <FooterContainer component="footer">
       <LogoSection>
-        <FooterLogo src={logo} alt="Deva Yejna Logo" />
-        <FooterName>Deva Yejna</FooterName>
+        <FooterLogo src={logo} alt="Deva Yajña Logo" />
+        <FooterName>Deva Yajña</FooterName>
       </LogoSection>
 
       <CopyrightText>
-        &copy; {currentYear} All Rights Reserved By Deva Yejna
+        &copy; {currentYear} All Rights Reserved By Deva Yajña
       </CopyrightText>
     </FooterContainer>
   );
