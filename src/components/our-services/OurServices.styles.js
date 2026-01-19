@@ -142,16 +142,22 @@ export const ServiceItem = styled(Box, {
 })(({ theme, align, isActive, index }) => ({
   textAlign: align,
   cursor: "pointer",
-  transition: "transform 0.3s ease",
-  transform: isActive ? "scale(1.02)" : "scale(1)",
+  transition: "transform 0.3s ease, opacity 0.3s ease",
+  transform: isActive ? "scale(1.03)" : "scale(1)",
+  opacity: isActive ? 1 : 0.85,
   animation: `${fadeInUp} 0.5s ease-out`,
   animationDelay: `${index * 0.1}s`,
   animationFillMode: "both",
   maxWidth: "100%",
 
+  "&:hover": {
+    opacity: 1,
+  },
+
   [theme.breakpoints.down("md")]: {
     textAlign: "center",
     maxWidth: "450px",
+    opacity: 1,
   },
 
   [theme.breakpoints.down("sm")]: {
@@ -168,18 +174,8 @@ export const ServiceTitle = styled(Typography, {
   fontWeight: 700,
   color: isActive ? "var(--color-service-yellow)" : "var(--color-charcoal)",
   marginBottom: "10px",
-  transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+  transition: "color 0.3s ease",
   letterSpacing: "0.5px",
-  cursor: "pointer",
-  display: "inline-block",
-  transform: isActive ? "scale(1.05)" : "scale(1)",
-  textShadow: isActive ? "0 2px 8px rgba(255, 193, 7, 0.3)" : "none",
-
-  "&:hover": {
-    color: "var(--color-service-yellow)",
-    transform: "scale(1.05)",
-    textShadow: "0 2px 8px rgba(255, 193, 7, 0.3)",
-  },
 }));
 
 export const ServiceDescription = styled(Typography)(({ theme }) => ({
@@ -220,7 +216,7 @@ export const IconsContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const ShriChakraImage = styled("img")(({ theme }) => ({
+export const CenterImage = styled("img")(({ theme }) => ({
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -231,6 +227,7 @@ export const ShriChakraImage = styled("img")(({ theme }) => ({
   objectFit: "cover",
   zIndex: 2,
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.15)",
+  outline: "4px solid var(--color-maroon)",
 
   [theme.breakpoints.down("lg")]: {
     width: "180px",
@@ -292,14 +289,6 @@ export const IconWrapper = styled(Box, {
   const smPos = getIconPosition(index, 320, smSize);
   const xsPos = getIconPosition(index, 280, xsSize);
 
-  const getGlowColor = (baseColor) => {
-    if (baseColor.includes("yellow")) return "rgba(255, 193, 7, 0.6)";
-    if (baseColor.includes("pink")) return "rgba(233, 30, 99, 0.6)";
-    if (baseColor.includes("green")) return "rgba(76, 175, 80, 0.6)";
-    if (baseColor.includes("blue")) return "rgba(33, 150, 243, 0.6)";
-    return "rgba(255, 193, 7, 0.6)";
-  };
-
   return {
     position: "absolute",
     width: `${xlSize}px`,
@@ -307,18 +296,21 @@ export const IconWrapper = styled(Box, {
     borderRadius: "50%",
     backgroundColor: color,
     border: isActive
-      ? "4px solid var(--color-charcoal)"
-      : "4px solid rgba(255, 255, 255, 0.9)",
+      ? "3px solid var(--color-white)"
+      : "3px solid rgba(255, 255, 255, 0.6)",
+    outline: isActive
+      ? "3px solid var(--color-service-yellow)"
+      : "3px solid rgba(255, 255, 255, 0.6)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     cursor: "pointer",
-    transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+    transition: "transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease",
     zIndex: 3,
     boxShadow: isActive
-      ? `0 12px 35px rgba(0, 0, 0, 0.35), 0 0 20px ${getGlowColor(color)}`
-      : "0 6px 20px rgba(0, 0, 0, 0.15)",
-    transform: isActive ? "scale(1.2)" : "scale(1)",
+      ? "0 8px 24px rgba(0, 0, 0, 0.25)"
+      : "0 4px 12px rgba(0, 0, 0, 0.12)",
+    transform: isActive ? "scale(1.1)" : "scale(1)",
     animation: `${scaleIn} 0.4s ease-out`,
     animationDelay: `${0.3 + index * 0.08}s`,
     animationFillMode: "both",
@@ -329,17 +321,12 @@ export const IconWrapper = styled(Box, {
       height: "40px",
       color: "var(--color-white)",
       flexShrink: 0,
-      transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
     },
 
     "&:hover": {
-      transform: "scale(1.2)",
-      border: "4px solid var(--color-charcoal)",
-      boxShadow: `0 12px 35px rgba(0, 0, 0, 0.35), 0 0 20px ${getGlowColor(color)}`,
-
-      "& svg": {
-        transform: "scale(1.1)",
-      },
+      transform: "scale(1.1)",
+      border: "3px solid rgba(255, 255, 255, 1)",
+      boxShadow: "0 8px 24px rgba(0, 0, 0, 0.25)",
     },
 
     [theme.breakpoints.down("lg")]: {
@@ -367,18 +354,11 @@ export const IconWrapper = styled(Box, {
     [theme.breakpoints.down("sm")]: {
       width: `${smSize}px`,
       height: `${smSize}px`,
-      border: isActive
-        ? "3px solid var(--color-charcoal)"
-        : "3px solid rgba(255, 255, 255, 0.9)",
       ...smPos,
 
       "& svg": {
         width: "32px",
         height: "32px",
-      },
-
-      "&:hover": {
-        border: "3px solid var(--color-charcoal)",
       },
     },
 
