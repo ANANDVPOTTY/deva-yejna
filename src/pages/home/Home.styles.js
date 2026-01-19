@@ -17,7 +17,7 @@ export const HomeContainer = styled(Box)(({ theme }) => ({
   alignItems: "center",
   gap: "80px",
   margin: "0 auto",
-  padding: "80px 24px",
+  padding: "90px 24px",
 
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",

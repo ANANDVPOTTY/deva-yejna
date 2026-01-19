@@ -65,7 +65,7 @@ const Home = () => {
 
       <OurServices />
 
-      <QuoteSection />
+      {/* <QuoteSection /> */}
       <Footer />
     </HomeWrapper>
   );
