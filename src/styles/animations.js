@@ -157,3 +157,31 @@ export const quoteIconPulse = keyframes`
     transform: scale(1.02);
   }
 `;
+
+/*-------| Testimonial Section Animations |-------*/
+export const scrollTopToBottom = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+`;
+
+export const scrollBottomToTop = keyframes`
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+
+export const testimonialCardHover = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+`;
