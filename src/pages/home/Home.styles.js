@@ -4,9 +4,10 @@ import { responsiveFont } from "../../components/font/ResponsiveFonts.styles";
 import { fadeIn } from "../../styles/animations";
 
 export const HomeWrapper = styled(Box)(() => ({
+  minHeight: "calc(100vh - 80px)",
   display: "flex",
   flexDirection: "column",
-  minHeight: "calc(100vh - 80px)",
+  gap: "40px",
 }));
 
 export const HomeContainer = styled(Box)(({ theme }) => ({
@@ -16,7 +17,7 @@ export const HomeContainer = styled(Box)(({ theme }) => ({
   alignItems: "center",
   gap: "80px",
   margin: "0 auto",
-  padding: "80px 24px",
+  padding: "90px 24px",
 
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",

@@ -2,7 +2,8 @@
 import { useNavigate } from "react-router-dom";
 
 //-------| Images & Icons |-------//
-import photo1 from "../../assets/images/ganpati.jpg";
+import picOne from "../../assets/images/kishorePic1.png";
+import picTwo from "../../assets/images/kishorePic2.png";
 
 //-------| Styled Components |-------//
 import {
@@ -22,6 +23,12 @@ import {
   DecorativeCircle,
   DecorativeDots,
   AboutSection,
+  AboutContent,
+  AboutImageContainer,
+  AboutImageWrapper,
+  AboutImage,
+  AboutImageDecoration,
+  AboutTextContent,
   AboutTitle,
   AboutDescription,
   ContentWrapper,
@@ -122,7 +129,7 @@ const About = () => {
             <DecorativeCircle variant="secondary" />
 
             <HeroImageWrapper>
-              <HeroImage src={photo1} alt="Kishore Raghava Sarma" />
+              <HeroImage src={picOne} alt="Kishore Raghava Sarma" />
             </HeroImageWrapper>
 
             <DecorativeDots>
@@ -136,24 +143,35 @@ const About = () => {
 
       {/* About Me Section */}
       <AboutSection>
-        <AboutTitle>About Me</AboutTitle>
+        <AboutContent>
+          <AboutImageContainer>
+            <AboutImageWrapper>
+              <AboutImage src={picTwo} alt="Kishore Raghava Sarma performing rituals" />
+              <AboutImageDecoration />
+            </AboutImageWrapper>
+          </AboutImageContainer>
 
-        <AboutDescription>
-          With deep roots in the ancient Kerala tantrik traditions, I have
-          dedicated my life to preserving and practicing the sacred rituals
-          passed down through generations. My journey began under the guidance
-          of revered gurus who instilled in me not just the knowledge of mantras
-          and rituals, but the profound understanding of their spiritual
-          significance.
-        </AboutDescription>
+          <AboutTextContent>
+            <AboutTitle>About Me</AboutTitle>
 
-        <AboutDescription>
-          Every pooja I perform is approached with utmost devotion, purity, and
-          adherence to traditional methods. I believe that these ancient
-          practices hold the power to bring peace, prosperity, and divine grace
-          into people&apos;s lives when performed with sincere faith and proper
-          procedure.
-        </AboutDescription>
+            <AboutDescription>
+              With deep roots in the ancient Kerala tantrik traditions, I have
+              dedicated my life to preserving and practicing the sacred rituals
+              passed down through generations. My journey began under the guidance
+              of revered gurus who instilled in me not just the knowledge of mantras
+              and rituals, but the profound understanding of their spiritual
+              significance.
+            </AboutDescription>
+
+            <AboutDescription>
+              Every pooja I perform is approached with utmost devotion, purity, and
+              adherence to traditional methods. I believe that these ancient
+              practices hold the power to bring peace, prosperity, and divine grace
+              into people&apos;s lives when performed with sincere faith and proper
+              procedure.
+            </AboutDescription>
+          </AboutTextContent>
+        </AboutContent>
       </AboutSection>
 
       <ContentWrapper>

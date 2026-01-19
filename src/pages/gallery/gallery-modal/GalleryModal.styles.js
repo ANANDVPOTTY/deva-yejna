@@ -1,9 +1,8 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography, IconButton } from "@mui/material";
-import { modalFadeIn, modalScaleIn } from "../../../styles/animations";
 import { responsiveFont } from "../../../components/font/ResponsiveFonts.styles";
 
-export const ModalOverlay = styled(Box)(() => ({
+export const ModalOverlay = styled(Box)(({ theme }) => ({
   position: "fixed",
   top: 0,
   left: 0,
@@ -14,67 +13,111 @@ export const ModalOverlay = styled(Box)(() => ({
   alignItems: "center",
   justifyContent: "center",
   zIndex: 1300,
-  padding: "40px",
-  animation: `${modalFadeIn} 0.3s ease`,
+  padding: "20px",
+
+  [theme.breakpoints.down("sm")]: {
+    padding: "12px",
+  },
 }));
 
 export const ModalContent = styled(Box)(({ theme }) => ({
   position: "relative",
-  maxWidth: "90vw",
-  maxHeight: "90vh",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  animation: `${modalScaleIn} 0.3s ease`,
+  maxWidth: "95vw",
+  maxHeight: "calc(100vh - 40px)",
+  width: "auto",
 
-  [theme.breakpoints.down("md")]: {
-    maxWidth: "95vw",
-    padding: "0 10px",
+  [theme.breakpoints.down("sm")]: {
+    maxWidth: "100vw",
+    maxHeight: "calc(100vh - 24px)",
   },
 }));
 
-export const CloseButton = styled(IconButton)(() => ({
-  position: "absolute",
-  top: "-50px",
-  right: "-10px",
-  color: "#fff",
-  backgroundColor: "rgba(139, 69, 19, 0.8)",
-  padding: "12px",
-  transition: "background-color 0.3s ease, transform 0.3s ease",
+export const ModalHeader = styled(Box)(() => ({
+  display: "flex",
+  justifyContent: "flex-end",
+  width: "100%",
+  marginBottom: "12px",
+  flexShrink: 0,
+}));
+
+export const CloseButton = styled(IconButton)(({ theme }) => ({
+  color: "rgba(255, 255, 255, 0.8)",
+  backgroundColor: "transparent",
+  border: "1px solid rgba(255, 255, 255, 0.3)",
+  borderRadius: "4px",
+  padding: "8px",
+  width: "36px",
+  height: "36px",
 
   "&:hover": {
-    backgroundColor: "#8B4513",
-    transform: "rotate(90deg)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    color: "#fff",
   },
+
+  "& svg": {
+    fontSize: "20px",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    width: "32px",
+    height: "32px",
+    padding: "6px",
+
+    "& svg": {
+      fontSize: "18px",
+    },
+  },
+}));
+
+export const MediaWrapper = styled(Box)(() => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flex: 1,
+  minHeight: 0,
+  width: "100%",
 }));
 
 export const ModalImage = styled("img")(({ theme }) => ({
   maxWidth: "100%",
-  maxHeight: "75vh",
+  maxHeight: "calc(100vh - 200px)",
+  width: "auto",
+  height: "auto",
   objectFit: "contain",
-  borderRadius: "12px",
-  boxShadow: "0 20px 60px rgba(0, 0, 0, 0.5)",
+  borderRadius: "8px",
 
-  [theme.breakpoints.down("md")]: {
-    maxHeight: "60vh",
+  [theme.breakpoints.down("sm")]: {
+    maxHeight: "calc(100vh - 160px)",
+    borderRadius: "4px",
   },
 }));
 
 export const ModalVideo = styled("video")(({ theme }) => ({
   maxWidth: "100%",
-  maxHeight: "75vh",
-  borderRadius: "12px",
-  boxShadow: "0 20px 60px rgba(0, 0, 0, 0.5)",
+  maxHeight: "calc(100vh - 200px)",
+  width: "auto",
+  height: "auto",
+  borderRadius: "8px",
 
-  [theme.breakpoints.down("md")]: {
-    maxHeight: "60vh",
+  [theme.breakpoints.down("sm")]: {
+    maxHeight: "calc(100vh - 160px)",
+    borderRadius: "4px",
   },
 }));
 
-export const ModalInfo = styled(Box)(() => ({
-  marginTop: "24px",
+export const ModalInfo = styled(Box)(({ theme }) => ({
+  marginTop: "20px",
   textAlign: "center",
   maxWidth: "600px",
+  padding: "0 16px",
+
+  [theme.breakpoints.down("sm")]: {
+    marginTop: "16px",
+    maxWidth: "100%",
+  },
 }));
 
 export const ModalCategory = styled(Typography)(({ theme }) => ({

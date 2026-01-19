@@ -9,6 +9,9 @@ import {
   SubText,
 } from "./Home.styles";
 import Footer from "../../components/footer/Footer";
+import QuoteSection from "../../components/quote-section/QuoteSection";
+import OurServices from "../../components/our-services/OurServices";
+import Testimonials from "../../components/testimonials/Testimonials";
 import ganapatiImg from "../../assets/images/ganpati.jpg";
 import shivlingImg from "../../assets/images/shivling.jpg";
 import mahavishnuImg from "../../assets/images/mahavishnu.jpg";
@@ -55,12 +58,17 @@ const Home = () => {
 
           <SubText>
             Experience time-honored kerala tantrik pooja rituals performed with
-            purity, faith, and tradition. May peace, prosperity, and divine grace
-            be with you always.
+            purity, faith, and tradition. May peace, prosperity, and divine
+            grace be with you always.
           </SubText>
         </TextSection>
       </HomeContainer>
 
+      <OurServices />
+
+      <Testimonials />
+
+      {/* <QuoteSection /> */}
       <Footer />
     </HomeWrapper>
   );

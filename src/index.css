@@ -62,4 +62,27 @@ body {
   --color-ui-border: #dadada;
   --color-ui-hover: #f4f4f4;
   --color-ui-active: #f1efe9;
+
+  /*-------| Accent Colors - Spiritual Theme |-------*/
+  --color-saffron: #ff9933;
+  --color-saffron-light: #ffb366;
+  --color-saffron-dark: #e67300;
+  --color-turmeric: #ffc04d;
+  --color-maroon: #800020;
+  --color-maroon-light: #a0324a;
+
+  /*-------| Quote Section Colors |-------*/
+  --color-pink-light: #fce4ec;
+  --color-pink: #f8bbd9;
+  --color-coral: #ff5a7d;
+  --color-coral-dark: #e91e63;
+
+  /*-------| Services Section Colors |-------*/
+  --color-service-yellow: #efa122;
+  --color-service-red: #fa2b2b;
+  --color-service-green: #26a69a;
+  --color-service-pink: #ec407a;
+  --color-service-blue: #42a5f5;
+  --color-service-center: #2d2d2d;
+  --color-service-border: #f9a825;
 }

@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import { responsiveFont } from "../font/ResponsiveFonts.styles";
 
-export const FooterContainer = styled(Box)(() => ({
+export const FooterContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -10,12 +10,25 @@ export const FooterContainer = styled(Box)(() => ({
   backgroundColor: "#fff",
   borderTop: "1px solid rgba(139, 69, 19, 0.1)",
   marginTop: "auto",
+
+  [theme.breakpoints.down("sm")]: {
+    flexDirection: "column",
+    gap: "16px",
+    padding: "20px 24px",
+    textAlign: "center",
+  },
 }));
 
 export const LogoSection = styled(Box)(() => ({
   display: "flex",
   alignItems: "center",
   gap: "12px",
+  cursor: "pointer",
+  transition: "opacity 0.2s ease",
+
+  "&:hover": {
+    opacity: 0.8,
+  },
 }));
 
 export const FooterLogo = styled("img")(() => ({

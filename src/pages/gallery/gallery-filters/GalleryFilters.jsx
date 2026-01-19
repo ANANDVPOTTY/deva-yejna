@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
 import { InputAdornment, MenuItem } from "@mui/material";
 
-/* Icons – modern & minimal */
+/* Icons */
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded";
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
 /* Styles */
@@ -15,6 +14,7 @@ import {
   FiltersContainer,
   SearchField,
   FilterSelect,
+  MediaActionsWrapper,
   MediaButtonsContainer,
   MediaButton,
   ClearFilterButton,
@@ -77,7 +77,7 @@ const GalleryFilters = ({
         }}
       />
 
-      {/* Category Filter */}
+      {/* Category */}
       <FilterSelect
         value={selectedFilter}
         onChange={(e) => setSelectedFilter(e.target.value)}
@@ -91,25 +91,26 @@ const GalleryFilters = ({
         ))}
       </FilterSelect>
 
-      {/* Media Type – Segmented Control */}
-      <MediaButtonsContainer>
-        <MediaButton active={isAllActive} onClick={handleAllClick}>
-          <AppsRoundedIcon /> All
-        </MediaButton>
+      {/* Media + Clear (grouped intentionally) */}
+      <MediaActionsWrapper>
+        <MediaButtonsContainer>
+          <MediaButton active={isAllActive} onClick={handleAllClick}>
+            <AppsRoundedIcon /> All
+          </MediaButton>
 
-        <MediaButton active={isImagesOnly} onClick={handleImagesClick}>
-          <ImageOutlinedIcon /> Images
-        </MediaButton>
+          <MediaButton active={isImagesOnly} onClick={handleImagesClick}>
+            <ImageOutlinedIcon /> Images
+          </MediaButton>
 
-        <MediaButton active={isVideosOnly} onClick={handleVideosClick}>
-          <VideocamOutlinedIcon /> Videos
-        </MediaButton>
-      </MediaButtonsContainer>
+          <MediaButton active={isVideosOnly} onClick={handleVideosClick}>
+            <VideocamOutlinedIcon /> Videos
+          </MediaButton>
+        </MediaButtonsContainer>
 
-      {/* Clear */}
-      <ClearFilterButton onClick={handleClearFilters}>
-        <RestartAltIcon />
-      </ClearFilterButton>
+        <ClearFilterButton onClick={handleClearFilters}>
+          <RestartAltIcon />
+        </ClearFilterButton>
+      </MediaActionsWrapper>
     </FiltersContainer>
   );
 };

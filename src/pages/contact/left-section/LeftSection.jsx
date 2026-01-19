@@ -1,7 +1,6 @@
 import FacebookIcon from "@mui/icons-material/Facebook";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import XIcon from "@mui/icons-material/X";
+import { WhatsApp } from "@mui/icons-material";
 
 import {
   LeftSectionContainer,
@@ -21,44 +20,53 @@ import {
 const LeftSection = () => {
   const socialLinks = [
     { icon: <FacebookIcon />, url: "#", label: "Facebook" },
-    { icon: <LinkedInIcon />, url: "#", label: "LinkedIn" },
     { icon: <InstagramIcon />, url: "#", label: "Instagram" },
-    { icon: <XIcon />, url: "#", label: "X" },
+    { icon: <WhatsApp />, url: "https://wa.me/7736558150", label: "WhatsApp" },
   ];
+
+  const address = `TC 43/972/1, VYASA 222, Govindapuram vadakke madom, STREET,
+Valiyasalai, Thiruvananthapuram, Kerala 695036`;
 
   return (
     <LeftSectionContainer>
       <ContactInfoCard>
         <CardTitle>Get in touch</CardTitle>
 
-        <InfoSection>
+        <InfoSection delay={0}>
           <InfoTitle>Visit us</InfoTitle>
-          <InfoText>Come say hello at our office HQ.</InfoText>
-          <InfoText>67 Wisteria Way Croydon South VIC 3136 AU</InfoText>
+
+          <InfoText>{address}</InfoText>
         </InfoSection>
 
-        <InfoSection>
+        <InfoSection delay={100}>
           <InfoTitle>Chat to us</InfoTitle>
+
           <InfoText>Our friendly team is here to help.</InfoText>
+
           <InfoLink href="mailto:hello@paysphere.com">
-            hello@paysphere.com
+            devayajna@gmail.com
           </InfoLink>
         </InfoSection>
 
-        <InfoSection>
+        <InfoSection delay={200}>
           <InfoTitle>Call us</InfoTitle>
-          <InfoText>Mon-Fri from 8am to 5pm</InfoText>
-          <InfoLink href="tel:+995555555555">(+995) 555-55-55-55</InfoLink>
+
+          <InfoText>All Day from 8am to 9pm</InfoText>
+
+          <InfoLink href="tel:7736558150">7736558150</InfoLink>
         </InfoSection>
 
         <SocialSection>
           <SocialTitle>Social media</SocialTitle>
+
           <SocialIconsWrapper>
             {socialLinks.map((social) => (
               <SocialIconButton
                 key={social.label}
                 component="a"
                 href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={social.label}
               >
                 {social.icon}
@@ -70,7 +78,7 @@ const LeftSection = () => {
 
       <MapContainer>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d145.0785!3d-37.8136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ4JzQ5LjAiUyAxNDXCsDA0JzQyLjYiRQ!5e0!3m2!1sen!2sau!4v1234567890"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4855.6070807287!2d76.9539509758243!3d8.485360097260163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bbf23a321025%3A0xcd886821ceac4a86!2sDeva%20Yajna!5e1!3m2!1sen!2sin!4v1768748663921!5m2!1sen!2sin"
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

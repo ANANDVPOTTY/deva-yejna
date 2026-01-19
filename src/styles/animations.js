@@ -78,3 +78,110 @@ export const gridItemFadeOut = keyframes`
     transform: scale(0.95);
   }
 `;
+
+/*-------| Contact Page Animations |-------*/
+export const slideInLeft = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const slideInRight = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const staggerFadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+export const scaleIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
+/*-------| Quote Section Animations |-------*/
+export const quoteFadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+export const quoteFadeOut = keyframes`
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+`;
+
+export const quoteIconPulse = keyframes`
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+`;
+
+/*-------| Testimonial Section Animations |-------*/
+export const scrollTopToBottom = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+`;
+
+export const scrollBottomToTop = keyframes`
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+
+export const testimonialCardHover = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+`;

@@ -1,13 +1,13 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography, Link } from "@mui/material";
 import { responsiveFont } from "../../../components/font/ResponsiveFonts.styles";
+import { staggerFadeIn } from "../../../styles/animations";
 
 export const LeftSectionContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  gap: "24px",
+  gap: "40px",
   width: "100%",
-  maxWidth: "400px",
 
   [theme.breakpoints.down("md")]: {
     maxWidth: "100%",
@@ -15,34 +15,52 @@ export const LeftSectionContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const ContactInfoCard = styled(Box)(({ theme }) => ({
-  background: "linear-gradient(135deg, var(--color-charcoal) 0%, #5a4a3a 50%, var(--color-slate) 100%)",
-  borderRadius: "24px",
-  padding: "40px 32px",
+  background: "var(--color-onyx)",
+  borderRadius: "20px",
+  padding: "36px 32px",
   color: "var(--color-off-white)",
-  boxShadow: "0 20px 60px rgba(0, 0, 0, 0.15)",
+  boxShadow: "0 8px 32px rgba(58, 47, 35, 0.12)",
 
   [theme.breakpoints.down("sm")]: {
-    padding: "32px 24px",
+    padding: "28px 20px",
+    borderRadius: "16px",
   },
 }));
 
 export const CardTitle = styled(Typography)(({ theme }) => ({
-  ...responsiveFont(theme, "32px"),
+  ...responsiveFont(theme, "26px"),
   fontFamily: "var(--font-special)",
   fontWeight: 600,
   color: "var(--color-off-white)",
-  marginBottom: "32px",
+  marginBottom: "28px",
+  paddingBottom: "16px",
+  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
 }));
 
-export const InfoSection = styled(Box)(() => ({
-  marginBottom: "24px",
+export const InfoSection = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "delay",
+})(({ delay = 0 }) => ({
+  marginBottom: "20px",
+  paddingBottom: "20px",
+  borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+  opacity: 0,
+  animation: `${staggerFadeIn} 0.5s ease-out forwards`,
+  animationDelay: `${300 + delay}ms`,
+
+  "&:last-of-type": {
+    marginBottom: 0,
+    paddingBottom: 0,
+    borderBottom: "none",
+  },
 }));
 
 export const InfoTitle = styled(Typography)(({ theme }) => ({
-  ...responsiveFont(theme, "16px"),
+  ...responsiveFont(theme, "12px"),
   fontFamily: "var(--font-primary)",
   fontWeight: 600,
-  color: "var(--color-off-white)",
+  color: "var(--color-vanilla)",
+  textTransform: "uppercase",
+  letterSpacing: "0.5px",
   marginBottom: "8px",
 }));
 
@@ -50,69 +68,94 @@ export const InfoText = styled(Typography)(({ theme }) => ({
   ...responsiveFont(theme, "14px"),
   fontFamily: "var(--font-primary)",
   fontWeight: 400,
-  color: "var(--color-silver)",
-  lineHeight: 1.6,
+  color: "rgba(255, 255, 255, 0.75)",
+  lineHeight: 1.7,
 }));
 
 export const InfoLink = styled(Link)(({ theme }) => ({
   ...responsiveFont(theme, "14px"),
   fontFamily: "var(--font-primary)",
-  fontWeight: 400,
-  color: "var(--color-vanilla)",
+  fontWeight: 500,
+  color: "var(--color-off-white)",
   textDecoration: "none",
-  transition: "color 0.3s ease",
-  display: "block",
+  display: "inline-block",
+  marginTop: "4px",
+  transition: "all 0.25s ease",
+  position: "relative",
+
+  "&::after": {
+    content: '""',
+    position: "absolute",
+    bottom: "-2px",
+    left: 0,
+    width: "0%",
+    height: "1px",
+    backgroundColor: "var(--color-vanilla)",
+    transition: "width 0.25s ease",
+  },
 
   "&:hover": {
-    color: "var(--color-off-white)",
+    color: "var(--color-vanilla)",
+
+    "&::after": {
+      width: "100%",
+    },
   },
 }));
 
 export const SocialSection = styled(Box)(() => ({
-  marginTop: "32px",
+  marginTop: "24px",
 }));
 
 export const SocialTitle = styled(Typography)(({ theme }) => ({
-  ...responsiveFont(theme, "16px"),
+  ...responsiveFont(theme, "12px"),
   fontFamily: "var(--font-primary)",
   fontWeight: 600,
-  color: "var(--color-off-white)",
-  marginBottom: "16px",
+  color: "var(--color-vanilla)",
+  textTransform: "uppercase",
+  letterSpacing: "0.5px",
+  marginBottom: "14px",
 }));
 
 export const SocialIconsWrapper = styled(Box)(() => ({
   display: "flex",
-  gap: "12px",
+  gap: "10px",
 }));
 
 export const SocialIconButton = styled(Box)(() => ({
-  width: "40px",
-  height: "40px",
-  borderRadius: "50%",
-  backgroundColor: "rgba(255, 255, 255, 0.1)",
+  width: "38px",
+  height: "38px",
+  borderRadius: "10px",
+  backgroundColor: "rgba(255, 255, 255, 0.08)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   cursor: "pointer",
-  transition: "all 0.3s ease",
+  transition: "all 0.25s ease",
 
   "& svg": {
     color: "var(--color-off-white)",
-    fontSize: "20px",
+    fontSize: "18px",
+    transition: "transform 0.25s ease",
   },
 
   "&:hover": {
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
-    transform: "translateY(-2px)",
+    backgroundColor: "var(--color-vanilla)",
+
+    "& svg": {
+      color: "var(--color-charcoal)",
+      transform: "scale(1.1)",
+    },
   },
 }));
 
 export const MapContainer = styled(Box)(({ theme }) => ({
   width: "100%",
-  height: "200px",
+  height: "220px",
   borderRadius: "16px",
   overflow: "hidden",
-  boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
+  boxShadow: "0 4px 20px rgba(58, 47, 35, 0.08)",
+  border: "1px solid rgba(58, 47, 35, 0.08)",
 
   "& iframe": {
     width: "100%",
@@ -122,5 +165,6 @@ export const MapContainer = styled(Box)(({ theme }) => ({
 
   [theme.breakpoints.down("sm")]: {
     height: "180px",
+    borderRadius: "12px",
   },
 }));
