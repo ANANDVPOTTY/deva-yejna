@@ -24,9 +24,6 @@ const LeftSection = () => {
     { icon: <WhatsApp />, url: "https://wa.me/7736558150", label: "WhatsApp" },
   ];
 
-  const address = `TC 43/972/1, VYASA 222, Govindapuram vadakke madom, STREET,
-Valiyasalai, Thiruvananthapuram, Kerala 695036`;
-
   return (
     <LeftSectionContainer>
       <ContactInfoCard>
@@ -35,7 +32,11 @@ Valiyasalai, Thiruvananthapuram, Kerala 695036`;
         <InfoSection delay={0}>
           <InfoTitle>Visit us</InfoTitle>
 
-          <InfoText>{address}</InfoText>
+          <InfoText>
+            Govindapuram vadakke madom TC 43/972&#40;1&#41; VYASA 222
+            VALIYASHALAI STREET THIRUVANANTHAPURAM <br />
+            695036
+          </InfoText>
         </InfoSection>
 
         <InfoSection delay={100}>
@@ -43,7 +44,7 @@ Valiyasalai, Thiruvananthapuram, Kerala 695036`;
 
           <InfoText>Our friendly team is here to help.</InfoText>
 
-          <InfoLink href="mailto:hello@paysphere.com">
+          <InfoLink href="mailto:devayajna@gmail.com">
             devayajna@gmail.com
           </InfoLink>
         </InfoSection>
