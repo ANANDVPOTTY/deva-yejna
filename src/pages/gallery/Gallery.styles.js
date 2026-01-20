@@ -1,11 +1,44 @@
 import { styled } from "@mui/material/styles";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Fab } from "@mui/material";
 import { responsiveFont } from "../../components/font/ResponsiveFonts.styles";
 
 export const GalleryContainer = styled(Box)(() => ({
   padding: "60px 24px",
   maxWidth: "1400px",
   margin: "0 auto",
+  position: "relative",
+}));
+
+export const AddButton = styled(Fab)(({ theme }) => ({
+  position: "fixed",
+  bottom: "32px",
+  right: "32px",
+  backgroundColor: "#D2691E",
+  color: "#fff",
+  width: "56px",
+  height: "56px",
+  boxShadow: "0 4px 20px rgba(210, 105, 30, 0.4)",
+  zIndex: 1000,
+
+  "&:hover": {
+    backgroundColor: "#B8520F",
+    transform: "scale(1.05)",
+  },
+
+  "& svg": {
+    fontSize: "28px",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    bottom: "24px",
+    right: "24px",
+    width: "52px",
+    height: "52px",
+
+    "& svg": {
+      fontSize: "24px",
+    },
+  },
 }));
 
 export const GalleryTitle = styled(Typography)(({ theme }) => ({
