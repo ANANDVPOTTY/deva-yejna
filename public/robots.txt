@@ -1,0 +1,6 @@
+# Robots.txt for Deva Yajña
+User-agent: *
+Allow: /
+
+# Sitemap (update URL when domain is purchased)
+# Sitemap: https://yourdomain.com/sitemap.xml

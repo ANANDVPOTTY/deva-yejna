@@ -1,13 +1,17 @@
 import { useState, useMemo } from "react";
+import AddIcon from "@mui/icons-material/Add";
 import {
   GalleryContainer,
   GalleryTitle,
   GalleryDescription,
+  AddButton,
 } from "./Gallery.styles";
 import GalleryFilters from "./gallery-filters/GalleryFilters";
 import GalleryGrid from "./gallery-grid/GalleryGrid";
 import GalleryModal from "./gallery-modal/GalleryModal";
-import { galleryData } from "./galleryData";
+import CheckSecurityKeyModal from "../../components/modals/CheckSecurityKeyModal";
+import FileUpload from "./file-upload/FileUpload";
+import { galleryData as initialGalleryData } from "./galleryData";
 
 const Gallery = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,9 +19,12 @@ const Gallery = () => {
   const [showImages, setShowImages] = useState(true);
   const [showVideos, setShowVideos] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [galleryItems, setGalleryItems] = useState(initialGalleryData);
+  const [showSecurityModal, setShowSecurityModal] = useState(false);
+  const [showUploadModal, setShowUploadModal] = useState(false);
 
   const filteredItems = useMemo(() => {
-    return galleryData.filter((item) => {
+    return galleryItems.filter((item) => {
       // Filter by type (images/videos)
       if (item.type === "image" && !showImages) return false;
       if (item.type === "video" && !showVideos) return false;
@@ -38,7 +45,7 @@ const Gallery = () => {
 
       return true;
     });
-  }, [searchQuery, selectedFilter, showImages, showVideos]);
+  }, [searchQuery, selectedFilter, showImages, showVideos, galleryItems]);
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -46,6 +53,27 @@ const Gallery = () => {
 
   const handleCloseModal = () => {
     setSelectedItem(null);
+  };
+
+  const handleAddButtonClick = () => {
+    setShowSecurityModal(true);
+  };
+
+  const handleSecuritySuccess = () => {
+    setShowSecurityModal(false);
+    setShowUploadModal(true);
+  };
+
+  const handleCloseSecurityModal = () => {
+    setShowSecurityModal(false);
+  };
+
+  const handleCloseUploadModal = () => {
+    setShowUploadModal(false);
+  };
+
+  const handleUpload = (newItem) => {
+    setGalleryItems((prevItems) => [newItem, ...prevItems]);
   };
 
   return (
@@ -72,6 +100,21 @@ const Gallery = () => {
 
       {selectedItem && (
         <GalleryModal item={selectedItem} onClose={handleCloseModal} />
+      )}
+
+      <AddButton onClick={handleAddButtonClick} aria-label="Add media">
+        <AddIcon />
+      </AddButton>
+
+      {showSecurityModal && (
+        <CheckSecurityKeyModal
+          onClose={handleCloseSecurityModal}
+          onSuccess={handleSecuritySuccess}
+        />
+      )}
+
+      {showUploadModal && (
+        <FileUpload onClose={handleCloseUploadModal} onUpload={handleUpload} />
       )}
     </GalleryContainer>
   );
