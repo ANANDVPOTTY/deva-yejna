@@ -144,6 +144,19 @@ export const ArrowButton = styled(IconButton)(({ theme }) => ({
   },
 }));
 
+// Buffering spinner shown over a video slide until its frames are ready.
+// Sits above the backdrop but below the mute button so controls stay tappable.
+export const VideoLoader = styled(Box)(() => ({
+  position: "absolute",
+  inset: 0,
+  zIndex: 2,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  pointerEvents: "none",
+  color: "var(--color-off-white)",
+}));
+
 export const MuteButton = styled(IconButton)(() => ({
   position: "absolute",
   bottom: "12px",
