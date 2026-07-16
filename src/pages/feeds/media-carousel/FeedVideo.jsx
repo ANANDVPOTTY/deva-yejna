@@ -1,20 +1,29 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { StyledVideo } from "./MediaCarousel.styles";
+import VolumeOffRoundedIcon from "@mui/icons-material/VolumeOffRounded";
+import VolumeUpRoundedIcon from "@mui/icons-material/VolumeUpRounded";
+import { StyledVideo, MuteButton } from "./MediaCarousel.styles";
 
 // Muted, looping video that plays ONLY while it is the active slide AND on-screen.
-// No controls are rendered; casual downloading is deterred via attributes + context menu block.
+// Starts muted (required for autoplay); a single mute/unmute button is the only
+// control. No native playback UI; casual downloading is deterred via attributes.
 const FeedVideo = ({ src, isActive }) => {
   const videoRef = useRef(null);
   const onScreenRef = useRef(false);
+  const [muted, setMuted] = useState(true);
+
+  // Keep the element's muted property in sync with state (defined first so the
+  // element is muted before the play effect below attempts autoplay).
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.muted = muted;
+    el.defaultMuted = muted;
+  }, [muted]);
 
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return undefined;
-
-    // Ensure muted is set as a property (attribute alone is unreliable for autoplay).
-    el.muted = true;
-    el.defaultMuted = true;
 
     const sync = () => {
       if (isActive && onScreenRef.current) {
@@ -38,19 +47,36 @@ const FeedVideo = ({ src, isActive }) => {
     return () => observer.disconnect();
   }, [isActive]);
 
+  const toggleMute = (e) => {
+    e.stopPropagation();
+    setMuted((prev) => !prev);
+  };
+
   return (
-    <StyledVideo
-      ref={videoRef}
-      src={src}
-      muted
-      loop
-      playsInline
-      preload="none"
-      disablePictureInPicture
-      disableRemotePlayback
-      controlsList="nodownload noplaybackrate nofullscreen"
-      onContextMenu={(e) => e.preventDefault()}
-    />
+    <>
+      <StyledVideo
+        ref={videoRef}
+        src={src}
+        muted
+        loop
+        playsInline
+        preload="none"
+        disablePictureInPicture
+        disableRemotePlayback
+        controlsList="nodownload noplaybackrate nofullscreen"
+        onContextMenu={(e) => e.preventDefault()}
+      />
+      <MuteButton
+        type="button"
+        onClick={toggleMute}
+        onPointerDown={(e) => e.stopPropagation()}
+        disableRipple
+        aria-label={muted ? "Unmute video" : "Mute video"}
+        aria-pressed={!muted}
+      >
+        {muted ? <VolumeOffRoundedIcon /> : <VolumeUpRoundedIcon />}
+      </MuteButton>
+    </>
   );
 };
 

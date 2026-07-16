@@ -1,11 +1,12 @@
 import { styled } from "@mui/material/styles";
 import { Box, IconButton } from "@mui/material";
 
-const FRAME_RADIUS = "20px";
+const FRAME_RADIUS = "0";
 
 export const CarouselRoot = styled(Box)(() => ({
   position: "relative",
   outline: "none",
+  padding: "0 16px",
 }));
 
 export const Frame = styled(Box)(({ theme }) => ({
@@ -13,7 +14,7 @@ export const Frame = styled(Box)(({ theme }) => ({
   width: "100%",
   aspectRatio: "4 / 5",
   overflow: "hidden",
-  borderRadius: `${FRAME_RADIUS} ${FRAME_RADIUS} 0 0`,
+  borderRadius: `${FRAME_RADIUS}`,
   backgroundColor: "var(--color-charcoal)",
   touchAction: "pan-y",
   "&::after": {
@@ -49,19 +50,26 @@ export const Slide = styled(Box)(() => ({
   overflow: "hidden",
 }));
 
+// Video backdrop: a lightweight gradient (no image decode).
 export const Backdrop = styled(Box)(() => ({
   position: "absolute",
   inset: 0,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
+  background:
+    "radial-gradient(circle at 50% 40%, #4a4640 0%, #2a2825 70%, #1a1916 100%)",
+}));
+
+// Image backdrop: a lazily-loaded, blurred copy of the slide image.
+// Using an <img loading="lazy"> (instead of a CSS background) means offscreen
+// slides do NOT decode their multi-MB source until they scroll into view.
+export const BackdropImage = styled("img")(() => ({
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
   filter: "blur(28px) saturate(1.15) brightness(.92)",
   transform: "scale(1.12)",
-  "&[data-video='1']": {
-    filter: "none",
-    transform: "none",
-    background:
-      "radial-gradient(circle at 50% 40%, #4a4640 0%, #2a2825 70%, #1a1916 100%)",
-  },
+  pointerEvents: "none",
 }));
 
 export const BackdropTint = styled(Box)(() => ({
@@ -133,6 +141,29 @@ export const ArrowButton = styled(IconButton)(({ theme }) => ({
   },
   [theme.breakpoints.down("md")]: {
     display: "none",
+  },
+}));
+
+export const MuteButton = styled(IconButton)(() => ({
+  position: "absolute",
+  bottom: "12px",
+  right: "12px",
+  zIndex: 3,
+  width: "36px",
+  height: "36px",
+  color: "var(--color-off-white)",
+  backgroundColor: "rgba(61,58,54,.55)",
+  backdropFilter: "blur(6px)",
+  border: "1px solid rgba(255,255,255,.25)",
+  transition: "background-color 200ms ease, transform 200ms ease",
+  "& svg": { fontSize: "18px" },
+  "&:hover": {
+    backgroundColor: "rgba(61,58,54,.78)",
+    transform: "scale(1.06)",
+  },
+  "&:focus-visible": {
+    outline: "2px solid var(--color-saffron)",
+    outlineOffset: "3px",
   },
 }));
 

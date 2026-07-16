@@ -2,11 +2,11 @@ import { memo, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import MediaCarousel from "../media-carousel/MediaCarousel";
 import { formatFeedDate } from "../feedsData";
-import logo from "../../../assets/images/logo.png";
+import dp from "../../../assets/images/kishorePic1.png";
 import {
   Card,
   Header,
-  LogoMedallion,
+  Dp,
   HeaderText,
   BrandName,
   Eyebrow,
@@ -17,7 +17,7 @@ import {
   DiyaDivider,
 } from "./FeedCard.styles";
 
-const CLAMP_LINES = 4;
+const CLAMP_LINES = 8;
 
 const FeedCard = ({ post }) => {
   const { media, description, createdDate } = post;
@@ -38,7 +38,7 @@ const FeedCard = ({ post }) => {
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
     observer.observe(node);
     return () => observer.disconnect();
@@ -54,10 +54,10 @@ const FeedCard = ({ post }) => {
   return (
     <Card ref={cardRef} visible={visible ? 1 : 0}>
       <Header>
-        <LogoMedallion src={logo} alt="Deva Yajña" />
+        <Dp src={dp} alt="Deva Yajña" />
         <HeaderText>
-          <BrandName>Deva Yajña</BrandName>
-          <Eyebrow>देव यज्ञ · Announcement</Eyebrow>
+          <BrandName>Kishore Raghava Sarma</BrandName>
+          <Eyebrow>Deva Yajña</Eyebrow>
         </HeaderText>
         <PostedDate>{formatFeedDate(createdDate)}</PostedDate>
       </Header>
@@ -72,6 +72,7 @@ const FeedCard = ({ post }) => {
         >
           {description}
         </Description>
+
         {isClampable && (
           <ReadMoreButton type="button" onClick={() => setExpanded((v) => !v)}>
             {expanded ? "Read less" : "Read more"}

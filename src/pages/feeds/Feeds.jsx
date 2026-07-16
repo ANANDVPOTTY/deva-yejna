@@ -21,9 +21,11 @@ const Feeds = () => {
       <GoldDivider />
 
       <FeedColumn>
-        {feedsData.map((post) => (
-          <FeedCard key={post.id} post={post} />
-        ))}
+        {[...feedsData]
+          .sort((a, b) => a.id - b.id)
+          .map((post) => (
+            <FeedCard key={post.id} post={post} />
+          ))}
 
         <EndOfFeed>
           <OmSymbol>ॐ</OmSymbol>

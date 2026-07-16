@@ -16,7 +16,7 @@ import logo from "../../assets/images/logo.png";
 
 const NAV_ITEMS = [
   { label: "About", href: "/about" },
-  { label: "Gallery", href: "/gallery" },
+  // { label: "Gallery", href: "/gallery" }, // hidden for now
   { label: "Feeds", href: "/feeds" },
   { label: "Contact Us", href: "/contact" },
 ];

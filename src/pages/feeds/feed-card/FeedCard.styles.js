@@ -28,15 +28,13 @@ export const Card = styled(Box)(({ theme, visible }) => ({
     background: GOLD_HAIRLINE,
     opacity: 0.7,
   },
-  "&:hover": {
-    transform: visible ? "translateY(-3px)" : "translateY(24px)",
-    boxShadow: "0 2px 4px rgba(61,58,54,.05), 0 16px 40px rgba(128,0,32,.10)",
-  },
+
   "@media (prefers-reduced-motion: reduce)": {
     transition: "box-shadow 280ms ease",
     opacity: 1,
     transform: "none",
   },
+
   [theme.breakpoints.down("sm")]: {
     width: "100%",
     borderRadius: 0,
@@ -55,7 +53,7 @@ export const Header = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const LogoMedallion = styled("img")(({ theme }) => ({
+export const Dp = styled("img")(({ theme }) => ({
   width: "40px",
   height: "40px",
   borderRadius: "50%",
@@ -72,20 +70,25 @@ export const LogoMedallion = styled("img")(({ theme }) => ({
 export const HeaderText = styled(Box)(() => ({
   display: "flex",
   flexDirection: "column",
+  alignItems: "flex-start",
   minWidth: 0,
 }));
 
 export const BrandName = styled(Typography)(() => ({
-  fontFamily: "var(--font-special)",
+  fontFamily: "var(--font-primary)",
   fontSize: "15px",
-  fontWeight: 700,
+  fontWeight: 600,
   lineHeight: 1.2,
   letterSpacing: ".02em",
   color: "var(--color-charcoal)",
+  maxWidth: "100%",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
 }));
 
 export const Eyebrow = styled(Typography)(() => ({
-  fontFamily: "var(--font-primary)",
+  fontFamily: "var(--font-special)",
   fontSize: "11.5px",
   fontWeight: 500,
   letterSpacing: ".08em",
@@ -111,12 +114,13 @@ export const Body = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const Description = styled(Typography)(({ expanded, clamp }) => ({
+export const Description = styled(Typography)(({ theme, expanded, clamp }) => ({
   fontFamily: "var(--font-primary)",
   fontSize: "15.5px",
   lineHeight: 1.65,
   color: "var(--color-slate)",
   whiteSpace: "pre-line",
+  overflowWrap: "anywhere",
   overflow: "hidden",
   ...(expanded
     ? { display: "block" }
@@ -125,6 +129,9 @@ export const Description = styled(Typography)(({ expanded, clamp }) => ({
         WebkitBoxOrient: "vertical",
         WebkitLineClamp: String(clamp),
       }),
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "14.5px",
+  },
 }));
 
 export const ReadMoreButton = styled("button")(() => ({

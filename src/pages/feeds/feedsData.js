@@ -1,5 +1,3 @@
-// Deterministic dummy data for the Feeds (Admin announcements) page.
-// Assets are imported so Vite bundles and content-hashes them.
 import img01 from "../../assets/feeds/IMG_20260716_112953.jpg";
 import img02 from "../../assets/feeds/IMG_20260716_113126.jpg";
 import img03 from "../../assets/feeds/IMG_20260716_113349.jpg";
@@ -28,7 +26,8 @@ const dateFormatter = new Intl.DateTimeFormat("en-GB", {
   year: "numeric",
 });
 
-export const formatFeedDate = (isoDate) => dateFormatter.format(new Date(isoDate));
+export const formatFeedDate = (isoDate) =>
+  dateFormatter.format(new Date(isoDate));
 
 const image = (src) => ({ type: "image", src });
 const video = (src) => ({ type: "video", src });
@@ -36,76 +35,52 @@ const video = (src) => ({ type: "video", src });
 export const feedsData = [
   {
     id: 1,
-    description:
-      "Beautiful sunset captured during today's evening aarti at the temple grounds.",
-    createdDate: "2026-07-15",
-    media: [image(img01)],
+    description: "Durga Namaskaram",
+    createdDate: "2022-02-11",
+    media: [image(img01), image(img02)],
   },
   {
     id: 2,
     description:
-      "Glimpses from this morning's Ganapati Homa. May the remover of obstacles bless every household.",
-    createdDate: "2026-07-14",
-    media: [image(img02), image(img03), image(img04)],
+      "Prashna Parihara Puja conducted in Bangalore. Dwadasa nama pooja and homa performed for the devotees.🙌",
+    createdDate: "2022-08-09",
+    media: [
+      image(img08),
+      image(img07),
+      image(img03),
+      image(img17),
+      image(img04),
+    ],
   },
   {
     id: 3,
-    description: "A short reel from the Deepa Pooja preparations. 🪔",
-    createdDate: "2026-07-13",
-    media: [video(vid01)],
+    description:
+      "A blessed evening of devotion as Bhagavathi Seva was held in Hyderabad, filling hearts with faith, peace, and divine energy. 🪷✨ 🪔",
+    createdDate: "2023-07-05",
+    media: [image(img06), video(vid01), video(vid03)],
   },
   {
     id: 4,
     description:
-      "Highlights from the Navaratri decorations across all five shrines. Swipe through the collection.",
+      "Sacred Chakrabja Mandalam and Astadala Mandalam prepared with devotion for the divine rituals.",
     createdDate: "2026-07-12",
-    media: [
-      image(img05),
-      image(img06),
-      image(img07),
-      image(img08),
-      image(img09),
-    ],
+    media: [image(img16), image(img05)],
   },
   {
     id: 5,
     description:
-      "Three moments of devotion recorded during the community chanting session.",
-    createdDate: "2026-07-11",
-    media: [video(vid02), video(vid03), video(vid04)],
-  },
-  {
-    id: 6,
-    description:
-      "A mixed set from the annual utsavam — photographs and short clips woven together.",
-    createdDate: "2026-07-10",
+      "Mahamrityunjaya Homam was held in Trivandrum with devotion, seeking Lord Shiva's blessings for health, peace, and long life. 🕉️🔥\n\nॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम् ।\nउर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय मामृतात् ॥",
+    createdDate: "2026-01-13",
     media: [
-      image(img10),
-      video(vid01),
-      image(img11),
-      image(img12),
-      video(vid02),
-    ],
-  },
-  {
-    id: 7,
-    description:
-      "The full album from the Rudra Abhishekam: four photographs and two clips capturing the sacred atmosphere.",
-    createdDate: "2026-07-09",
-    media: [
-      image(img13),
-      image(img14),
       image(img15),
-      image(img16),
-      video(vid03),
+      image(img12),
+      image(img14),
+      image(img09),
+      image(img10),
+      image(img11),
+      image(img13),
+      video(vid02),
       video(vid04),
     ],
-  },
-  {
-    id: 8,
-    description:
-      "Dear devotees,\n\nWe are deeply grateful for your continued participation in our weekly satsang. This month marks a special milestone as we complete one full year of uninterrupted daily prayers at the shrine.\n\nTo commemorate this occasion, we will be hosting a grand community feast (annadanam) next weekend, followed by a special evening of devotional music and discourse. All families are warmly invited to attend and partake in the blessings.\n\nMay the divine grace of the Devas illuminate your path and bring peace, prosperity, and well-being to you and your loved ones. 🙏",
-    createdDate: "2026-07-08",
-    media: [image(img17)],
   },
 ];

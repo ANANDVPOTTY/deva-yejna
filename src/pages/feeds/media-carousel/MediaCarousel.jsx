@@ -10,6 +10,7 @@ import {
   Track,
   Slide,
   Backdrop,
+  BackdropImage,
   BackdropTint,
   Foreground,
   StyledImage,
@@ -21,6 +22,10 @@ import {
 } from "./MediaCarousel.styles";
 
 const SWIPE_THRESHOLD = 40;
+// Only mount the active slide and its immediate neighbours. This keeps at most
+// three (usually one) heavy media items in the DOM per card, so the feed never
+// decodes every full-resolution image/video at once.
+const WINDOW = 1;
 
 const MediaCarousel = ({ media }) => {
   const count = media.length;
@@ -76,38 +81,48 @@ const MediaCarousel = ({ media }) => {
         onPointerUp={isMulti ? onPointerUp : undefined}
       >
         <Track style={{ transform: `translateX(-${index * 100}%)` }}>
-          {media.map((item, i) => (
-            <Slide key={i}>
-              {item.type === "image" ? (
-                <>
-                  <Backdrop style={{ backgroundImage: `url(${item.src})` }} />
-                  <BackdropTint />
-                  <Foreground>
-                    <StyledImage
+          {media.map((item, i) => {
+            const mounted = Math.abs(i - index) <= WINDOW;
+            return (
+              <Slide key={i}>
+                {mounted && item.type === "image" && (
+                  <>
+                    <BackdropImage
                       src={item.src}
                       alt=""
+                      aria-hidden="true"
                       loading="lazy"
                       decoding="async"
-                      draggable={false}
-                      onContextMenu={(e) => e.preventDefault()}
                     />
-                  </Foreground>
-                </>
-              ) : (
-                <>
-                  <Backdrop data-video="1" />
-                  <BackdropTint />
-                  <Foreground>
-                    <FeedVideo src={item.src} isActive={i === index} />
-                  </Foreground>
-                  <TypeBadge>
-                    <PlayArrowRoundedIcon sx={{ fontSize: 14 }} />
-                    Video
-                  </TypeBadge>
-                </>
-              )}
-            </Slide>
-          ))}
+                    <BackdropTint />
+                    <Foreground>
+                      <StyledImage
+                        src={item.src}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        draggable={false}
+                        onContextMenu={(e) => e.preventDefault()}
+                      />
+                    </Foreground>
+                  </>
+                )}
+                {mounted && item.type === "video" && (
+                  <>
+                    <Backdrop />
+                    <BackdropTint />
+                    <Foreground>
+                      <FeedVideo src={item.src} isActive={i === index} />
+                    </Foreground>
+                    <TypeBadge>
+                      <PlayArrowRoundedIcon sx={{ fontSize: 14 }} />
+                      Video
+                    </TypeBadge>
+                  </>
+                )}
+              </Slide>
+            );
+          })}
         </Track>
 
         {isMulti && (
