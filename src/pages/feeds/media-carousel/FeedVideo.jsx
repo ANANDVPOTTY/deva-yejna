@@ -45,7 +45,7 @@ const FeedVideo = ({ src, isActive }) => {
         onScreenRef.current = entry.isIntersecting;
         sync();
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
     observer.observe(el);
     sync();
