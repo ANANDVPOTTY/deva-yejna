@@ -1,5 +1,6 @@
 import { memo, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
+import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import MediaCarousel from "../media-carousel/MediaCarousel";
 import { formatFeedDate } from "../feedsData";
 import dp from "../../../assets/images/kishorePic1.png";
@@ -10,7 +11,9 @@ import {
   HeaderText,
   BrandName,
   Eyebrow,
+  Meta,
   PostedDate,
+  PostLocation,
   Body,
   Description,
   ReadMoreButton,
@@ -20,7 +23,7 @@ import {
 const CLAMP_LINES = 8;
 
 const FeedCard = ({ post }) => {
-  const { media, description, createdDate } = post;
+  const { media, description, createdDate, location } = post;
   const cardRef = useRef(null);
   const descRef = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -59,7 +62,15 @@ const FeedCard = ({ post }) => {
           <BrandName>Kishore Raghava Sarma</BrandName>
           <Eyebrow>Deva Yajña</Eyebrow>
         </HeaderText>
-        <PostedDate>{formatFeedDate(createdDate)}</PostedDate>
+        <Meta>
+          <PostedDate>{formatFeedDate(createdDate)}</PostedDate>
+          {location && (
+            <PostLocation>
+              <LocationOnRoundedIcon aria-hidden="true" />
+              {location}
+            </PostLocation>
+          )}
+        </Meta>
       </Header>
 
       <MediaCarousel media={media} />
@@ -89,6 +100,7 @@ FeedCard.propTypes = {
     id: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     createdDate: PropTypes.string.isRequired,
+    location: PropTypes.string,
     media: PropTypes.array.isRequired,
   }).isRequired,
 };

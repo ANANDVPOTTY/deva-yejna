@@ -93,6 +93,7 @@ export const StyledImage = styled("img")(() => ({
   filter: "drop-shadow(0 6px 20px rgba(61,58,54,.25))",
   userSelect: "none",
   WebkitUserDrag: "none",
+  cursor: "zoom-in",
 }));
 
 export const StyledVideo = styled("video")(() => ({
@@ -216,6 +217,129 @@ export const TypeBadge = styled(Box)(() => ({
   backgroundColor: "rgba(61,58,54,.55)",
   backdropFilter: "blur(6px)",
   padding: "3px 10px 3px 8px",
+  borderRadius: "999px",
+}));
+
+// ---- Fullscreen lightbox (opened on media click) ----------------------------
+
+export const LightboxContent = styled(Box)(() => ({
+  position: "relative",
+  width: "100vw",
+  height: "100dvh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "24px",
+  outline: "none",
+  overflow: "hidden",
+}));
+
+export const LightboxImage = styled("img")(({ zoomed }) => ({
+  maxWidth: "100%",
+  maxHeight: "100%",
+  objectFit: "contain",
+  userSelect: "none",
+  WebkitUserDrag: "none",
+  touchAction: "none",
+  cursor: zoomed ? "grab" : "zoom-in",
+  "&:active": {
+    cursor: zoomed ? "grabbing" : "zoom-in",
+  },
+  "@media (prefers-reduced-motion: reduce)": {
+    transition: "none !important",
+  },
+}));
+
+// Shrinks to the rendered video box so FeedVideo's mute button (absolutely
+// positioned to its nearest relative ancestor) sits on the video's corner.
+export const LightboxVideoStage = styled(Box)(() => ({
+  position: "relative",
+  display: "inline-flex",
+  maxWidth: "100%",
+  maxHeight: "100%",
+  // Cap the video against the viewport (the shared StyledVideo uses a
+  // percentage maxHeight, which needs a definite ancestor to resolve).
+  "& video": {
+    maxWidth: "calc(100vw - 48px)",
+    maxHeight: "calc(100dvh - 48px)",
+  },
+}));
+
+export const LightboxClose = styled(IconButton)(() => ({
+  position: "absolute",
+  top: "16px",
+  right: "16px",
+  zIndex: 4,
+  width: "44px",
+  height: "44px",
+  color: "var(--color-off-white)",
+  backgroundColor: "rgba(61,58,54,.55)",
+  backdropFilter: "blur(6px)",
+  border: "1px solid rgba(255,255,255,.25)",
+  transition: "background-color 200ms ease, transform 200ms ease",
+  "& svg": { fontSize: "22px" },
+  "&:hover": {
+    backgroundColor: "rgba(61,58,54,.82)",
+    transform: "scale(1.06)",
+  },
+  "&:focus-visible": {
+    outline: "2px solid var(--color-saffron)",
+    outlineOffset: "3px",
+  },
+}));
+
+export const LightboxArrow = styled(IconButton)(({ theme }) => ({
+  position: "absolute",
+  top: "50%",
+  transform: "translateY(-50%)",
+  zIndex: 4,
+  width: "48px",
+  height: "48px",
+  color: "var(--color-off-white)",
+  backgroundColor: "rgba(61,58,54,.5)",
+  backdropFilter: "blur(6px)",
+  border: "1px solid rgba(255,255,255,.22)",
+  transition: "background-color 200ms ease, transform 200ms ease",
+  "& svg": { fontSize: "26px" },
+  "&.arrow-prev": { left: "16px" },
+  "&.arrow-next": { right: "16px" },
+  "&:hover": {
+    backgroundColor: "rgba(61,58,54,.8)",
+    transform: "translateY(-50%) scale(1.06)",
+  },
+  "&:active": {
+    transform: "translateY(-50%) scale(.96)",
+  },
+  "&:focus-visible": {
+    outline: "2px solid var(--color-saffron)",
+    outlineOffset: "3px",
+  },
+  "&.Mui-disabled": {
+    opacity: 0,
+    visibility: "hidden",
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: "40px",
+    height: "40px",
+    "&.arrow-prev": { left: "8px" },
+    "&.arrow-next": { right: "8px" },
+  },
+}));
+
+export const LightboxCounter = styled(Box)(() => ({
+  position: "absolute",
+  bottom: "20px",
+  left: "50%",
+  transform: "translateX(-50%)",
+  zIndex: 4,
+  fontFamily: "var(--font-primary)",
+  fontSize: "13px",
+  fontWeight: 600,
+  letterSpacing: ".05em",
+  color: "var(--color-off-white)",
+  backgroundColor: "rgba(61,58,54,.55)",
+  backdropFilter: "blur(6px)",
+  padding: "4px 14px",
   borderRadius: "999px",
 }));
 
