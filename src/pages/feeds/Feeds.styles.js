@@ -6,16 +6,26 @@ const GOLD_HAIRLINE =
   "linear-gradient(90deg, transparent, #ffc04d 20%, #e67300 50%, #ffc04d 80%, transparent)";
 
 export const FeedsContainer = styled(Box)(({ theme }) => ({
-  padding: "60px 24px 80px",
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  padding: "20px 24px 80px",
+  // background: "#d5d4d0",
+  // backgroundImage:
+  //   "linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%)",
+
+  [theme.breakpoints.down("sm")]: {
+    padding: "16px 0 60px",
+  },
+}));
+
+export const FeedsInner = styled(Box)(() => ({
   maxWidth: "1400px",
-  margin: "0 auto",
+  width: "100%",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   textAlign: "center",
-  [theme.breakpoints.down("sm")]: {
-    padding: "40px 0 60px",
-  },
 }));
 
 export const FeedsTitle = styled(Typography)(({ theme }) => ({
@@ -76,21 +86,22 @@ export const EndOfFeed = styled(Box)(() => ({
     width: "120px",
     height: "120px",
     borderRadius: "50%",
-    background: "radial-gradient(circle, rgba(255,192,77,.18), transparent 70%)",
+    background:
+      "radial-gradient(circle, rgba(255,192,77,.18), transparent 70%)",
     pointerEvents: "none",
   },
 }));
 
-export const OmSymbol = styled(Typography)(() => ({
+export const OmSymbol = styled(Typography)(({ theme }) => ({
   position: "relative",
   fontFamily: "var(--font-special)",
-  fontSize: "28px",
+  ...responsiveFont(theme, "28px"),
   color: "var(--color-silver)",
 }));
 
-export const EndText = styled(Typography)(() => ({
+export const EndText = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
-  fontSize: "13px",
+  ...responsiveFont(theme, "14px"),
   color: "var(--color-ash)",
   marginTop: "6px",
 }));

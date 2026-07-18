@@ -82,7 +82,7 @@ export const feedsData = [
   {
     id: 4,
     description:
-      "Sacred Sri Chakra Mandalam, Chakrabja Mandalam and Astadala Mandalam prepared with devotion for the divine rituals.",
+      "Sacred Navayoni Mandalam, Chakrabja Mandalam and Astadala Mandalam prepared with devotion for the divine rituals.",
     createdDate: "2026-07-12",
     location: "Trivandrum",
     media: [image(img20), image(img05), image(img16)],

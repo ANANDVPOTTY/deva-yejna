@@ -133,8 +133,8 @@ export const CardHeader = styled(Box)(() => ({
 }));
 
 /*-------| Emoji Avatar |-------*/
-export const EmojiAvatar = styled(Typography)(() => ({
-  fontSize: "32px",
+export const EmojiAvatar = styled(Typography)(({ theme }) => ({
+  ...responsiveFont(theme, "32px"),
   marginRight: "12px",
 }));
 
@@ -160,10 +160,10 @@ export const UserRole = styled(Typography)(({ theme }) => ({
 }));
 
 /*-------| Star Rating |-------*/
-export const StarRating = styled(Box)(() => ({
+export const StarRating = styled(Box)(({ theme }) => ({
   marginBottom: "8px",
   color: "var(--color-turmeric)",
-  fontSize: "16px",
+  ...responsiveFont(theme, "16px"),
   letterSpacing: "2px",
 }));
 

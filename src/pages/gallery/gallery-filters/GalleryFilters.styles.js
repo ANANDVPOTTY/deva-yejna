@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Box, TextField, Select, Button } from "@mui/material";
+import { responsiveFont } from "../../../components/font/ResponsiveFonts.styles";
 
 /* ================= Container ================= */
 
@@ -149,7 +150,7 @@ export const MediaButton = styled(Button, {
   flex: 1,
   fontFamily: "var(--font-primary)",
   textTransform: "none",
-  fontSize: "14px",
+  ...responsiveFont(theme, "14px"),
   padding: "10px 14px",
   borderRadius: 0,
   minWidth: 0,
@@ -177,8 +178,8 @@ export const MediaButton = styled(Button, {
   },
 
   [theme.breakpoints.down("sm")]: {
+    ...responsiveFont(theme, "14px")[theme.breakpoints.down("sm")],
     padding: "8px 10px",
-    fontSize: "13px",
     gap: "4px",
     height: "40px",
 

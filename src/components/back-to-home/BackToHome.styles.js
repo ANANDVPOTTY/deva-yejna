@@ -1,20 +1,31 @@
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import { responsiveFont } from "../font/ResponsiveFonts.styles";
 
 export const BackNav = styled("div")(() => ({
-  maxWidth: "1400px",
-  margin: "0 auto",
-  padding: "16px 24px",
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  // backgroundColor: "var(--color-off-white)",
 }));
 
-export const BackButton = styled(Link)(() => ({
+export const BackNavInner = styled("div")(({ theme }) => ({
+  maxWidth: "1400px",
+  width: "100%",
+  padding: "16px 24px",
+  [theme.breakpoints.down("sm")]: {
+    padding: "12px 16px 0",
+  },
+}));
+
+export const BackButton = styled(Link)(({ theme }) => ({
   display: "inline-flex",
   alignItems: "center",
   gap: "4px",
   textDecoration: "none",
   color: "var(--color-charcoal)",
   fontFamily: "var(--font-primary)",
-  fontSize: "12px",
+  ...responsiveFont(theme, "12px"),
   fontWeight: 600,
   padding: "4px 10px",
   borderRadius: "999px",
