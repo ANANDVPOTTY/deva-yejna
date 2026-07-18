@@ -3,8 +3,11 @@ import { Box, Typography, Button } from "@mui/material";
 import { responsiveFont } from "../../components/font/ResponsiveFonts.styles.jsx";
 import { fadeInUp } from "../../styles/animations";
 
-export const AboutContainer = styled(Box)(() => ({
+export const AboutContainer = styled(Box)(({ theme }) => ({
   margin: "0 auto",
+  [theme.breakpoints.down("sm")]: {
+    paddingTop: "16px",
+  },
 }));
 
 /*-------| Hero Section - Dark Banner |-------*/

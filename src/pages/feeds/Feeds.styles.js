@@ -14,7 +14,7 @@ export const FeedsContainer = styled(Box)(({ theme }) => ({
   alignItems: "center",
   textAlign: "center",
   [theme.breakpoints.down("sm")]: {
-    padding: "40px 0 60px",
+    padding: "16px 0 60px",
   },
 }));
 

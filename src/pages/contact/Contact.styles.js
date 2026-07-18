@@ -3,11 +3,14 @@ import { Box, Typography } from "@mui/material";
 import { responsiveFont } from "../../components/font/ResponsiveFonts.styles";
 import { fadeInUp, staggerFadeIn } from "../../styles/animations";
 
-export const ContactContainer = styled(Box)(() => ({
+export const ContactContainer = styled(Box)(({ theme }) => ({
   padding: "80px 24px",
   maxWidth: "1200px",
   margin: "0 auto",
   minHeight: "calc(100vh - 160px)",
+  [theme.breakpoints.down("sm")]: {
+    padding: "24px 24px 60px",
+  },
 }));
 
 export const ContactHeader = styled(Box)(() => ({

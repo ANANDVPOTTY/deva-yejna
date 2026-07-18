@@ -21,117 +21,7 @@ import {
   StarRating,
   ReviewText,
 } from "./Testimonials.styles";
-
-const TESTIMONIALS = [
-  {
-    id: 1,
-    emoji: "\ud83d\ude4f",
-    name: "Rajesh Kumar",
-    role: "Devotee",
-    rating: 5,
-    review:
-      "The pooja was performed with such devotion and authenticity. I felt a deep spiritual connection throughout the ceremony. Highly blessed!",
-  },
-  {
-    id: 2,
-    emoji: "\ud83c\udf1f",
-    name: "Priya Sharma",
-    role: "Business Owner",
-    rating: 5,
-    review:
-      "After the Lakshmi pooja, my business saw remarkable growth. The pandit's knowledge of Kerala tantrik rituals is exceptional.",
-  },
-  {
-    id: 3,
-    emoji: "\ud83d\ude4c",
-    name: "Anil Menon",
-    role: "Family Man",
-    rating: 5,
-    review:
-      "The Griha Pravesh ceremony for our new home was beautifully conducted. Every ritual was explained clearly. Our family feels truly blessed.",
-  },
-  {
-    id: 4,
-    emoji: "\u2728",
-    name: "Lakshmi Nair",
-    role: "Teacher",
-    rating: 5,
-    review:
-      "The Saraswati pooja for my children's education was performed with utmost care. I've seen positive changes in their focus and dedication.",
-  },
-  {
-    id: 5,
-    emoji: "\ud83d\udcab",
-    name: "Suresh Pillai",
-    role: "Engineer",
-    rating: 5,
-    review:
-      "The Navagraha shanti pooja helped bring peace to our family. The traditional Kerala methods used were authentic and powerful.",
-  },
-  {
-    id: 6,
-    emoji: "\ud83c\udf3a",
-    name: "Meera Krishnan",
-    role: "Doctor",
-    rating: 5,
-    review:
-      "I've attended many poojas, but the attention to detail and spiritual energy here is unmatched. A truly divine experience.",
-  },
-  {
-    id: 7,
-    emoji: "\ud83d\udd49\ufe0f",
-    name: "Gopalan Iyer",
-    role: "Retired Professor",
-    rating: 5,
-    review:
-      "The Pitru Tarpan ceremony was conducted with deep reverence. I felt connected to my ancestors like never before.",
-  },
-  {
-    id: 8,
-    emoji: "\ud83d\ude4f",
-    name: "Anitha Balakrishnan",
-    role: "Homemaker",
-    rating: 5,
-    review:
-      "The monthly Satyanarayan katha at our home has become a cherished tradition. The positive energy it brings is remarkable.",
-  },
-  {
-    id: 9,
-    emoji: "\ud83c\udf1e",
-    name: "Vijay Mohan",
-    role: "Entrepreneur",
-    rating: 5,
-    review:
-      "The Vastu shanti pooja transformed the energy of my office space. Business decisions flow more naturally now.",
-  },
-  {
-    id: 10,
-    emoji: "\ud83c\udf38",
-    name: "Kavitha Warrier",
-    role: "Artist",
-    rating: 5,
-    review:
-      "The Ganapati homam was a beautiful spiritual journey. The mantras resonated deep within my soul. Truly grateful.",
-  },
-  {
-    id: 11,
-    emoji: "\ud83d\udd6e\ufe0f",
-    name: "Ramesh Kamath",
-    role: "Merchant",
-    rating: 5,
-    review:
-      "Every detail of the Durga pooja was perfect. The traditional Kerala style brought an authentic spiritual atmosphere.",
-  },
-  {
-    id: 12,
-    emoji: "\u2728",
-    name: "Deepa Sundaram",
-    role: "Software Developer",
-    rating: 5,
-    review:
-      "Even being far from home, the online guidance for performing daily rituals has kept me connected to my roots.",
-  },
-];
+import { testimonialsData } from "./testimonialsData";
 
 /*-------| Split testimonials into columns |-------*/
 const splitIntoColumns = (data, columnCount) => {
@@ -191,7 +81,7 @@ const Testimonials = () => {
   };
 
   const columnCount = getColumnCount();
-  const columns = splitIntoColumns(TESTIMONIALS, columnCount);
+  const columns = splitIntoColumns(testimonialsData, columnCount);
 
   return (
     <TestimonialSectionWrapper>

@@ -1,10 +1,13 @@
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
-export const BackNav = styled("div")(() => ({
+export const BackNav = styled("div")(({ theme }) => ({
   maxWidth: "1400px",
   margin: "0 auto",
   padding: "16px 24px",
+  [theme.breakpoints.down("sm")]: {
+    padding: "12px 16px 0",
+  },
 }));
 
 export const BackButton = styled(Link)(() => ({
