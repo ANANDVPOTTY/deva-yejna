@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {
   HomeWrapper,
   HomeContainer,
+  HomeInner,
   ImageSection,
   CarouselImage,
   TextSection,
@@ -42,26 +43,28 @@ const Home = () => {
   return (
     <HomeWrapper>
       <HomeContainer>
-        <ImageSection>
-          {DEITY_IMAGES.map((image, index) => (
-            <CarouselImage
-              key={image.alt}
-              src={image.src}
-              alt={image.alt}
-              isActive={index === activeIndex}
-            />
-          ))}
-        </ImageSection>
+        <HomeInner>
+          <ImageSection>
+            {DEITY_IMAGES.map((image, index) => (
+              <CarouselImage
+                key={image.alt}
+                src={image.src}
+                alt={image.alt}
+                isActive={index === activeIndex}
+              />
+            ))}
+          </ImageSection>
 
-        <TextSection>
-          <MainText>Welcome to a Sacred Path of Devotion</MainText>
+          <TextSection>
+            <MainText>Welcome to a Sacred Path of Devotion</MainText>
 
-          <SubText>
-            Experience time-honored kerala tantrik pooja rituals performed with
-            purity, faith, and tradition. May peace, prosperity, and divine
-            grace be with you always.
-          </SubText>
-        </TextSection>
+            <SubText>
+              Experience time-honored kerala tantrik pooja rituals performed
+              with purity, faith, and tradition. May peace, prosperity, and
+              divine grace be with you always.
+            </SubText>
+          </TextSection>
+        </HomeInner>
       </HomeContainer>
 
       <OurServices />

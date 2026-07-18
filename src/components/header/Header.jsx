@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
@@ -23,13 +23,22 @@ const NAV_ITEMS = [
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   const handleDrawerOpen = () => setDrawerOpen(true);
   const handleDrawerClose = () => setDrawerOpen(false);
 
+  // Frost the header once the page is scrolled past the top.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <StyledAppBar>
+    <StyledAppBar scrolled={scrolled ? 1 : 0}>
       <StyledToolbar>
         <LogoContainer component={Link} to="/">
           <LogoImage src={logo} alt="Deva Yajña Logo" />
