@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Box, IconButton } from "@mui/material";
+import { responsiveFont } from "../../../components/font/ResponsiveFonts.styles";
 
 const FRAME_RADIUS = "0";
 
@@ -187,7 +188,7 @@ export const CounterBadge = styled(Box)(({ theme }) => ({
   right: "12px",
   zIndex: 2,
   fontFamily: "var(--font-primary)",
-  fontSize: "12px",
+  ...responsiveFont(theme, "12px"),
   fontWeight: 600,
   letterSpacing: ".04em",
   color: "var(--color-off-white)",
@@ -196,12 +197,13 @@ export const CounterBadge = styled(Box)(({ theme }) => ({
   padding: "3px 10px",
   borderRadius: "999px",
   [theme.breakpoints.down("sm")]: {
+    ...responsiveFont(theme, "12px")[theme.breakpoints.down("sm")],
     top: "10px",
     right: "10px",
   },
 }));
 
-export const TypeBadge = styled(Box)(() => ({
+export const TypeBadge = styled(Box)(({ theme }) => ({
   position: "absolute",
   top: "12px",
   left: "12px",
@@ -210,7 +212,7 @@ export const TypeBadge = styled(Box)(() => ({
   alignItems: "center",
   gap: "4px",
   fontFamily: "var(--font-primary)",
-  fontSize: "12px",
+  ...responsiveFont(theme, "12px"),
   fontWeight: 600,
   letterSpacing: ".04em",
   color: "var(--color-off-white)",
@@ -326,14 +328,14 @@ export const LightboxArrow = styled(IconButton)(({ theme }) => ({
   },
 }));
 
-export const LightboxCounter = styled(Box)(() => ({
+export const LightboxCounter = styled(Box)(({ theme }) => ({
   position: "absolute",
   bottom: "20px",
   left: "50%",
   transform: "translateX(-50%)",
   zIndex: 4,
   fontFamily: "var(--font-primary)",
-  fontSize: "13px",
+  ...responsiveFont(theme, "14px"),
   fontWeight: 600,
   letterSpacing: ".05em",
   color: "var(--color-off-white)",

@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
+import { responsiveFont } from "../../../components/font/ResponsiveFonts.styles";
 
 const GOLD_HAIRLINE =
   "linear-gradient(90deg, transparent, #ffc04d 20%, #e67300 50%, #ffc04d 80%, transparent)";
@@ -74,9 +75,9 @@ export const HeaderText = styled(Box)(() => ({
   minWidth: 0,
 }));
 
-export const BrandName = styled(Typography)(() => ({
+export const BrandName = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
-  fontSize: "15px",
+  ...responsiveFont(theme, "16px"),
   fontWeight: 600,
   lineHeight: 1.2,
   letterSpacing: ".02em",
@@ -87,9 +88,9 @@ export const BrandName = styled(Typography)(() => ({
   whiteSpace: "nowrap",
 }));
 
-export const Eyebrow = styled(Typography)(() => ({
+export const Eyebrow = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-special)",
-  fontSize: "11.5px",
+  ...responsiveFont(theme, "12px"),
   fontWeight: 500,
   letterSpacing: ".08em",
   color: "var(--color-stone)",
@@ -106,20 +107,20 @@ export const Meta = styled(Box)(() => ({
   flexShrink: 0,
 }));
 
-export const PostedDate = styled(Typography)(() => ({
+export const PostedDate = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
-  fontSize: "12.5px",
+  ...responsiveFont(theme, "12px"),
   fontWeight: 400,
   color: "var(--color-ash)",
   whiteSpace: "nowrap",
 }));
 
-export const PostLocation = styled(Typography)(() => ({
+export const PostLocation = styled(Typography)(({ theme }) => ({
   display: "inline-flex",
   alignItems: "center",
   gap: "3px",
   fontFamily: "var(--font-primary)",
-  fontSize: "12px",
+  ...responsiveFont(theme, "12px"),
   fontWeight: 500,
   color: "var(--color-stone)",
   whiteSpace: "nowrap",
@@ -138,7 +139,7 @@ export const Body = styled(Box)(({ theme }) => ({
 
 export const Description = styled(Typography)(({ theme, expanded, clamp }) => ({
   fontFamily: "var(--font-primary)",
-  fontSize: "15.5px",
+  ...responsiveFont(theme, "16px"),
   lineHeight: 1.65,
   color: "var(--color-slate)",
   whiteSpace: "pre-line",
@@ -151,19 +152,16 @@ export const Description = styled(Typography)(({ theme, expanded, clamp }) => ({
         WebkitBoxOrient: "vertical",
         WebkitLineClamp: String(clamp),
       }),
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "14.5px",
-  },
 }));
 
-export const ReadMoreButton = styled("button")(() => ({
+export const ReadMoreButton = styled("button")(({ theme }) => ({
   marginTop: "8px",
   padding: 0,
   border: "none",
   background: "none",
   cursor: "pointer",
   fontFamily: "var(--font-primary)",
-  fontSize: "14px",
+  ...responsiveFont(theme, "14px"),
   fontWeight: 600,
   color: "var(--color-saffron-dark)",
   "&:hover": { textDecoration: "underline" },

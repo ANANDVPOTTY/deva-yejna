@@ -81,16 +81,16 @@ export const EndOfFeed = styled(Box)(() => ({
   },
 }));
 
-export const OmSymbol = styled(Typography)(() => ({
+export const OmSymbol = styled(Typography)(({ theme }) => ({
   position: "relative",
   fontFamily: "var(--font-special)",
-  fontSize: "28px",
+  ...responsiveFont(theme, "28px"),
   color: "var(--color-silver)",
 }));
 
-export const EndText = styled(Typography)(() => ({
+export const EndText = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
-  fontSize: "13px",
+  ...responsiveFont(theme, "14px"),
   color: "var(--color-ash)",
   marginTop: "6px",
 }));

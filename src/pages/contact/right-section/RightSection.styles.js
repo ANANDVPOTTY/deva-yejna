@@ -75,12 +75,12 @@ export const RequiredIndicator = styled("span")(() => ({
   fontWeight: 600,
 }));
 
-export const StyledTextField = styled(TextField)(() => ({
+export const StyledTextField = styled(TextField)(({ theme }) => ({
   "& .MuiOutlinedInput-root": {
     backgroundColor: "var(--color-off-white)",
     borderRadius: "10px",
     fontFamily: "var(--font-primary)",
-    fontSize: "14px",
+    ...responsiveFont(theme, "14px"),
     transition: "all 0.25s ease",
 
     "& fieldset": {
@@ -127,9 +127,9 @@ export const StyledTextField = styled(TextField)(() => ({
   },
 }));
 
-export const ErrorText = styled(Typography)(() => ({
+export const ErrorText = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-primary)",
-  fontSize: "12px",
+  ...responsiveFont(theme, "12px"),
   color: "#c53030",
   marginTop: "2px",
   animation: `${scaleIn} 0.2s ease-out`,
@@ -167,12 +167,12 @@ export const CountrySelect = styled(Select)(() => ({
   },
 }));
 
-export const StyledTextArea = styled(TextField)(() => ({
+export const StyledTextArea = styled(TextField)(({ theme }) => ({
   "& .MuiOutlinedInput-root": {
     backgroundColor: "var(--color-off-white)",
     borderRadius: "10px",
     fontFamily: "var(--font-primary)",
-    fontSize: "14px",
+    ...responsiveFont(theme, "14px"),
     transition: "all 0.25s ease",
 
     "& fieldset": {
@@ -219,13 +219,13 @@ export const StyledTextArea = styled(TextField)(() => ({
   },
 }));
 
-export const CheckboxWrapper = styled(FormControlLabel)(() => ({
+export const CheckboxWrapper = styled(FormControlLabel)(({ theme }) => ({
   alignItems: "flex-start",
   margin: 0,
 
   "& .MuiTypography-root": {
     fontFamily: "var(--font-primary)",
-    fontSize: "14px",
+    ...responsiveFont(theme, "14px"),
     color: "var(--color-charcoal)",
     lineHeight: 1.5,
     paddingTop: "2px",

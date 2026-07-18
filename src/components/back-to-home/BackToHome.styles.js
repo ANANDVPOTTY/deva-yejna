@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import { responsiveFont } from "../font/ResponsiveFonts.styles";
 
 export const BackNav = styled("div")(({ theme }) => ({
   maxWidth: "1400px",
@@ -10,14 +11,14 @@ export const BackNav = styled("div")(({ theme }) => ({
   },
 }));
 
-export const BackButton = styled(Link)(() => ({
+export const BackButton = styled(Link)(({ theme }) => ({
   display: "inline-flex",
   alignItems: "center",
   gap: "4px",
   textDecoration: "none",
   color: "var(--color-charcoal)",
   fontFamily: "var(--font-primary)",
-  fontSize: "12px",
+  ...responsiveFont(theme, "12px"),
   fontWeight: 600,
   padding: "4px 10px",
   borderRadius: "999px",

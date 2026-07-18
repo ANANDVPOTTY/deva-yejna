@@ -9,6 +9,7 @@ export const FONT_SIZES = {
   "36px": { xs: "22px", sm: "26px", md: "30px", lg: "34px", xl: "36px" },
   "32px": { xs: "20px", sm: "24px", md: "28px", lg: "30px", xl: "32px" },
   "30px": { xs: "18px", sm: "22px", md: "26px", lg: "28px", xl: "30px" },
+  "28px": { xs: "18px", sm: "20px", md: "24px", lg: "26px", xl: "28px" },
   "26px": { xs: "18px", sm: "20px", md: "22px", lg: "24px", xl: "26px" },
   "24px": { xs: "16px", sm: "18px", md: "20px", lg: "22px", xl: "24px" },
   "22px": { xs: "16px", sm: "18px", md: "20px", lg: "22px", xl: "22px" },
