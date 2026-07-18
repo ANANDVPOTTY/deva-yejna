@@ -6,7 +6,8 @@ import { scrollTopToBottom, scrollBottomToTop } from "../../styles/animations";
 /*-------| Section Wrapper |-------*/
 export const TestimonialSectionWrapper = styled(Box)(() => ({
   width: "100%",
-  backgroundColor: "var(--color-ink)",
+  background:
+    "linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(224, 224, 224, 1) 42%, rgba(255, 255, 255, 1) 100%)",
   padding: "80px 16px",
 }));
 
@@ -76,12 +77,12 @@ export const ScrollColumnWrapper = styled(Box, {
   overflow: "hidden",
   height: "640px",
   borderRadius: "24px",
-  maskImage: invertMask
-    ? "linear-gradient(to top, transparent, white 20%, white 80%, transparent)"
-    : "linear-gradient(to bottom, transparent, white 20%, white 80%, transparent)",
-  WebkitMaskImage: invertMask
-    ? "linear-gradient(to top, transparent, white 20%, white 80%, transparent)"
-    : "linear-gradient(to bottom, transparent, white 20%, white 80%, transparent)",
+  // maskImage: invertMask
+  //   ? "linear-gradient(to top, transparent, white 20%, white 80%, transparent)"
+  //   : "linear-gradient(to bottom, transparent, white 20%, white 80%, transparent)",
+  // WebkitMaskImage: invertMask
+  //   ? "linear-gradient(to top, transparent, white 20%, white 80%, transparent)"
+  //   : "linear-gradient(to bottom, transparent, white 20%, white 80%, transparent)",
 
   "&:hover .scroll-content": {
     animationPlayState: "paused",

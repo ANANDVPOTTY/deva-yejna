@@ -95,8 +95,8 @@ const ScrollLotusFan = ({
 
   const anchor =
     position === "bottom-left"
-      ? { left: "clamp(44px, 5vw, 94px)" }
-      : { right: "clamp(44px, 5vw, 94px)" };
+      ? { left: "clamp(44px, 5vw, 98px)" }
+      : { right: "clamp(44px, 5vw, 98px)" };
 
   return (
     <LazyMotion features={domAnimation}>
@@ -117,7 +117,7 @@ const ScrollLotusFan = ({
         <M.div
           style={{
             position: "absolute",
-            bottom: "clamp(32px, 5vw, 72px)",
+            bottom: "clamp(64px, 6vw, 120px)",
             ...anchor,
             width: size,
             // Petals are sized in cqw, so make this the query container.
