@@ -96,15 +96,37 @@ export const Eyebrow = styled(Typography)(() => ({
   marginTop: "2px",
 }));
 
-export const PostedDate = styled(Typography)(() => ({
+export const Meta = styled(Box)(() => ({
   marginLeft: "auto",
   paddingLeft: "12px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-end",
+  gap: "3px",
+  flexShrink: 0,
+}));
+
+export const PostedDate = styled(Typography)(() => ({
   fontFamily: "var(--font-primary)",
   fontSize: "12.5px",
   fontWeight: 400,
   color: "var(--color-ash)",
   whiteSpace: "nowrap",
-  flexShrink: 0,
+}));
+
+export const PostLocation = styled(Typography)(() => ({
+  display: "inline-flex",
+  alignItems: "center",
+  gap: "3px",
+  fontFamily: "var(--font-primary)",
+  fontSize: "12px",
+  fontWeight: 500,
+  color: "var(--color-stone)",
+  whiteSpace: "nowrap",
+  "& svg": {
+    fontSize: "14px",
+    color: "var(--color-saffron-dark)",
+  },
 }));
 
 export const Body = styled(Box)(({ theme }) => ({

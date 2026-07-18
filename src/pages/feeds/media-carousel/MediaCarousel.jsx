@@ -4,6 +4,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import FeedVideo from "./FeedVideo";
+import MediaLightbox from "./MediaLightbox";
 import {
   CarouselRoot,
   Frame,
@@ -31,7 +32,8 @@ const MediaCarousel = ({ media }) => {
   const count = media.length;
   const isMulti = count > 1;
   const [index, setIndex] = useState(0);
-  const dragRef = useRef({ startX: 0, dragging: false });
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const dragRef = useRef({ startX: 0, dragging: false, moved: false });
 
   const goTo = useCallback(
     (next) => setIndex(Math.max(0, Math.min(count - 1, next))),
@@ -55,7 +57,7 @@ const MediaCarousel = ({ media }) => {
   );
 
   const onPointerDown = useCallback((e) => {
-    dragRef.current = { startX: e.clientX, dragging: true };
+    dragRef.current = { startX: e.clientX, dragging: true, moved: false };
   }, []);
 
   const onPointerUp = useCallback(
@@ -63,13 +65,28 @@ const MediaCarousel = ({ media }) => {
       if (!dragRef.current.dragging) return;
       dragRef.current.dragging = false;
       const dx = e.clientX - dragRef.current.startX;
+      // Remember a real drag so the click that follows a swipe doesn't also
+      // open the lightbox.
+      dragRef.current.moved = Math.abs(dx) > 8;
       if (dx > SWIPE_THRESHOLD) prev();
       else if (dx < -SWIPE_THRESHOLD) next();
     },
     [prev, next]
   );
 
+  const openLightbox = useCallback((i) => {
+    if (dragRef.current.moved) return;
+    setLightboxIndex(i);
+  }, []);
+
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const navigateLightbox = useCallback(
+    (i) => setLightboxIndex(Math.max(0, Math.min(count - 1, i))),
+    [count]
+  );
+
   return (
+    <>
     <CarouselRoot
       tabIndex={isMulti ? 0 : -1}
       onKeyDown={handleKeyDown}
@@ -102,6 +119,7 @@ const MediaCarousel = ({ media }) => {
                         loading="lazy"
                         decoding="async"
                         draggable={false}
+                        onClick={() => openLightbox(i)}
                         onContextMenu={(e) => e.preventDefault()}
                       />
                     </Foreground>
@@ -111,8 +129,14 @@ const MediaCarousel = ({ media }) => {
                   <>
                     <Backdrop />
                     <BackdropTint />
-                    <Foreground>
-                      <FeedVideo src={item.src} isActive={i === index} />
+                    <Foreground
+                      onClick={() => openLightbox(i)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <FeedVideo
+                        src={item.src}
+                        isActive={i === index && lightboxIndex === null}
+                      />
                     </Foreground>
                     <TypeBadge>
                       <PlayArrowRoundedIcon sx={{ fontSize: 14 }} />
@@ -167,6 +191,16 @@ const MediaCarousel = ({ media }) => {
         </DotsRow>
       )}
     </CarouselRoot>
+
+    {lightboxIndex !== null && (
+      <MediaLightbox
+        media={media}
+        index={lightboxIndex}
+        onClose={closeLightbox}
+        onNavigate={navigateLightbox}
+      />
+    )}
+    </>
   );
 };
 

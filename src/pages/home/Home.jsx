@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {
   HomeWrapper,
   HomeContainer,
+  HomeInner,
   ImageSection,
   CarouselImage,
   TextSection,
@@ -12,6 +13,8 @@ import Footer from "../../components/footer/Footer";
 import QuoteSection from "../../components/quote-section/QuoteSection";
 import OurServices from "../../components/our-services/OurServices";
 import Testimonials from "../../components/testimonials/Testimonials";
+import Reveal from "../../components/reveal/Reveal";
+import ScrollLotus from "../../components/scroll-lotus/ScrollLotusFan";
 import ganapatiImg from "../../assets/images/ganpati.jpg";
 import shivlingImg from "../../assets/images/shivling.jpg";
 import mahavishnuImg from "../../assets/images/mahavishnu.jpg";
@@ -41,35 +44,49 @@ const Home = () => {
 
   return (
     <HomeWrapper>
+      <ScrollLotus />
+
       <HomeContainer>
-        <ImageSection>
-          {DEITY_IMAGES.map((image, index) => (
-            <CarouselImage
-              key={image.alt}
-              src={image.src}
-              alt={image.alt}
-              isActive={index === activeIndex}
-            />
-          ))}
-        </ImageSection>
+        <HomeInner>
+          <ImageSection>
+            {DEITY_IMAGES.map((image, index) => (
+              <CarouselImage
+                key={image.alt}
+                src={image.src}
+                alt={image.alt}
+                isActive={index === activeIndex}
+              />
+            ))}
+          </ImageSection>
 
-        <TextSection>
-          <MainText>Welcome to a Sacred Path of Devotion</MainText>
+          <TextSection>
+            <Reveal direction="right" duration={0.7}>
+              <MainText>Welcome to a Sacred Path of Devotion</MainText>
+            </Reveal>
 
-          <SubText>
-            Experience time-honored kerala tantrik pooja rituals performed with
-            purity, faith, and tradition. May peace, prosperity, and divine
-            grace be with you always.
-          </SubText>
-        </TextSection>
+            <Reveal direction="right" delay={0.15} duration={0.7}>
+              <SubText>
+                Experience time-honored kerala tantrik pooja rituals performed
+                with purity, faith, and tradition. May peace, prosperity, and
+                divine grace be with you always.
+              </SubText>
+            </Reveal>
+          </TextSection>
+        </HomeInner>
       </HomeContainer>
 
-      <OurServices />
+      <Reveal direction="up" amount={0.15}>
+        <OurServices />
+      </Reveal>
 
-      <Testimonials />
+      <Reveal direction="up" amount={0.15}>
+        <Testimonials />
+      </Reveal>
 
       {/* <QuoteSection /> */}
-      <Footer />
+      <Reveal direction="fade">
+        <Footer />
+      </Reveal>
     </HomeWrapper>
   );
 };

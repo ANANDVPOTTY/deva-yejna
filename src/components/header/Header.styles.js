@@ -1,13 +1,31 @@
 import { styled } from "@mui/material/styles";
-import { Box, Typography, Button, IconButton, ListItemButton } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  IconButton,
+  ListItemButton,
+} from "@mui/material";
 import { responsiveFont } from "../../components/font/ResponsiveFonts.styles";
+import { slideDown } from "../../styles/animations";
 
-export const StyledAppBar = styled(Box)(() => ({
-  backgroundColor: "var(--color-off-white)",
-  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
+export const StyledAppBar = styled(Box)(({ scrolled }) => ({
   position: "sticky",
   top: 0,
   zIndex: 1000,
+  animation: `${slideDown} 0.6s cubic-bezier(0.22, 1, 0.36, 1) both`,
+  transition:
+    "background-color .3s ease, box-shadow .3s ease, backdrop-filter .3s ease",
+  // Frosted-glass once scrolled; solid at the top of the page.
+  backgroundColor: scrolled ? "rgba(250, 249, 246, 0.65)" : "var(--color-off-white)",
+  backdropFilter: scrolled ? "blur(14px) saturate(1.6)" : "none",
+  WebkitBackdropFilter: scrolled ? "blur(14px) saturate(1.6)" : "none",
+  borderBottom: scrolled
+    ? "1px solid rgba(255, 255, 255, 0.45)"
+    : "1px solid transparent",
+  boxShadow: scrolled
+    ? "0 6px 22px rgba(61, 58, 54, 0.10)"
+    : "0 2px 4px rgba(0, 0, 0, 0.05)",
 }));
 
 export const StyledToolbar = styled(Box)(() => ({
@@ -62,17 +80,36 @@ export const HamburgerButton = styled(IconButton)(({ theme }) => ({
 export const NavItem = styled(Button)(({ theme, active }) => ({
   ...responsiveFont(theme, "18px"),
   fontFamily: "var(--font-primary)",
-  fontWeight: 500,
-  color: active ? "var(--color-black)" : "var(--color-charcoal)",
+  fontWeight: active ? 600 : 500,
+  color: active ? "var(--color-saffron-dark)" : "var(--color-charcoal)",
   textTransform: "none",
   padding: "0.4rem 1.5rem",
   borderRadius: "8px",
-  transition: "all 0.3s ease",
-  backgroundColor: active ? "var(--color-silver)" : "transparent",
+  position: "relative",
+  transition: "color 0.25s ease",
+  backgroundColor: "transparent",
+
+  // Minimal underline cue — animates in on hover, stays on the active item.
+  "&::after": {
+    content: '""',
+    position: "absolute",
+    left: "1.5rem",
+    right: "1.5rem",
+    bottom: "0.15rem",
+    height: "2px",
+    borderRadius: "2px",
+    backgroundColor: "var(--color-saffron-dark)",
+    transform: active ? "scaleX(1)" : "scaleX(0)",
+    transformOrigin: "center",
+    transition: "transform 0.25s ease",
+  },
 
   "&:hover": {
-    backgroundColor: "var(--color-silver)",
-    color: "var(--color-black)",
+    backgroundColor: "transparent",
+    color: "var(--color-saffron-dark)",
+  },
+  "&:hover::after": {
+    transform: "scaleX(1)",
   },
 }));
 
@@ -115,14 +152,18 @@ export const DrawerLogoText = styled(Typography)(({ theme }) => ({
 
 export const DrawerNavItem = styled(ListItemButton)(({ theme, active }) => ({
   padding: "16px 24px",
+  borderLeft: "3px solid",
+  borderLeftColor: active ? "var(--color-saffron-dark)" : "transparent",
   fontFamily: "var(--font-primary)",
   ...responsiveFont(theme, "18px"),
-  fontWeight: 500,
-  color: active ? "var(--color-black)" : "var(--color-charcoal)",
-  backgroundColor: active ? "var(--color-silver)" : "transparent",
+  fontWeight: active ? 600 : 500,
+  color: active ? "var(--color-saffron-dark)" : "var(--color-charcoal)",
+  backgroundColor: "transparent",
   transition: "all 0.3s ease",
 
   "&:hover": {
-    backgroundColor: "var(--color-silver)",
+    backgroundColor: "transparent",
+    borderLeftColor: "var(--color-saffron)",
+    color: "var(--color-saffron-dark)",
   },
 }));

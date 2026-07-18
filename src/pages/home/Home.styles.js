@@ -1,28 +1,40 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import { responsiveFont } from "../../components/font/ResponsiveFonts.styles";
-import { fadeIn } from "../../styles/animations";
+import { fadeIn, slideInLeft, slideInRight } from "../../styles/animations";
 
 export const HomeWrapper = styled(Box)(() => ({
   minHeight: "calc(100vh - 80px)",
   display: "flex",
   flexDirection: "column",
-  gap: "40px",
+  // gap: "40px",
 }));
 
 export const HomeContainer = styled(Box)(({ theme }) => ({
-  maxWidth: "1400px",
   flex: 1,
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  padding: "90px 24px",
+  overflowX: "hidden",
+  backgroundImage:
+    "linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%)",
+
+  [theme.breakpoints.down("md")]: {
+    padding: "40px 24px",
+  },
+}));
+
+export const HomeInner = styled(Box)(({ theme }) => ({
+  maxWidth: "1400px",
+  width: "100%",
   display: "flex",
   alignItems: "center",
   gap: "80px",
-  margin: "0 auto",
-  padding: "90px 24px",
 
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
     gap: "40px",
-    padding: "40px 24px",
   },
 }));
 
@@ -31,6 +43,8 @@ export const ImageSection = styled(Box)(({ theme }) => ({
   position: "relative",
   width: "380px",
   height: "500px",
+  // Slides in from the left on page launch (just after the navbar).
+  animation: `${slideInLeft} 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both`,
 
   [theme.breakpoints.down("lg")]: {
     width: "320px",
@@ -64,6 +78,8 @@ export const TextSection = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
+  // Slides in from the right, slightly after the image for a staggered feel.
+  animation: `${slideInRight} 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both`,
 
   [theme.breakpoints.down("md")]: {
     textAlign: "center",
