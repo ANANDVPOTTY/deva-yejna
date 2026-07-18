@@ -14,7 +14,7 @@ import QuoteSection from "../../components/quote-section/QuoteSection";
 import OurServices from "../../components/our-services/OurServices";
 import Testimonials from "../../components/testimonials/Testimonials";
 import Reveal from "../../components/reveal/Reveal";
-import ScrollLotus from "../../components/scroll-lotus/ScrollLotus";
+import ScrollLotus from "../../components/scroll-lotus/ScrollLotusFan";
 import ganapatiImg from "../../assets/images/ganpati.jpg";
 import shivlingImg from "../../assets/images/shivling.jpg";
 import mahavishnuImg from "../../assets/images/mahavishnu.jpg";
