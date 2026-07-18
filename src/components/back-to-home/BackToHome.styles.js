@@ -2,9 +2,16 @@ import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import { responsiveFont } from "../font/ResponsiveFonts.styles";
 
-export const BackNav = styled("div")(({ theme }) => ({
+export const BackNav = styled("div")(() => ({
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  // backgroundColor: "var(--color-off-white)",
+}));
+
+export const BackNavInner = styled("div")(({ theme }) => ({
   maxWidth: "1400px",
-  margin: "0 auto",
+  width: "100%",
   padding: "16px 24px",
   [theme.breakpoints.down("sm")]: {
     padding: "12px 16px 0",
