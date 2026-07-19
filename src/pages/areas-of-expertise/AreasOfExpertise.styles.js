@@ -115,28 +115,32 @@ export const AreaBlock = styled(Box)(({ theme }) => ({
   scrollMarginTop: "90px",
   display: "grid",
   gridTemplateColumns: "minmax(0, 0.9fr) minmax(0, 1.1fr)",
-  gap: "44px",
+  columnGap: "44px",
+  rowGap: "40px",
   alignItems: "center",
 
-  "&:nth-of-type(even)": {
-    gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 0.9fr)",
-  },
+  /* Row 1: image + content (odd = image left, even = image right) */
+  "& > :nth-child(1)": { gridColumn: 1, gridRow: 1 },
+  "& > :nth-child(2)": { gridColumn: 2, gridRow: 1 },
+  "&:nth-of-type(even) > :nth-child(1)": { gridColumn: 2, gridRow: 1 },
+  "&:nth-of-type(even) > :nth-child(2)": { gridColumn: 1, gridRow: 1 },
 
-  "&:nth-of-type(even) > :first-of-type": {
-    order: 2,
-  },
+  /* Row 2: full-width Om divider after the section */
+  "& > :nth-child(3)": { gridColumn: "1 / -1", gridRow: 2 },
 
   [theme.breakpoints.down("md")]: {
     gridTemplateColumns: "1fr",
-    gap: "28px",
+    rowGap: "28px",
 
-    "&:nth-of-type(even)": {
-      gridTemplateColumns: "1fr",
+    "& > :nth-child(1), &:nth-of-type(even) > :nth-child(1)": {
+      gridColumn: 1,
+      gridRow: 1,
     },
-
-    "&:nth-of-type(even) > :first-of-type": {
-      order: 0,
+    "& > :nth-child(2), &:nth-of-type(even) > :nth-child(2)": {
+      gridColumn: 1,
+      gridRow: 2,
     },
+    "& > :nth-child(3)": { gridColumn: 1, gridRow: 3 },
   },
 }));
 
@@ -189,6 +193,13 @@ export const ServiceGrid = styled(Box)(({ theme }) => ({
   gridTemplateColumns: "repeat(2, 1fr)",
   gap: "14px",
 
+  /* 900–1200px: area is still two columns, so the content side is narrow —
+     drop services to a single column to avoid cramped 3-line wrapping */
+  [theme.breakpoints.between("md", "lg")]: {
+    gridTemplateColumns: "1fr",
+  },
+
+  /* Phones */
   [theme.breakpoints.down("sm")]: {
     gridTemplateColumns: "1fr",
   },
@@ -231,10 +242,12 @@ export const ServiceNumber = styled(Box)(({ theme }) => ({
 
 export const ServiceName = styled(Typography)(({ theme }) => ({
   ...responsiveFont(theme, "16px"),
+  minWidth: 0,
   color: "var(--color-charcoal)",
   fontFamily: "var(--font-primary)",
   fontWeight: 500,
   lineHeight: 1.4,
+  overflowWrap: "break-word",
 }));
 
 /*-------| Om Divider (after each area) |-------*/
@@ -245,7 +258,7 @@ export const AreaDivider = styled(Box)(({ theme }) => ({
   gap: "20px",
   width: "100%",
   maxWidth: "460px",
-  margin: "28px auto 0",
+  margin: "0 auto",
 
   [theme.breakpoints.down("sm")]: {
     gap: "12px",
