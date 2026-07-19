@@ -2,8 +2,8 @@
 import { useNavigate } from "react-router-dom";
 
 //-------| Images & Icons |-------//
-import picOne from "../../assets/images/kishorePic1.png";
-import picTwo from "../../assets/images/kishorePic2.png";
+import picOne from "../../assets/me/kishorePic1.png";
+import picTwo from "../../assets/me/kishorePic2.png";
 
 //-------| Styled Components |-------//
 import {

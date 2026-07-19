@@ -15,11 +15,11 @@ import OurServices from "../../components/our-services/OurServices";
 import Testimonials from "../../components/testimonials/Testimonials";
 import Reveal from "../../components/reveal/Reveal";
 import ScrollLotus from "../../components/scroll-lotus/ScrollLotusFan";
-import ganapatiImg from "../../assets/images/ganpati.jpg";
-import shivlingImg from "../../assets/images/shivling.jpg";
-import mahavishnuImg from "../../assets/images/mahavishnu.jpg";
-import mrugaImg from "../../assets/images/mruga.jpg";
-import durgaImg from "../../assets/images/durga.jpg";
+import ganapatiImg from "../../assets/home/ganpati.jpg";
+import shivlingImg from "../../assets/home/shivling.jpg";
+import mahavishnuImg from "../../assets/home/mahavishnu.jpg";
+import mrugaImg from "../../assets/home/mruga.jpg";
+import durgaImg from "../../assets/home/durga.jpg";
 
 const DEITY_IMAGES = [
   { src: ganapatiImg, alt: "Lord Ganapati" },

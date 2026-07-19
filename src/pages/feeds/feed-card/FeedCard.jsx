@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import MediaCarousel from "../media-carousel/MediaCarousel";
 import { formatFeedDate } from "../feedsData";
-import dp from "../../../assets/images/kishorePic1.png";
+import dp from "../../../assets/me/kishorePic1.png";
 import {
   Card,
   Header,

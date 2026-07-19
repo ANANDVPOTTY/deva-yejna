@@ -15,8 +15,8 @@ import {
   SourceText,
 } from "./QuoteSection.styles";
 
-import bhagavatgitaImg from "../../assets/images/bhagavatgita.jpg";
-import ramayanaImg from "../../assets/images/ramayana.jpg";
+import bhagavatgitaImg from "../../assets/other/bhagavatgita.jpg";
+import ramayanaImg from "../../assets/other/ramayana.jpg";
 
 const QUOTE_INTERVAL = 8000;
 

@@ -5,7 +5,7 @@ import {
   FooterName,
   CopyrightText,
 } from "./Footer.styles";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/logo/logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
