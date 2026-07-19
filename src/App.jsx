@@ -5,11 +5,12 @@ import AppRouter from "./router/AppRouter";
 
 const App = () => {
   const { pathname } = useLocation();
+  const hideChrome = pathname === "/about/areas-of-expertise";
 
   return (
     <>
-      <Header />
-      {pathname !== "/" && <BackToHome />}
+      {!hideChrome && <Header />}
+      {pathname !== "/" && !hideChrome && <BackToHome />}
       <AppRouter />
     </>
   );

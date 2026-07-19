@@ -15,7 +15,7 @@ import {
   CenterImage,
   IconWrapper,
 } from "./OurServices.styles";
-import shrichakraImg from "../../assets/images/shrichakra.png";
+import shrichakraImg from "../../assets/other/shrichakra.png";
 
 const SERVICES_DATA = [
   {

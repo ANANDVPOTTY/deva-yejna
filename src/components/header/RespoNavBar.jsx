@@ -16,7 +16,7 @@ import {
   DrawerLogoText,
   DrawerNavItem,
 } from "./Header.styles";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/logo/logo.png";
 
 const NAV_ITEMS = [
   { label: "About", href: "/about" },
