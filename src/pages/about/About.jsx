@@ -4,12 +4,9 @@ import { useNavigate } from "react-router-dom";
 //-------| Images & Icons |-------//
 import picOne from "../../assets/me/kishorePic1.png";
 import picTwo from "../../assets/me/kishorePic2.png";
-import tantrikRitual from "../../assets/our-expertise/tantrikRitual.jpg";
-import vedicPuja from "../../assets/our-expertise/vedicPuja.jpg";
-import homamHavan from "../../assets/our-expertise/homamHavan.jpg";
-import templeService from "../../assets/our-expertise/templeService.jpg";
-import spritualGuidance from "../../assets/our-expertise/spritualGuidance.jpg";
-import festivalPooja from "../../assets/our-expertise/festivalPooja.jpg";
+
+//-------| Data |-------//
+import { EXPERTISE_AREAS } from "../areas-of-expertise/expertiseData";
 
 //-------| Styled Components |-------//
 import {
@@ -49,52 +46,8 @@ import {
   ExpertiseCardContent,
   ExpertiseTitle,
   ExpertiseDescription,
+  ExpertiseCta,
 } from "./About.styles";
-
-const EXPERTISE_AREAS = [
-  {
-    icon: "🔱",
-    title: "Tantrik Rituals",
-    image: tantrikRitual,
-    description:
-      "Authentic Kerala tantrik pooja rituals performed with sacred mantras and traditional methods.",
-  },
-  {
-    icon: "🪔",
-    title: "Vedic Poojas",
-    image: vedicPuja,
-    description:
-      "Traditional vedic ceremonies for prosperity, health, and spiritual well-being.",
-  },
-  {
-    icon: "📿",
-    title: "Homam & Havans",
-    image: homamHavan,
-    description:
-      "Sacred fire rituals to invoke divine blessings and remove obstacles from life.",
-  },
-  {
-    icon: "🌺",
-    title: "Temple Services",
-    image: templeService,
-    description:
-      "Specialized rituals and services for temples following authentic traditions.",
-  },
-  {
-    icon: "✨",
-    title: "Spiritual Guidance",
-    image: spritualGuidance,
-    description:
-      "Personal consultations for spiritual growth and overcoming life challenges.",
-  },
-  {
-    icon: "🙏",
-    title: "Festival Poojas",
-    image: festivalPooja,
-    description:
-      "Special ceremonies for auspicious occasions and traditional festivals.",
-  },
-];
 
 const About = () => {
   const navigate = useNavigate();
@@ -108,6 +61,10 @@ const About = () => {
     if (expertiseSection) {
       expertiseSection.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handleExpertiseClick = (slug) => {
+    navigate(`/about/areas-of-expertise#${slug}`);
   };
 
   return (
@@ -209,6 +166,7 @@ const About = () => {
             {EXPERTISE_AREAS.map((area) => (
               <ExpertiseCard
                 key={area.title}
+                onClick={() => handleExpertiseClick(area.slug)}
                 style={{ backgroundImage: `url(${area.image})` }}
               >
                 <ExpertiseCardContent>
@@ -216,6 +174,7 @@ const About = () => {
                   <ExpertiseDescription>
                     {area.description}
                   </ExpertiseDescription>
+                  <ExpertiseCta>View Services →</ExpertiseCta>
                 </ExpertiseCardContent>
               </ExpertiseCard>
             ))}

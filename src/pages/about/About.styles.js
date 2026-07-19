@@ -502,6 +502,7 @@ export const ExpertiseCard = styled(Box)(() => ({
   minHeight: "260px",
   borderRadius: "16px",
   overflow: "hidden",
+  cursor: "pointer",
   boxShadow: "0 8px 30px rgba(61, 58, 54, 0.08)",
   border: "1px solid var(--color-pearl)",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -558,4 +559,13 @@ export const ExpertiseDescription = styled(Typography)(({ theme }) => ({
   color: "var(--color-pearl)",
   lineHeight: 1.6,
   textShadow: "0 1px 4px rgba(0, 0, 0, 0.55)",
+}));
+
+export const ExpertiseCta = styled(Typography)(({ theme }) => ({
+  ...responsiveFont(theme, "14px"),
+  fontFamily: "var(--font-primary)",
+  fontWeight: 600,
+  letterSpacing: "0.04em",
+  color: "var(--color-saffron)",
+  marginTop: "16px",
 }));
