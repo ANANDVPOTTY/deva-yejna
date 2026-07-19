@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { WhatsApp } from "@mui/icons-material";
@@ -109,6 +110,66 @@ const SOCIAL_LINKS = [
   { icon: <WhatsApp />, url: "https://wa.me/7736558150", label: "WhatsApp" },
 ];
 
+/*-------| Framer Motion — launch animations |-------*/
+const MotionHeader = motion.create(PageHeader);
+const MotionCard = motion.create(ContactInner);
+const MotionForm = motion.create(StyledForm);
+const MotionFieldGroup = motion.create(FieldGroup);
+const MotionInfoBox = motion.create(ContactInfoBox);
+const MotionSocial = motion.create(SocialStrip);
+const MotionMapSection = motion.create(MapSection);
+
+const EASE = [0.22, 1, 0.36, 1];
+
+const headerV = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+};
+
+const cardV = {
+  hidden: { opacity: 0, y: 40, scale: 0.985 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.7, ease: EASE, delay: 0.15 },
+  },
+};
+
+// Orchestrates the staggered field entrance
+const formV = {
+  hidden: {},
+  show: { transition: { delayChildren: 0.5, staggerChildren: 0.08 } },
+};
+
+const fieldV = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
+};
+
+const infoV = {
+  hidden: { opacity: 0, x: 40 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: EASE, delay: 0.55 },
+  },
+};
+
+const socialV = {
+  hidden: { opacity: 0, y: 12 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: EASE, delay: 0.8 },
+  },
+};
+
+const mapV = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+};
+
 const Contact = () => {
   const [form, setForm] = useState(EMPTY_FORM);
   const [touched, setTouched] = useState({});
@@ -156,20 +217,26 @@ const Contact = () => {
   return (
     <>
       <ContactSection>
-        <PageHeader>
+        <MotionHeader variants={headerV} initial="hidden" animate="show">
           <FormHeading>Contact Us</FormHeading>
 
           <FormSubtitle>
             Feel free to contact us any time. We will get back to you as soon as
             we can!
           </FormSubtitle>
-        </PageHeader>
+        </MotionHeader>
 
-        <ContactInner>
+        <MotionCard variants={cardV} initial="hidden" animate="show">
           <CardBody>
             <FormArea>
-              <StyledForm onSubmit={handleSubmit} noValidate>
-                <FieldGroup>
+              <MotionForm
+                onSubmit={handleSubmit}
+                noValidate
+                variants={formV}
+                initial="hidden"
+                animate="show"
+              >
+                <MotionFieldGroup variants={fieldV}>
                   <FormInput
                     name="name"
                     placeholder="Name"
@@ -181,9 +248,9 @@ const Contact = () => {
                   {touched.name && errors.name && (
                     <FieldError>{errors.name}</FieldError>
                   )}
-                </FieldGroup>
+                </MotionFieldGroup>
 
-                <FieldGroup>
+                <MotionFieldGroup variants={fieldV}>
                   <FormInput
                     name="email"
                     type="email"
@@ -196,9 +263,9 @@ const Contact = () => {
                   {touched.email && errors.email && (
                     <FieldError>{errors.email}</FieldError>
                   )}
-                </FieldGroup>
+                </MotionFieldGroup>
 
-                <FieldGroup>
+                <MotionFieldGroup variants={fieldV}>
                   <FormInput
                     name="phone"
                     type="tel"
@@ -211,9 +278,9 @@ const Contact = () => {
                   {touched.phone && errors.phone && (
                     <FieldError>{errors.phone}</FieldError>
                   )}
-                </FieldGroup>
+                </MotionFieldGroup>
 
-                <FieldGroup>
+                <MotionFieldGroup variants={fieldV}>
                   <FormInput
                     name="location"
                     placeholder="Where are you from?"
@@ -225,9 +292,9 @@ const Contact = () => {
                   {touched.location && errors.location && (
                     <FieldError>{errors.location}</FieldError>
                   )}
-                </FieldGroup>
+                </MotionFieldGroup>
 
-                <FieldGroup>
+                <MotionFieldGroup variants={fieldV}>
                   <FormTextarea
                     name="address"
                     placeholder="Address"
@@ -240,9 +307,9 @@ const Contact = () => {
                   {touched.address && errors.address && (
                     <FieldError>{errors.address}</FieldError>
                   )}
-                </FieldGroup>
+                </MotionFieldGroup>
 
-                <FieldGroup>
+                <MotionFieldGroup variants={fieldV}>
                   <FormTextarea
                     name="comments"
                     placeholder="Comments"
@@ -255,18 +322,20 @@ const Contact = () => {
                   {touched.comments && errors.comments && (
                     <FieldError>{errors.comments}</FieldError>
                   )}
-                </FieldGroup>
+                </MotionFieldGroup>
 
-                <SubmitButton
-                  type="submit"
-                  disabled={!isValid || status === "sending"}
-                >
-                  {status === "sending"
-                    ? "Sending…"
-                    : status === "sent"
-                      ? "Message Sent ✓"
-                      : "Send"}
-                </SubmitButton>
+                <motion.div variants={fieldV}>
+                  <SubmitButton
+                    type="submit"
+                    disabled={!isValid || status === "sending"}
+                  >
+                    {status === "sending"
+                      ? "Sending…"
+                      : status === "sent"
+                        ? "Message Sent ✓"
+                        : "Send"}
+                  </SubmitButton>
+                </motion.div>
 
                 {status === "sent" && (
                   <SuccessNote>
@@ -274,10 +343,10 @@ const Contact = () => {
                     message and We&apos;ll get back to you soon.
                   </SuccessNote>
                 )}
-              </StyledForm>
+              </MotionForm>
             </FormArea>
 
-            <ContactInfoBox>
+            <MotionInfoBox variants={infoV} initial="hidden" animate="show">
               <InfoBoxTitle>Contact Info</InfoBoxTitle>
 
               <InfoRow>
@@ -305,9 +374,9 @@ const Contact = () => {
                 <MapOutlinedIcon />
                 <InfoRowText>{ADDRESS}</InfoRowText>
               </InfoRow>
-            </ContactInfoBox>
+            </MotionInfoBox>
 
-            <SocialStrip>
+            <MotionSocial variants={socialV} initial="hidden" animate="show">
               {SOCIAL_LINKS.map((social) => (
                 <SocialLink
                   key={social.label}
@@ -319,12 +388,17 @@ const Contact = () => {
                   {social.icon}
                 </SocialLink>
               ))}
-            </SocialStrip>
+            </MotionSocial>
           </CardBody>
-        </ContactInner>
+        </MotionCard>
       </ContactSection>
 
-      <MapSection>
+      <MotionMapSection
+        variants={mapV}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <MapInner>
           <MapHeading>Find Us on Google Map</MapHeading>
 
@@ -343,7 +417,7 @@ const Contact = () => {
             />
           </MapBind>
         </MapInner>
-      </MapSection>
+      </MotionMapSection>
     </>
   );
 };
