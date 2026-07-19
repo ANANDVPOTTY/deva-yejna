@@ -2,20 +2,14 @@ import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import { responsiveFont } from "../../components/font/ResponsiveFonts.styles";
 
-// Brand gradient from the requested design (blue → purple)
-const BRAND_GRADIENT =
-  "linear-gradient(to top right, #1325e8 -5%, #8f10b7 100%)";
+const BRAND_GRADIENT = "linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%)";
 
-/*-------| Contact section (grey backdrop so the white card pops) |-------*/
+/*-------| Contact section |-------*/
 export const ContactSection = styled(Box)(({ theme }) => ({
-  backgroundColor: "#f1f1f1",
-  padding: "100px 24px",
+  padding: "20px 24px 80px",
 
-  [theme.breakpoints.down("md")]: {
-    padding: "60px 16px",
-  },
   [theme.breakpoints.down("sm")]: {
-    padding: "40px 12px",
+    padding: "16px 0 60px",
   },
 }));
 
@@ -26,40 +20,65 @@ export const ContactInner = styled(Box)(() => ({
   margin: "0 auto",
   backgroundColor: "var(--color-white)",
   borderRadius: "25px",
-  boxShadow: "20px 22px 44px rgba(58, 47, 35, 0.16)",
+  border: "1px solid rgba(58, 47, 35, 0.08)",
+  boxShadow: "0 16px 44px rgba(58, 47, 35, 0.14)",
   overflow: "hidden",
 }));
 
-/*-------| Left form area — right padding reserves space for the info box |-------*/
-export const FormArea = styled(Box)(({ theme }) => ({
-  padding: "60px 340px 70px 90px",
+/*-------| Page header ABOVE the card (Feeds-style heading + subtitle) |-------*/
+export const PageHeader = styled(Box)(({ theme }) => ({
+  maxWidth: "1000px",
+  margin: "0 auto 4px",
+  padding: "0 24px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  textAlign: "center",
 
-  [theme.breakpoints.down("lg")]: {
-    padding: "60px 300px 70px 60px",
-  },
-  [theme.breakpoints.down("md")]: {
-    padding: "44px 30px",
-  },
   [theme.breakpoints.down("sm")]: {
-    padding: "32px 22px",
+    margin: "0 auto 2px",
+    padding: "0 16px",
   },
 }));
 
 export const FormHeading = styled(Typography)(({ theme }) => ({
-  ...responsiveFont(theme, "40px"),
+  ...responsiveFont(theme, "48px"),
   fontFamily: "var(--font-special)",
   fontWeight: 600,
   color: "var(--color-charcoal)",
-  letterSpacing: "1px",
-  marginBottom: "10px",
+  marginBottom: "12px",
 }));
 
 export const FormSubtitle = styled(Typography)(({ theme }) => ({
-  ...responsiveFont(theme, "14px"),
+  ...responsiveFont(theme, "18px"),
   fontFamily: "var(--font-primary)",
   color: "var(--color-slate)",
-  letterSpacing: "0.5px",
-  marginBottom: "34px",
+  lineHeight: 1.6,
+  maxWidth: "600px",
+  marginBottom: "20px",
+}));
+
+/*-------| Card body — holds the form, social strip & info box |-------*/
+export const CardBody = styled(Box)(() => ({
+  position: "relative",
+}));
+
+/*-------| Left form area — right padding reserves space for the info box |-------*/
+export const FormArea = styled(Box)(({ theme }) => ({
+  padding: "56px 360px 60px 60px",
+
+  // Keep right padding >= the 330px info box so fields never slip under it
+  [theme.breakpoints.down("lg")]: {
+    padding: "56px 350px 60px 48px",
+  },
+
+  [theme.breakpoints.down("md")]: {
+    padding: "44px 30px",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    padding: "32px 22px",
+  },
 }));
 
 export const StyledForm = styled("form")(() => ({
@@ -69,12 +88,14 @@ export const StyledForm = styled("form")(() => ({
 
 // Shared underline-input styling for the text fields and text areas
 const fieldBase = (theme) => ({
-  ...responsiveFont(theme, "14px"),
+  ...responsiveFont(theme, "16px"),
   fontFamily: "var(--font-primary)",
+  fontWeight: "500",
+  width: "100%",
+  boxSizing: "border-box",
   border: "none",
   borderBottom: "1px solid var(--color-ui-border)",
   padding: "12px 4px",
-  marginBottom: "24px",
   backgroundColor: "transparent",
   color: "var(--color-charcoal)",
   letterSpacing: "0.5px",
@@ -89,18 +110,49 @@ const fieldBase = (theme) => ({
   },
 });
 
-export const FormInput = styled("input")(({ theme }) => fieldBase(theme));
+// Red underline when the field has a validation error
+const fieldErrorState = {
+  borderBottomColor: "#d32f2f",
+  "&:focus": {
+    borderBottom: "2px solid #d32f2f",
+  },
+};
 
-export const FormTextarea = styled("textarea")(({ theme }) => ({
+export const FormInput = styled("input", {
+  shouldForwardProp: (prop) => prop !== "hasError",
+})(({ theme, hasError }) => ({
+  ...fieldBase(theme),
+  ...(hasError ? fieldErrorState : {}),
+}));
+
+export const FormTextarea = styled("textarea", {
+  shouldForwardProp: (prop) => prop !== "hasError",
+})(({ theme, hasError }) => ({
   ...fieldBase(theme),
   resize: "vertical",
   minHeight: "96px",
+  ...(hasError ? fieldErrorState : {}),
+}));
+
+// Wraps each field + its error message
+export const FieldGroup = styled(Box)(() => ({
+  display: "flex",
+  flexDirection: "column",
+  marginBottom: "24px",
+}));
+
+export const FieldError = styled(Typography)(({ theme }) => ({
+  ...responsiveFont(theme, "12px"),
+  fontFamily: "var(--font-primary)",
+  color: "#d32f2f",
+  marginTop: "6px",
+  letterSpacing: "0.3px",
 }));
 
 export const SubmitButton = styled("button")(({ theme }) => ({
   ...responsiveFont(theme, "14px"),
   fontFamily: "var(--font-primary)",
-  background: BRAND_GRADIENT,
+  backgroundColor: "#1976d2",
   border: "none",
   color: "var(--color-white)",
   padding: "14px 15px",
@@ -174,11 +226,15 @@ export const SocialLink = styled("a")(() => ({
 /*-------| Dark "Contact Info" box, flush to the card's right edge |-------*/
 export const ContactInfoBox = styled(Box)(({ theme }) => ({
   position: "absolute",
-  top: "56px",
+  top: "60px",
   right: 0,
   zIndex: 2,
   width: "330px",
-  backgroundColor: "var(--color-service-center)",
+  backgroundColor: "rgba(28, 26, 24, 0.6)",
+  backdropFilter: "blur(16px)",
+  WebkitBackdropFilter: "blur(16px)",
+  border: "1px solid rgba(255, 255, 255, 0.15)",
+  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.22)",
   color: "var(--color-white)",
   padding: "36px 34px",
   borderRadius: "25px 0 0 25px",
@@ -216,7 +272,7 @@ export const InfoRow = styled(Box)(() => ({
 }));
 
 export const InfoRowText = styled(Typography)(({ theme }) => ({
-  ...responsiveFont(theme, "14px"),
+  ...responsiveFont(theme, "16px"),
   fontFamily: "var(--font-primary)",
   color: "rgba(255, 255, 255, 0.88)",
   letterSpacing: "0.5px",
@@ -226,10 +282,10 @@ export const InfoRowText = styled(Typography)(({ theme }) => ({
 /*-------| Map section below the card |-------*/
 export const MapSection = styled(Box)(({ theme }) => ({
   backgroundColor: "var(--color-white)",
-  padding: "70px 24px",
+  padding: "20px 24px",
 
   [theme.breakpoints.down("sm")]: {
-    padding: "44px 16px",
+    padding: "14px 16px",
   },
 }));
 

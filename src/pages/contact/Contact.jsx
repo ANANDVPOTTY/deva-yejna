@@ -8,13 +8,17 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
 import {
   ContactSection,
+  PageHeader,
   ContactInner,
+  CardBody,
   FormArea,
   FormHeading,
   FormSubtitle,
   StyledForm,
+  FieldGroup,
   FormInput,
   FormTextarea,
+  FieldError,
   SubmitButton,
   SuccessNote,
   SocialStrip,
@@ -51,6 +55,51 @@ const EMPTY_FORM = {
   comments: "",
 };
 
+// Client-side validation mirroring the Google Form's own rules (Google does
+// NOT enforce them on a direct POST, so they have to live here).
+const VALIDATORS = {
+  name: (v) => {
+    const t = v.trim();
+    if (!t) return "Name is required.";
+    if (t.length < 2 || t.length > 100 || !/[a-zA-Z]/.test(t))
+      return "Enter a valid name.";
+    return "";
+  },
+  email: (v) => {
+    const t = v.trim();
+    if (!t) return "Email is required.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t))
+      return "Please enter a valid email address.";
+    return "";
+  },
+  phone: (v) => {
+    const t = v.trim();
+    if (!t) return "Phone number is required.";
+    const digits = t.replace(/\D/g, "");
+    if (!/^\+?[\d\s-]+$/.test(t) || digits.length < 7 || digits.length > 15)
+      return "Enter a valid phone number.";
+    return "";
+  },
+  location: (v) => {
+    const t = v.trim();
+    if (!t) return "This field is required.";
+    if (t.length < 2) return "Enter valid location detail.";
+    return "";
+  },
+  address: (v) => {
+    const t = v.trim();
+    if (!t) return "Address is required.";
+    if (t.length < 5) return "Enter a valid address.";
+    return "";
+  },
+  comments: (v) => {
+    const t = v.trim();
+    if (!t) return "Comments are required.";
+    if (t.length > 500) return "Please keep comments under 500 characters.";
+    return "";
+  },
+};
+
 const ADDRESS =
   "Govindapuram Vadakke Madom, TC 43/972(1) VYASA 222, Valiyashalai Street, Thiruvananthapuram 695036";
 
@@ -62,13 +111,27 @@ const SOCIAL_LINKS = [
 
 const Contact = () => {
   const [form, setForm] = useState(EMPTY_FORM);
+  const [touched, setTouched] = useState({});
   const [status, setStatus] = useState("idle");
 
-  const handleChange = (e) =>
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  // Recompute errors every render; the form is valid only when all are empty
+  const errors = Object.fromEntries(
+    Object.keys(VALIDATORS).map((key) => [key, VALIDATORS[key](form[key])]),
+  );
+  const isValid = Object.values(errors).every((msg) => !msg);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    if (status === "sent") setStatus("idle");
+  };
+
+  const handleBlur = (e) =>
+    setTouched((prev) => ({ ...prev, [e.target.name]: true }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isValid) return;
     setStatus("sending");
 
     const body = new URLSearchParams();
@@ -87,132 +150,177 @@ const Contact = () => {
 
     setStatus("sent");
     setForm(EMPTY_FORM);
+    setTouched({});
   };
 
   return (
     <>
       <ContactSection>
+        <PageHeader>
+          <FormHeading>Contact Us</FormHeading>
+
+          <FormSubtitle>
+            Feel free to contact us any time. We will get back to you as soon as
+            we can!
+          </FormSubtitle>
+        </PageHeader>
+
         <ContactInner>
-          <FormArea>
-            <FormHeading>Contact Us</FormHeading>
+          <CardBody>
+            <FormArea>
+              <StyledForm onSubmit={handleSubmit} noValidate>
+                <FieldGroup>
+                  <FormInput
+                    name="name"
+                    placeholder="Name"
+                    value={form.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    hasError={Boolean(touched.name && errors.name)}
+                  />
+                  {touched.name && errors.name && (
+                    <FieldError>{errors.name}</FieldError>
+                  )}
+                </FieldGroup>
 
-            <FormSubtitle>
-              Feel free to contact us any time. We will get back to you as soon
-              as we can!
-            </FormSubtitle>
+                <FieldGroup>
+                  <FormInput
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    value={form.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    hasError={Boolean(touched.email && errors.email)}
+                  />
+                  {touched.email && errors.email && (
+                    <FieldError>{errors.email}</FieldError>
+                  )}
+                </FieldGroup>
 
-            <StyledForm onSubmit={handleSubmit}>
-              <FormInput
-                name="name"
-                placeholder="Name"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
+                <FieldGroup>
+                  <FormInput
+                    name="phone"
+                    type="tel"
+                    placeholder="Phone number"
+                    value={form.phone}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    hasError={Boolean(touched.phone && errors.phone)}
+                  />
+                  {touched.phone && errors.phone && (
+                    <FieldError>{errors.phone}</FieldError>
+                  )}
+                </FieldGroup>
 
-              <FormInput
-                name="email"
-                type="email"
-                placeholder="Email"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
+                <FieldGroup>
+                  <FormInput
+                    name="location"
+                    placeholder="Where are you from?"
+                    value={form.location}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    hasError={Boolean(touched.location && errors.location)}
+                  />
+                  {touched.location && errors.location && (
+                    <FieldError>{errors.location}</FieldError>
+                  )}
+                </FieldGroup>
 
-              <FormInput
-                name="phone"
-                type="tel"
-                placeholder="Phone number"
-                value={form.phone}
-                onChange={handleChange}
-                required
-              />
+                <FieldGroup>
+                  <FormTextarea
+                    name="address"
+                    placeholder="Address"
+                    rows={2}
+                    value={form.address}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    hasError={Boolean(touched.address && errors.address)}
+                  />
+                  {touched.address && errors.address && (
+                    <FieldError>{errors.address}</FieldError>
+                  )}
+                </FieldGroup>
 
-              <FormInput
-                name="location"
-                placeholder="Where are you from?"
-                value={form.location}
-                onChange={handleChange}
-                required
-              />
+                <FieldGroup>
+                  <FormTextarea
+                    name="comments"
+                    placeholder="Comments"
+                    rows={4}
+                    value={form.comments}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    hasError={Boolean(touched.comments && errors.comments)}
+                  />
+                  {touched.comments && errors.comments && (
+                    <FieldError>{errors.comments}</FieldError>
+                  )}
+                </FieldGroup>
 
-              <FormTextarea
-                name="address"
-                placeholder="Address"
-                rows={2}
-                value={form.address}
-                onChange={handleChange}
-                required
-              />
-
-              <FormTextarea
-                name="comments"
-                placeholder="Comments"
-                rows={4}
-                value={form.comments}
-                onChange={handleChange}
-                required
-              />
-
-              <SubmitButton type="submit" disabled={status === "sending"}>
-                {status === "sending"
-                  ? "Sending…"
-                  : status === "sent"
-                    ? "Message Sent ✓"
-                    : "Send"}
-              </SubmitButton>
-
-              {status === "sent" && (
-                <SuccessNote>
-                  Thank you! We&apos;ll get back to you soon.
-                </SuccessNote>
-              )}
-            </StyledForm>
-          </FormArea>
-
-          <SocialStrip>
-            {SOCIAL_LINKS.map((social) => (
-              <SocialLink
-                key={social.label}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-              >
-                {social.icon}
-              </SocialLink>
-            ))}
-          </SocialStrip>
-
-          <ContactInfoBox>
-            <InfoBoxTitle>Contact Info</InfoBoxTitle>
-
-            <InfoRow>
-              <HeadsetMicOutlinedIcon />
-              <InfoRowText>
-                <a href="tel:7736558150" style={{ color: "inherit" }}>
-                  7736558150
-                </a>
-              </InfoRowText>
-            </InfoRow>
-
-            <InfoRow>
-              <MarkEmailReadOutlinedIcon />
-              <InfoRowText>
-                <a
-                  href="mailto:devayajna@gmail.com"
-                  style={{ color: "inherit" }}
+                <SubmitButton
+                  type="submit"
+                  disabled={!isValid || status === "sending"}
                 >
-                  devayajna@gmail.com
-                </a>
-              </InfoRowText>
-            </InfoRow>
+                  {status === "sending"
+                    ? "Sending…"
+                    : status === "sent"
+                      ? "Message Sent ✓"
+                      : "Send"}
+                </SubmitButton>
 
-            <InfoRow>
-              <MapOutlinedIcon />
-              <InfoRowText>{ADDRESS}</InfoRowText>
-            </InfoRow>
-          </ContactInfoBox>
+                {status === "sent" && (
+                  <SuccessNote>
+                    Thank you for contacting Deva Yajna. I have received your
+                    message and We&apos;ll get back to you soon.
+                  </SuccessNote>
+                )}
+              </StyledForm>
+            </FormArea>
+
+            <ContactInfoBox>
+              <InfoBoxTitle>Contact Info</InfoBoxTitle>
+
+              <InfoRow>
+                <HeadsetMicOutlinedIcon />
+                <InfoRowText>
+                  <a href="tel:7736558150" style={{ color: "inherit" }}>
+                    7736558150
+                  </a>
+                </InfoRowText>
+              </InfoRow>
+
+              <InfoRow>
+                <MarkEmailReadOutlinedIcon />
+                <InfoRowText>
+                  <a
+                    href="mailto:devayajna@gmail.com"
+                    style={{ color: "inherit" }}
+                  >
+                    devayajna@gmail.com
+                  </a>
+                </InfoRowText>
+              </InfoRow>
+
+              <InfoRow>
+                <MapOutlinedIcon />
+                <InfoRowText>{ADDRESS}</InfoRowText>
+              </InfoRow>
+            </ContactInfoBox>
+
+            <SocialStrip>
+              {SOCIAL_LINKS.map((social) => (
+                <SocialLink
+                  key={social.label}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                >
+                  {social.icon}
+                </SocialLink>
+              ))}
+            </SocialStrip>
+          </CardBody>
         </ContactInner>
       </ContactSection>
 
