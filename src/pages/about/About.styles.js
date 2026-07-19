@@ -428,8 +428,10 @@ export const DividerSymbol = styled(Typography)(({ theme }) => ({
 export const QuoteSection = styled(Box)(({ theme }) => ({
   textAlign: "center",
   padding: "50px 40px",
-  background:
-    "linear-gradient(135deg, var(--color-pearl) 0%, var(--color-alabaster) 100%)",
+  // background:
+  //   "linear-gradient(135deg, var(--color-pearl) 0%, var(--color-alabaster) 100%)",
+  backgroundImage:
+    "linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 50%)",
   borderRadius: "20px",
   marginBottom: "60px",
   position: "relative",
@@ -457,6 +459,7 @@ export const QuoteText = styled(Typography)(({ theme }) => ({
   fontFamily: "var(--font-special)",
   color: "var(--color-charcoal)",
   fontStyle: "italic",
+  fontWeight: "500",
   lineHeight: 1.6,
   maxWidth: "800px",
   margin: "0 auto",
@@ -494,18 +497,45 @@ export const ExpertiseGrid = styled(Box)(({ theme }) => ({
 }));
 
 export const ExpertiseCard = styled(Box)(() => ({
+  position: "relative",
   padding: "30px 24px",
-  background: "var(--color-white)",
+  minHeight: "260px",
   borderRadius: "16px",
+  overflow: "hidden",
   boxShadow: "0 8px 30px rgba(61, 58, 54, 0.08)",
   border: "1px solid var(--color-pearl)",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
   textAlign: "center",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    inset: 0,
+    background:
+      "linear-gradient(to top, rgba(30, 27, 24, 0.85) 0%, rgba(30, 27, 24, 0.65) 100%)",
+    transition: "background 0.3s ease",
+  },
 
   "&:hover": {
     transform: "translateY(-5px)",
     boxShadow: "0 15px 40px rgba(61, 58, 54, 0.12)",
   },
+
+  "&:hover::before": {
+    background:
+      "linear-gradient(to top, rgba(30, 27, 24, 0.9) 0%, rgba(30, 27, 24, 0.75) 100%)",
+  },
+}));
+
+export const ExpertiseCardContent = styled(Box)(() => ({
+  position: "relative",
+  zIndex: 1,
 }));
 
 export const ExpertiseIcon = styled(Typography)(({ theme }) => ({
@@ -517,13 +547,15 @@ export const ExpertiseTitle = styled(Typography)(({ theme }) => ({
   ...responsiveFont(theme, "20px"),
   fontFamily: "var(--font-special)",
   fontWeight: 600,
-  color: "var(--color-charcoal)",
+  color: "var(--color-white)",
   marginBottom: "10px",
+  textShadow: "0 2px 6px rgba(0, 0, 0, 0.6)",
 }));
 
 export const ExpertiseDescription = styled(Typography)(({ theme }) => ({
   ...responsiveFont(theme, "16px"),
   fontFamily: "var(--font-primary)",
-  color: "var(--color-slate)",
+  color: "var(--color-pearl)",
   lineHeight: 1.6,
+  textShadow: "0 1px 4px rgba(0, 0, 0, 0.55)",
 }));
